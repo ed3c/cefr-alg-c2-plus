@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Listen to English in context. Choose optional speaking and writing practice with clear, evidence-aware language.">
+<title>CEFR ALG C2+ · English Studio</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23162840'/%3E%3Cpath d='M10 25V15m7 15V10m7 17V13m7 10v-6' stroke='%236fe6c0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to learning</a>
+<header class="topbar"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">≈</span><span>ENGLISH STUDIO<small>CEFR · ALG · C2+</small></span></a><button id="about-button" class="quiet">Method & sources</button></header>
+<div class="shell">
+<aside class="sidebar"><div class="eyebrow">YOUR SCENARIOS</div><h1>Meaning first.</h1><p class="muted intro">Start with a situation.<br>Let the language follow.</p><nav id="lesson-list" aria-label="Learning scenarios"></nav><div class="sidebar-note"><span class="small-label">LISTENING FIRST</span><p>You can stay quiet.<br>No translation. No word drills.<br>Follow what is happening.</p></div><p class="muted tiny">C2+ is an ambition, not a score.<br>This studio does not certify proficiency.</p></aside>
+<main id="workspace" tabindex="-1">
+<div class="lesson-heading"><div><p id="lesson-category" class="eyebrow"></p><h2 id="lesson-title"></h2><p id="lesson-focus" class="muted"></p></div><span class="lesson-count" id="lesson-count"></span></div>
+<div class="mode-tabs" role="tablist" aria-label="Practice mode">
+<button id="tab-listen" role="tab" aria-controls="panel-listen" aria-selected="true" data-mode="listen">01 <span>Listen & understand</span></button>
+<button id="tab-speak" role="tab" aria-controls="panel-speak" aria-selected="false" tabindex="-1" data-mode="speak">02 <span>Speak when ready</span></button>
+<button id="tab-write" role="tab" aria-controls="panel-write" aria-selected="false" tabindex="-1" data-mode="write">03 <span>Write with care</span></button>
+</div>
+<section id="panel-listen" role="tabpanel" aria-labelledby="tab-listen">
+<div class="context-card"><div class="eyebrow">THE SITUATION <span class="fiction">FICTIONAL SCENARIO</span></div><p id="setting"></p><div id="fact-cards" class="facts"></div><div id="people" class="people"></div></div>
+<div class="scene-layout"><div class="scene-sidebar"><p class="eyebrow">THREE MOMENTS</p><nav id="scene-list" aria-label="Scenes"></nav></div><div class="player-card">
+<div class="player-top"><span class="pill">Listen at your own pace</span><label class="version-label">Language <select id="version"><option value="plain">Clear & direct</option><option value="detailed">More nuanced</option></select></label></div>
+<h3 id="scene-title"></h3><p id="scene-cue" class="muted"></p>
+<div class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="player-controls"><button class="primary" id="play">Play conversation</button><button class="secondary" id="stop" disabled>Stop</button><label>Speed <select id="rate"><option value="0.85">0.85×</option><option value="1" selected>1×</option><option value="1.1">1.1×</option></select></label></div>
+<p id="audio-status" class="status" role="status">Device-generated English audio. No speaking required.</p>
+<details id="transcript"><summary>Show English transcript</summary><div id="transcript-body"></div></details>
+<div class="scene-bottom"><p>Listen again, or move on.<br><span class="muted">There is no test to unlock the next scene.</span></p><button class="secondary" id="next-scene">Next scene</button></div>
+</div></div>
+</section>
+<section id="panel-speak" role="tabpanel" aria-labelledby="tab-speak" hidden>
+<div class="practice-heading"><span class="pill">Optional output practice</span><h3>Your turn, if you feel ready.</h3><p>You do not need to repeat the dialogue. Say what you mean in your own words, or return to listening.</p></div>
+<div class="practice-grid"><div class="paper"><div class="eyebrow">YOUR SITUATION</div><p id="speaking-prompt" class="prompt"></p><div class="recorder"><button id="record" class="primary">Record my response</button><button id="stop-record" class="secondary" disabled>Stop recording</button><p id="record-status" class="status" role="status">Recording starts only when you choose it. Audio stays in this page.</p><audio id="recording" controls hidden></audio><a id="download-recording" class="text-link" hidden>Download my recording</a></div><details><summary>Explore a follow-up</summary><ul id="followups"></ul></details></div><div class="paper accent-paper"><div class="eyebrow">A NATURAL SPOKEN VERSION</div><details id="spoken-example"><summary>Read one possible response</summary><blockquote id="spoken-model"></blockquote><p>This is a model, not a script to memorize.</p></details><h4>Keep the meaning. Relax the delivery.</h4><p>Use contractions when they feel natural. Leave room for the other person. Keep the condition or uncertainty that matters.</p><p class="muted">No pronunciation or CEFR scoring is performed.</p></div></div>
+</section>
+<section id="panel-write" role="tabpanel" aria-labelledby="tab-write" hidden>
+<div class="practice-heading"><span class="pill">Optional writing workshop</span><h3>Clear language. Intact meaning.</h3><p id="writing-prompt"></p></div>
+<div class="practice-grid"><div class="paper"><label class="eyebrow" for="draft">YOUR DRAFT</label><textarea id="draft" rows="11" placeholder="Start with what the reader needs to know..."></textarea><div class="editor-footer"><span id="word-count">0 words</span><span>Kept in this tab only</span></div><div class="editor-actions"><button id="review" class="primary">Show review cues</button><button id="export" class="secondary">Download draft</button></div><div id="review-results" class="review-results" aria-live="polite"></div></div><div class="paper"><div class="eyebrow">MEANING TO PRESERVE</div><ul id="meaning-facts" class="meaning-list"></ul><h4>Read your draft back</h4><div class="checklist"><label><input type="checkbox" data-check="actor"> The actor and next action are clear.</label><label><input type="checkbox" data-check="condition"> Conditions and uncertainty are preserved.</label><label><input type="checkbox" data-check="evidence"> Claims stay within the available evidence.</label><label><input type="checkbox" data-check="reader"> A new reader can follow the reasoning.</label></div><p class="muted tiny">Your own review notes, not an automated pass.</p></div></div>
+<details class="worked-example" id="writing-example"><summary>Compare a misleading draft with a faithful revision</summary><div class="comparison"><div><div class="eyebrow">BEFORE</div><p id="before"></p></div><div><div class="eyebrow">AFTER</div><p id="after"></p></div></div><p id="why-rewrite"></p></details>
+<details class="worked-example" id="phrase-details"><summary>Notice useful phrases in context</summary><dl id="phrases"></dl></details>
+</section>
+<footer><span>Listen for the idea. Express it precisely.</span><a href="https://github.com/ed3c/cefr-alg-c2-" target="_blank" rel="noopener">View project</a></footer>
+</main>
+</div>
+<dialog id="about"><div class="dialog-heading"><h2>How this studio works</h2><button id="close-about" class="secondary">Close</button></div><p><strong>ALG-inspired listening</strong> starts with a comprehensible situation. You can listen without speaking, translating, or studying individual words. The English transcript is optional.</p><p>The writing workshop and recording tools are separate, optional output practice. They are not presented as a strict ALG method. Device-generated conversations are a supplement to rich real-world input.</p><p><strong>C2+ is the project name and learning ambition.</strong> CEFR’s highest named level is C2. A completed scene, a review cue, or a recording does not establish your level.</p><h3>Writing and speaking style</h3><p>Use a concrete situation. Name who acts. Explain the reason for a decision. Preserve conditions, negation, and uncertainty. Prefer familiar words when they convey the intended meaning. Spoken English can be more conversational while preserving the same facts.</p><h3>References</h3><ul id="source-links"></ul><h3>Your work</h3><p>Drafts, check marks, and recordings stay in this tab. Reloading closes that session. Download anything you want to keep. There is no connected AI tutor or automatic language assessment.</p><p>Your browser supplies the voice. Availability and pronunciation vary by device. Browser voices may use the device vendor’s speech service; only the supplied lesson dialogue is sent to speech synthesis.</p><p><a href="https://www.efset.org/4-skill/" target="_blank" rel="noopener">EF SET four-skill test</a> is a separate external assessment.</p></dialog>
+</body>
+</html>
