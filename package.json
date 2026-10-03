@@ -1,1 +1,9 @@
-{"name":"cefr-alg-c2-studio","version":"1.0.0","private":true,"type":"module","scripts":{"check":"node scripts/check.mjs && node scripts/check-voice-lab.mjs"}}
+{
+  "name": "cefr-alg-c2-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.mjs && node scripts/check-narrator.mjs && node scripts/check-voice-lab.mjs && node scripts/check-narration-assets.mjs"
+  }
+}

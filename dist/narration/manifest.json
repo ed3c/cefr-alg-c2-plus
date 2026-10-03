@@ -1,0 +1,1513 @@
+{
+  "schema": 1,
+  "model": "parler-tts/parler-tts-mini-v1",
+  "model_revision": "0392b9451a601e528fd863bbb0598431fee810d9",
+  "runtime": "Parler-TTS 0.2.3 / torch 2.6.0 CPU; precision recorded per turn",
+  "seed": 42,
+  "requested_batch_size": 8,
+  "batch_sizes_used": [
+    2,
+    4,
+    8
+  ],
+  "load_ms": 4398.0785720050335,
+  "delivery": "Laura / Jon; moderate pace, clear natural tone, no background noise",
+  "encoding": "MP3 libmp3lame quality 3 from PCM16, 250ms between turns",
+  "created_at": "2026-10-03T16:05:48.475927+00:00",
+  "results": [
+    {
+      "case_id": "release-0-plain",
+      "engine": "parler",
+      "input_sha256": "4806aa10f7d987b6c5acf49cf3d452a03c87f9f36ef2b959b7030841f751fe74",
+      "audio_file": "parler-release-0-plain-4806aa10f7d9.mp3",
+      "audio_sha256": "8c083dc06b514486bbb652615a0ec8e1fef00a070f038fb2fedb1c641ae66ac0",
+      "pcm_sha256": "e555180a66d342a2d50db16dc9b2ebebe20fd4585673e0997575b2637193f59a",
+      "audio_seconds": 23.378616780045352,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The payment test passed this morning. Can we release tomorrow?",
+          "batch_generation_ms": 151968.32329899917,
+          "batch_size": 4,
+          "audio_seconds": 3.4829931972789114,
+          "precision": "float32",
+          "pcm_sha256": "b645ce751aaddb447b7eebf867b6a5050b379a4d9800f3f8de0a8587d2457c5d"
+        },
+        {
+          "voice": "Jon",
+          "text": "It passed in the sandbox. That is useful, but it does not tell us what happens with real payments.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.5147392290249435,
+          "pcm_sha256": "6445c0b9568d4a33f4a0ece35471f2900c6630c896d15231a4bef3438a606923"
+        },
+        {
+          "voice": "Laura",
+          "text": "What is still missing?",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 1.3003174603174603,
+          "precision": "float32",
+          "pcm_sha256": "51dec1e9055a4514b5382e4c841c9d91d0f7dc45fb0a36e95f325dd4d5de67ff"
+        },
+        {
+          "voice": "Jon",
+          "text": "One customer reported paying twice. We have not reproduced that failure yet.",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.748480725623582,
+          "pcm_sha256": "a78ee7c98303e99e30971eec21b851d2d5258914087e57d04e0465b081e5c9fe"
+        },
+        {
+          "voice": "Laura",
+          "text": "So the test passed, but the original problem is still open.",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 3.2856235827664397,
+          "precision": "float32",
+          "pcm_sha256": "d1925e78c68fcaea8548bc4d6c8840362023d84fc6da2528e5b55ef250d998ec"
+        },
+        {
+          "voice": "Jon",
+          "text": "Yes. I can show what we checked and what we still need to check.",
+          "batch_generation_ms": 79694.61952499842,
+          "batch_size": 4,
+          "audio_seconds": 3.7964625850340137,
+          "precision": "float32",
+          "pcm_sha256": "f57fccf86b40d1512be773038577918d9c3ab0569bfd7a515cd47a2ac39a2258"
+        }
+      ]
+    },
+    {
+      "case_id": "release-0-detailed",
+      "engine": "parler",
+      "input_sha256": "21e8ca8ec3e0d53d8888ecac96184d217124e16e3363c8ea33a0f9569a1a4bbd",
+      "audio_file": "parler-release-0-detailed-21e8ca8ec3e0.mp3",
+      "audio_sha256": "33602c48049213284c5cbb9e82c5f8d83c3d000fad036b1770749b49fd382fc0",
+      "pcm_sha256": "0a80000f5807d6858caea03b259100d05e0a4fbfae34e2c225f5766402116d08",
+      "audio_seconds": 34.48936507936508,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The payment test passed this morning. Are we comfortable committing to tomorrow\u2019s release?",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.201269841269841,
+          "pcm_sha256": "49f4c8be28baf5c41e3476a90f7dcf6d8ff5611ef45b370b19c3fdaa5119119b"
+        },
+        {
+          "voice": "Jon",
+          "text": "I would qualify that result. It passed in the sandbox; we have not established that the same behavior holds for real payments.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 7.116916099773243,
+          "pcm_sha256": "6903360994a36f828248a2323c73b78f7f47f494320da77288d0691780e3b72b"
+        },
+        {
+          "voice": "Laura",
+          "text": "Which uncertainty could actually change the release decision?",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 2.948934240362812,
+          "precision": "float32",
+          "pcm_sha256": "9c0d41cc48be7410080ce00287d5627480ca7e1f45ef5cbc3ce1e178075bd028"
+        },
+        {
+          "voice": "Jon",
+          "text": "A customer reported a duplicate charge. We have not reproduced it, so I cannot rule out a problem in the retry path.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 6.5712471655328795,
+          "pcm_sha256": "b4ef241ecccd531eb5a45625e8969bfafe4ebaabb999f054a938b278d50859b8"
+        },
+        {
+          "voice": "Laura",
+          "text": "Then the passing test supports a narrower claim than \u201cthe payment issue is fixed.\u201d",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.596009070294785,
+          "pcm_sha256": "f2e9ad7065a2fd7c6a3f08e0ba64622db7e4359e89ad0a795ad71eae9481a830"
+        },
+        {
+          "voice": "Jon",
+          "text": "Exactly. The sandbox result is encouraging. The reported failure remains unresolved.",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.804988662131519,
+          "pcm_sha256": "a2fce865ca78bdd1d5dff23ce91a712d41b457b39901b76ab6829604052e7f76"
+        }
+      ]
+    },
+    {
+      "case_id": "release-1-plain",
+      "engine": "parler",
+      "input_sha256": "62a3ff8a8d2b0c1208b5ba8208d7f3cacfd6969fb77411261779a20df42a393f",
+      "audio_file": "parler-release-1-plain-62a3ff8a8d2b.mp3",
+      "audio_sha256": "9c079423ba9a007215c45a5be304d570cbaa676325871300ab52a91d575c72d8",
+      "pcm_sha256": "c0a88da97a0a11c5d3f9ef8d5e2c4ecad710651822fe84b067c114f043569ab7",
+      "audio_seconds": 22.61235827664399,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "Do we need to test everything again?",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 1.9040362811791383,
+          "precision": "float32",
+          "pcm_sha256": "acc7fe1bb8cab98fae03d085dfe2fc70f130eabcf16ae2557392d9a181ce322f"
+        },
+        {
+          "voice": "Jon",
+          "text": "First, I want to check the retry path against the customer\u2019s report.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 3.564263038548753,
+          "pcm_sha256": "44184fa7eb8025f8391436991e345161523ce48a5febbe34abe95d7d0d48a4a0"
+        },
+        {
+          "voice": "Laura",
+          "text": "Why start there?",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 1.253877551020408,
+          "precision": "float32",
+          "pcm_sha256": "1ed622a7895dfae8800e432b4a2797216859810161d8fd7347c5c544697e072c"
+        },
+        {
+          "voice": "Jon",
+          "text": "The report mentions a timeout before the second charge. A retry could explain that sequence.",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.294149659863946,
+          "pcm_sha256": "64a7574ca0ea7df2f151deecc7c77d351d3bc6e5baa54cd4527b4e2cb4517f3e"
+        },
+        {
+          "voice": "Laura",
+          "text": "Could explain it, but we do not know yet.",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 2.2523356009070294,
+          "precision": "float32",
+          "pcm_sha256": "f7c34074a506005e23a45c1aa4066a9f2fc4329035e2c9434269e19ee6800227"
+        },
+        {
+          "voice": "Jon",
+          "text": "Right. I will inspect the available logs. If they do not answer the question, I will reproduce the timeout in a controlled test.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 7.093696145124716,
+          "pcm_sha256": "55599770a9025af4aeb64a17fc4dcdd79548ea3db3384dc7ba1b8050d83df079"
+        }
+      ]
+    },
+    {
+      "case_id": "release-1-detailed",
+      "engine": "parler",
+      "input_sha256": "f1dfad25a73dc6e6064b432199313d59925647cdc24d611a4e5f5c86c100503c",
+      "audio_file": "parler-release-1-detailed-f1dfad25a73d.mp3",
+      "audio_sha256": "ba881e56a3082ca1b3b4dbfbe12728168db016f1a1af9d5d690a9cd90f7ace40",
+      "pcm_sha256": "761e4ff138956a3f141f9c8ff11aedbc5d131ccb2b2f8014f115653b47062634",
+      "audio_seconds": 28.846916099773242,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "Would a full regression run resolve the uncertainty?",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 2.8792743764172335,
+          "precision": "float32",
+          "pcm_sha256": "b58806ad1556c888c0fef874223d375a6ee1802aaff51005cfca1784534ae21f"
+        },
+        {
+          "voice": "Jon",
+          "text": "Not necessarily. The report points to a timeout followed by a second charge. I would investigate that sequence first.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 7.581315192743764,
+          "pcm_sha256": "46bacd8810ae3bc30be4b9123f3166d2ea75eb72f14052f57d106da664cb2307"
+        },
+        {
+          "voice": "Laura",
+          "text": "Are you treating the retry as the cause?",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 2.2407256235827666,
+          "precision": "float32",
+          "pcm_sha256": "b2379d6a48813fbd7d3be0ec89bb448fd97419cee1b2d0910ba64bfccbb5f54a"
+        },
+        {
+          "voice": "Jon",
+          "text": "As a plausible explanation. The logs may corroborate it, contradict it, or leave the question open.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 6.315827664399093,
+          "pcm_sha256": "f0c0d3a9477797d6ffe2946c6bd2588ac12de9c672068454835b5e64c4ef988c"
+        },
+        {
+          "voice": "Laura",
+          "text": "And if the logs are inconclusive?",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 2.043356009070295,
+          "precision": "float32",
+          "pcm_sha256": "2843f1a1764730c1b64ab21cbe745d376afb0b8d55c92f86adab3d51c09d9926"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then I will reproduce the timeout in a controlled test. That gives us a focused next step without assuming the outcome.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 6.5364172335600905,
+          "pcm_sha256": "3c1f5b1ac0696d0cc6180beed2a8a992397e15ff50a85c7b0a398a9cd46095f8"
+        }
+      ]
+    },
+    {
+      "case_id": "release-2-plain",
+      "engine": "parler",
+      "input_sha256": "c7f8dee91fa4f0721782844f9f2847538c4bec57b497055f4c5194b19c24d69e",
+      "audio_file": "parler-release-2-plain-c7f8dee91fa4.mp3",
+      "audio_sha256": "8ed63b0441e5611821cf8288069bd84784367e68da47163feeca61c27c2fdaaf",
+      "pcm_sha256": "ed19e4a587400d1d7c0725184d38ef62228b489bf679d34addd80c411700f3ca",
+      "audio_seconds": 20.255532879818595,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "What can we tell the customer today?",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 2.0085260770975055,
+          "precision": "float32",
+          "pcm_sha256": "1bf1256197d252728db552a22466d0e7a0cbcd0c922fed483b87ddc89219b740"
+        },
+        {
+          "voice": "Jon",
+          "text": "The sandbox test passed. We are still investigating the duplicate charge.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.08671201814059,
+          "pcm_sha256": "1e86181b373199a0ad5c0a9455a91c6e94a76d7aef286cbfaa1c9ffbb5e87262"
+        },
+        {
+          "voice": "Laura",
+          "text": "Should we promise a fix tomorrow?",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 1.8575963718820863,
+          "precision": "float32",
+          "pcm_sha256": "74bcb6a93d767581c497359702d498435f585f916c1fabcb530347392eb0a7bd"
+        },
+        {
+          "voice": "Jon",
+          "text": "No. We can promise an update tomorrow, but we do not yet know when we will have a fix.",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.154829931972789,
+          "pcm_sha256": "31dbb53c6b0f79c6825af4c88e0a20a78436fe8aab3cdfd5ef3e49c5efd1943b"
+        },
+        {
+          "voice": "Laura",
+          "text": "I will explain the delay and send the update by noon.",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 3.053424036281179,
+          "precision": "float32",
+          "pcm_sha256": "ae3e313fd35132867451739073f3ce4451202517b1bcbd6ef9e30753cb1f5d4f"
+        },
+        {
+          "voice": "Jon",
+          "text": "I will give you the evidence we have before then.",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 2.8444444444444446,
+          "precision": "float32",
+          "pcm_sha256": "38f0b61fb3c7c6d2bf489ce1848dcc3ad2178660fb976ad18245afd2450f0bfd"
+        }
+      ]
+    },
+    {
+      "case_id": "release-2-detailed",
+      "engine": "parler",
+      "input_sha256": "7fe6efb4365c8361e201c45560180ef67e7d679f7843e580eece491af7d1162e",
+      "audio_file": "parler-release-2-detailed-7fe6efb4365c.mp3",
+      "audio_sha256": "69261539fc65c9862b1095f1bd644ac25561defa2871f577573c5e18ae12f5d9",
+      "pcm_sha256": "6fa45f56774b61ab3364aa1d14f6e7ea78adcf4ba9ac9a328fc695e3ce896a97",
+      "audio_seconds": 27.244739229024944,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "How do we explain the delay without sounding evasive?",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 2.9024943310657596,
+          "precision": "float32",
+          "pcm_sha256": "f65cbd94b72aa87b4a02c40bd8dc76b91073ae93c75cd4de23d4a042d53fee4d"
+        },
+        {
+          "voice": "Jon",
+          "text": "State what we know, what remains unresolved, and who will act next. The sandbox test passed; the duplicate charge is still under investigation.",
+          "batch_generation_ms": 89864.47155399946,
+          "batch_size": 2,
+          "precision": "bfloat16",
+          "audio_seconds": 9.044172335600907,
+          "pcm_sha256": "366527411ebee850366a0b5b99238ebd384c4c9bc2d4b391ef8357e79a0a20d5"
+        },
+        {
+          "voice": "Laura",
+          "text": "Can we give them a resolution date?",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 2.124625850340136,
+          "precision": "float32",
+          "pcm_sha256": "f8144ccf201c237210ba6ff8d0f725ae7e7c8d9e8784d64e37be47b94f78c538"
+        },
+        {
+          "voice": "Jon",
+          "text": "Not on the evidence we have. We can commit to an update by noon tomorrow, not to a completed fix.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.421859410430839,
+          "pcm_sha256": "931d054eda83851876024420a47ca3a4e7d7595c997826fb97154d64d44255a0"
+        },
+        {
+          "voice": "Laura",
+          "text": "I will make that distinction explicit in the customer update.",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 3.4597732426303853,
+          "precision": "float32",
+          "pcm_sha256": "9e144d49c0ab100d616340d3c048f63c3fe75fb749ffcf9e004cdc0ceecda258"
+        },
+        {
+          "voice": "Jon",
+          "text": "And I will provide the latest findings before you send it.",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 3.0418140589569163,
+          "precision": "float32",
+          "pcm_sha256": "6a9b4a14f380de70c55c81ca659402d14ccabbe15d4b5850174d6cc7ed90b8f7"
+        }
+      ]
+    },
+    {
+      "case_id": "handoff-0-plain",
+      "engine": "parler",
+      "input_sha256": "4b967e559a784c3e46fcb51b88eff1f34c07a9ed360f371580b0cae244333da8",
+      "audio_file": "parler-handoff-0-plain-4b967e559a78.mp3",
+      "audio_sha256": "7150cd012153a7078f57fd495b21b766592a00f7f55aec9390684d2d7f978203",
+      "pcm_sha256": "106ad9b3d20babddeb921f73276dd381fa5d265ac6a70a63ad16f666ab3a26e5",
+      "audio_seconds": 20.046553287981858,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The agent says the issue is fixed. The test is green.",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 3.657142857142857,
+          "precision": "float32",
+          "pcm_sha256": "2195844c6a56e7eaabd5f49633b2aae70c260df829117439fe16074ba8496374"
+        },
+        {
+          "voice": "Jon",
+          "text": "Which version did the test run against?",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 1.9620861678004535,
+          "precision": "float32",
+          "pcm_sha256": "d6ba21be6ed4bcbf73bb3323d09010f6a3cb8191a987eb43392b593cccdbabfe"
+        },
+        {
+          "voice": "Laura",
+          "text": "Revision A. The latest patch is revision B.",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 2.9837641723356008,
+          "precision": "float32",
+          "pcm_sha256": "67b02ddd96938bff041462656126b4f82b78673fc5a80d3325fbb4c8b4f8b1ac"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then the result tells us about A. It does not tell us whether B works.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 3.9938321995464854,
+          "pcm_sha256": "94d2bc88c14550441e08cfc82d333dddc66822aba08862213ea9040e88ae15da"
+        },
+        {
+          "voice": "Laura",
+          "text": "So B is not a failure. It is not checked yet.",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 2.9837641723356008,
+          "precision": "float32",
+          "pcm_sha256": "1a4c96c1368a7cf8463d8e5ea8c3be33128c6f98ef1f693ecf84b93b2c5b392d"
+        },
+        {
+          "voice": "Jon",
+          "text": "Exactly. We need to check the changed behavior on B.",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 3.215963718820862,
+          "precision": "float32",
+          "pcm_sha256": "c71562f8dffa9f2ff865862ac3205c2ee4838c873959263151ce7bf6cb2607b7"
+        }
+      ]
+    },
+    {
+      "case_id": "handoff-0-detailed",
+      "engine": "parler",
+      "input_sha256": "b9149b08d59f05f65bb78d2aadc5bb702031a6b78c1f203e9429a45ef70fcfaf",
+      "audio_file": "parler-handoff-0-detailed-b9149b08d59f.mp3",
+      "audio_sha256": "e6a08f2fa1d8971d42261551dde21db69330b3423a4e83ef5422455a4317f565",
+      "pcm_sha256": "11c1adeca2418ef604e7b967faf286ef42ad3da0b7e0face214f54fb6d42eac5",
+      "audio_seconds": 30.17045351473923,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The agent\u2019s handoff says the issue is resolved, and it links to a passing test.",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.2128798185941045,
+          "pcm_sha256": "12196f015ccf57d406dfe542a3d34372c24c46f4984238f28fb086a10f464a59"
+        },
+        {
+          "voice": "Jon",
+          "text": "Before we accept that conclusion, does the evidence refer to the current revision?",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.9806802721088435,
+          "pcm_sha256": "742d32c9d14b0a9157255b1baccd9ae79da79172949c5290078132b01b7b1d29"
+        },
+        {
+          "voice": "Laura",
+          "text": "It covers revision A. One more edit produced revision B.",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 3.1811337868480725,
+          "precision": "float32",
+          "pcm_sha256": "354ba1c5623f4c0209d51b47444821de729eb5ac7c67834dca6b7e86d599016b"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then the evidence is valid for A, but insufficient for B. We should not transfer the conclusion without checking what changed.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 7.4071655328798185,
+          "pcm_sha256": "bf071b1908bb592fa1439f4c621a01dae3dd972118c4026fdb3a9c32dceae7de"
+        },
+        {
+          "voice": "Laura",
+          "text": "That leaves B unverified, rather than disproven.",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 2.647074829931973,
+          "precision": "float32",
+          "pcm_sha256": "2836caf92aef45679c1550e81e98273785844c54a4e9c31baf7075abf7256976"
+        },
+        {
+          "voice": "Jon",
+          "text": "Yes. The next action is to verify the affected behavior on B.",
+          "batch_generation_ms": 151968.32329899917,
+          "batch_size": 4,
+          "audio_seconds": 5.491519274376417,
+          "precision": "float32",
+          "pcm_sha256": "3e83624ddd6d94c2ef5b6bdb5563a06b0fa21c20800967a8171ef34187736e9d"
+        }
+      ]
+    },
+    {
+      "case_id": "handoff-1-plain",
+      "engine": "parler",
+      "input_sha256": "2620c2cdba9de8707f750d51d6dd2397fb5d073fd169cffd3bf8bc36e91ade33",
+      "audio_file": "parler-handoff-1-plain-2620c2cdba9d.mp3",
+      "audio_sha256": "ddb54e436b771ed05f7f24ec2a86e65e7b6556fdc47358aa0d7f63292a8364d0",
+      "pcm_sha256": "099a0320b7b94ab2d86a7f815e99d601b378769afb365f049b89e2e2b8d29e0d",
+      "audio_seconds": 19.175804988662133,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The request says to retry temporary errors and stop on permission errors.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.1099319727891155,
+          "pcm_sha256": "8b0e69f9b415c9d5cbafdd926843df28d5ddfa25dfd9ed5f89d3da40d4713d1a"
+        },
+        {
+          "voice": "Jon",
+          "text": "Does revision B still do both?",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 2.786394557823129,
+          "precision": "float32",
+          "pcm_sha256": "834f110bb5dad165cbbb64aa310018f3629fd7e403859f7aa1200734ebf3b7a6"
+        },
+        {
+          "voice": "Laura",
+          "text": "It retries every error. That makes the code shorter.",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 2.8560544217687074,
+          "precision": "float32",
+          "pcm_sha256": "a23252733dc90e85b7a25d83fec71d4c9f33330d4b1a3dd0ffff2743ffa670ae"
+        },
+        {
+          "voice": "Jon",
+          "text": "But it changes the request. A permission error should stop the operation.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.063492063492063,
+          "pcm_sha256": "f57c251aecff5be561192022947b61d612cdce72d10a08117e36580872218fee"
+        },
+        {
+          "voice": "Laura",
+          "text": "I will restore that distinction.",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 1.9736961451247166,
+          "precision": "float32",
+          "pcm_sha256": "1520de98a5206fca8f7c5916b44dece944ed94b5cc16926ca42f828615824b79"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then check both cases on the new revision.",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 2.136235827664399,
+          "precision": "float32",
+          "pcm_sha256": "6866e0c4effbb9748370e785719b1c073425d56e392ab607eff563a4d8a3515b"
+        }
+      ]
+    },
+    {
+      "case_id": "handoff-1-detailed",
+      "engine": "parler",
+      "input_sha256": "463cf6525faef9e92901a51c3f1e7a435f396281682bf2fe5878842610876e68",
+      "audio_file": "parler-handoff-1-detailed-463cf6525fae.mp3",
+      "audio_sha256": "62b31cc6a245e2e4296d00b82048989e7f5ae1085879fd678015f716e48cb01b",
+      "pcm_sha256": "4403ca7b2a3b9d47efaa2f934c938bd0b1c04ed685faec2a6f87261f9a05bfa2",
+      "audio_seconds": 31.911950113378683,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The requirement distinguishes temporary errors from permission errors. Revision B collapses them into one retry path.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 6.907936507936508,
+          "pcm_sha256": "e85c21fb430e6b987661ce088d0897b06e3eaf6af8618b10162b3cdb750a9a19"
+        },
+        {
+          "voice": "Jon",
+          "text": "That simplifies the code at the expense of the required behavior. Permission errors must still stop the operation.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 6.733786848072563,
+          "pcm_sha256": "d82ee27c6b9c24732474e94c55bcbc1485112a7cbef493a80ffec7999ee5aafc"
+        },
+        {
+          "voice": "Laura",
+          "text": "So a shorter implementation is not necessarily an equivalent one.",
+          "batch_generation_ms": 79694.61952499842,
+          "batch_size": 4,
+          "audio_seconds": 3.622312925170068,
+          "precision": "float32",
+          "pcm_sha256": "6076bd76b42bd77bd15c524f1225a6f0ffcbdf048cf48ec23cd42e426c174b39"
+        },
+        {
+          "voice": "Jon",
+          "text": "Right. Preserve the distinction, then verify both outcomes on the resulting revision.",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.864580498866213,
+          "pcm_sha256": "674b2c228c75e5f889d452fd2b711b147027a76d653185e573821e5fce2daf9c"
+        },
+        {
+          "voice": "Laura",
+          "text": "I will correct the implementation before updating the handoff.",
+          "batch_generation_ms": 151968.32329899917,
+          "batch_size": 4,
+          "audio_seconds": 3.541043083900227,
+          "precision": "float32",
+          "pcm_sha256": "964006e4b17c81e00b0b5f73f7a6306489085f22ff66b9b79686c7c358dad0c9"
+        },
+        {
+          "voice": "Jon",
+          "text": "And the handoff should name the revision the new checks actually cover.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.992290249433107,
+          "pcm_sha256": "ad401120e7920c57f13ce8379d073c3fc2a2c6544b49d9faba5dc528e96549e5"
+        }
+      ]
+    },
+    {
+      "case_id": "handoff-2-plain",
+      "engine": "parler",
+      "input_sha256": "16445b30e0748a82b399599a813a67e5c948f3c2cbd0828e3e72ee1bae274138",
+      "audio_file": "parler-handoff-2-plain-16445b30e074.mp3",
+      "audio_sha256": "f212c876c733b280b3729452c763fdb5512dcee2ff446f9f639f0e0a5ae9d1ba",
+      "pcm_sha256": "84b65afe768bfd1ee4a394af1243577b8175bb1f328693c06ecb308e8fb56d56",
+      "audio_seconds": 15.784920634920635,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "Can I write that the corrected version now passes?",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 2.3103854875283445,
+          "precision": "float32",
+          "pcm_sha256": "193d296fdd955768dc56d1b29b00f3dc82b586946779faa6005871c2a647020e"
+        },
+        {
+          "voice": "Jon",
+          "text": "Not yet. We have proposed the correction, but we have not run it.",
+          "batch_generation_ms": 112220.63131100003,
+          "batch_size": 4,
+          "audio_seconds": 4.922630385487528,
+          "precision": "float32",
+          "pcm_sha256": "981e04923e47324ca84f150f746a9edc4635bf27995d031812cb921e767d6304"
+        },
+        {
+          "voice": "Laura",
+          "text": "I will write what needs to change and what still needs checking.",
+          "batch_generation_ms": 79694.61952499842,
+          "batch_size": 4,
+          "audio_seconds": 3.4597732426303853,
+          "precision": "float32",
+          "pcm_sha256": "bf91e743f4ba6cab6a69515f0e70515a5e5b7f6d2cc24dfe0aab67c8655c113d"
+        },
+        {
+          "voice": "Jon",
+          "text": "Yes. Name the next action so the next person does not have to guess.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.342131519274377,
+          "pcm_sha256": "8ded12da3738b379b2912eca530f94da392a3c370b1a0c53a67018f28581af58"
+        }
+      ]
+    },
+    {
+      "case_id": "handoff-2-detailed",
+      "engine": "parler",
+      "input_sha256": "2c10ad10ae1d5af374c7a3deaef7b852751d5c69e9d024b28771726c747a3887",
+      "audio_file": "parler-handoff-2-detailed-2c10ad10ae1d.mp3",
+      "audio_sha256": "c038bcb951a0cb6e441db196be7fc3cb0e1ae56cadd9f0851e03b2eda041a72f",
+      "pcm_sha256": "7afd62bb6359909e759ccfc4e50db09c2df4c29e674da9a0610e29f30719dd17",
+      "audio_seconds": 20.1618820861678,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The correction looks straightforward. Can the handoff say the behavior is restored?",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.527891156462585,
+          "pcm_sha256": "e6e7898da2f749381ec83d8c3348e37d8421d2c891288184090187924ef07beb"
+        },
+        {
+          "voice": "Jon",
+          "text": "Only as a proposed change. We do not yet have execution evidence for the corrected revision.",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.433469387755102,
+          "pcm_sha256": "d2e65cdbf2a37daafa2432a1855d62dba5912e9dec4432414409229042a6b5d2"
+        },
+        {
+          "voice": "Laura",
+          "text": "Then I will separate the intended behavior from the observed result.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 3.633922902494331,
+          "pcm_sha256": "b624bb41dbf7b75d2e9d96c86cf89ec5ab9d3e0de7c67828dd643c85ca2937f3"
+        },
+        {
+          "voice": "Jon",
+          "text": "And identify the remaining check. A clear handoff preserves uncertainty instead of making it disappear.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.8165986394557825,
+          "pcm_sha256": "cf52a50be0f7cde3221910fd7ddd31bc52c26441257048129c6af02cb0296693"
+        }
+      ]
+    },
+    {
+      "case_id": "design-0-plain",
+      "engine": "parler",
+      "input_sha256": "672a49835481ed6ab72d6ed7d30e304e45bf75ee1e17269d08014809fe75d154",
+      "audio_file": "parler-design-0-plain-672a49835481.mp3",
+      "audio_sha256": "e6abd005b516c223f3bb6b6f6aa6b7b8f8cab33630f033b87e84c6478a595ee7",
+      "pcm_sha256": "1e97f9303309b15be291f268427c060891c52c9e2d75f1268ec1c482f720b2c4",
+      "audio_seconds": 19.268684807256236,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "We should put every report in a queue.",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.2871655328798184,
+          "precision": "float32",
+          "pcm_sha256": "4ac357e9c05a55b8fa2e5365fefc76172521e03b887c7c1c46650d6f43d90c35"
+        },
+        {
+          "voice": "Jon",
+          "text": "Which problem are we trying to solve?",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.078185941043084,
+          "precision": "float32",
+          "pcm_sha256": "1fa0944e6a972970014d1b44d00939c30b20a3b5084835bf581fb42e4404e8c1"
+        },
+        {
+          "voice": "Laura",
+          "text": "Some reports take longer than the web request allows.",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 3.1579138321995464,
+          "precision": "float32",
+          "pcm_sha256": "f3c029ee57362174b91f55720af3d5832ebc5d777c937d71c2ea15833e40cf40"
+        },
+        {
+          "voice": "Jon",
+          "text": "A background worker could finish those reports after the request ends.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.3769614512471655,
+          "pcm_sha256": "ad5de067a666fd965201127aa15dd89d23778e8fd17a2d5f6944d1ace9213828"
+        },
+        {
+          "voice": "Laura",
+          "text": "Would that make every report faster?",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.2058956916099772,
+          "precision": "float32",
+          "pcm_sha256": "0edcf30b3c1ff4a222267ff08a22dcca64685b37a529b5e4aeeb2b6219b96a20"
+        },
+        {
+          "voice": "Jon",
+          "text": "No. It changes where the work happens. It does not remove the work.",
+          "batch_generation_ms": 112220.63131100003,
+          "batch_size": 4,
+          "audio_seconds": 3.912562358276644,
+          "precision": "float32",
+          "pcm_sha256": "722058276471d680974c5a85ae4fd1a3e7307baf0db97f59a8ad4911d49ea685"
+        }
+      ]
+    },
+    {
+      "case_id": "design-0-detailed",
+      "engine": "parler",
+      "input_sha256": "30fea9d22985caa7aa45e99a980d459dbf1722d24cad3d57c150c2cbb058cbd7",
+      "audio_file": "parler-design-0-detailed-30fea9d22985.mp3",
+      "audio_sha256": "f58a08a0e9be7f51a9f5a766d4e74e589f8e401902b3cf4a00dd8fa2e51a1743",
+      "pcm_sha256": "e0ac650a02fc915170296c096eca129f363b4c4583e617dc162219e8ded50408",
+      "audio_seconds": 26.292721088435375,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "I propose moving report generation to a queue.",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 3.215963718820862,
+          "precision": "float32",
+          "pcm_sha256": "1d24c7a9ed277a66bf4153f288e520a9553e9c6c4092fed6c24f99c5abbbcaf0"
+        },
+        {
+          "voice": "Jon",
+          "text": "What constraint makes that necessary?",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.3219954648526078,
+          "precision": "float32",
+          "pcm_sha256": "4057e9a1eb3db0f630b5e67619e998617de2d6c3e1f969bf5bb9fb3e2864e31c"
+        },
+        {
+          "voice": "Laura",
+          "text": "A few reports exceed the web request limit. A background worker could continue processing them independently.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 6.095238095238095,
+          "pcm_sha256": "dca886facfa5167bfcf8bafcf77badd9abfbc5803ec41406d38a64c4a02c335f"
+        },
+        {
+          "voice": "Jon",
+          "text": "That addresses the lifetime of the request. It does not, by itself, reduce the computation time.",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.7817687074829935,
+          "pcm_sha256": "4ebbbcf3a83319aaae46e73409593f41fa54d870079953dc5a1378f69ed86379"
+        },
+        {
+          "voice": "Laura",
+          "text": "Then we should avoid presenting the queue as a general performance fix.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 3.5062131519274375,
+          "pcm_sha256": "3c141e6632087c8fe81a5091cfc791f8b27ca88267572fcba8215608721163f8"
+        },
+        {
+          "voice": "Jon",
+          "text": "Yes. The benefit is that long-running work can outlive the request.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.121541950113379,
+          "pcm_sha256": "20f7fbfee42372da13cbaea1eaed2350255347624f9535ce66e58a17ca75385f"
+        }
+      ]
+    },
+    {
+      "case_id": "design-1-plain",
+      "engine": "parler",
+      "input_sha256": "c6a6bf2e4933f6d8eb8718737ef2d1dd44fa9482bcfdae0fa1a20a1088708b8d",
+      "audio_file": "parler-design-1-plain-c6a6bf2e4933.mp3",
+      "audio_sha256": "339927bf4207176c6a9188042482eff9cb76e0beac701092b4b5c098e683779f",
+      "pcm_sha256": "07826227ec835648fd4fc33ce31d65cfe93ed0af60f6073134e639daf4fa7a69",
+      "audio_seconds": 18.038027210884355,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The server can return a job number immediately.",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 2.7631746031746034,
+          "precision": "float32",
+          "pcm_sha256": "3fddd4dec34c7c2e8320d7f37450a664927e38c38f00e207a41fe45a969e0758"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then the user needs a way to check whether the report is ready.",
+          "batch_generation_ms": 79694.61952499842,
+          "batch_size": 4,
+          "audio_seconds": 3.1927437641723357,
+          "precision": "float32",
+          "pcm_sha256": "e424171bb58aeaa387d165a9827a77f0585983ca50c273b44ae904129c515eb8"
+        },
+        {
+          "voice": "Laura",
+          "text": "We can show waiting, running, ready, and failed.",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 2.5774149659863945,
+          "precision": "float32",
+          "pcm_sha256": "e69807b5858bdab5484345ae3568db5cb28f62d53107f73a4f8e3e85ead7b094"
+        },
+        {
+          "voice": "Jon",
+          "text": "What happens if the worker tries the same job twice?",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 3.332063492063492,
+          "precision": "float32",
+          "pcm_sha256": "4a4d868bcae8102bc1adb2aae84b013ec6414a714067e12f2fea0fbf81d028a8"
+        },
+        {
+          "voice": "Laura",
+          "text": "We need to prevent duplicate effects.",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.078185941043084,
+          "precision": "float32",
+          "pcm_sha256": "b18a6dbb6884dd5299c24f03f2948aca4b1074fdf00e4230c4fa6cb9c0995f63"
+        },
+        {
+          "voice": "Jon",
+          "text": "That is part of the cost of this design.",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 2.8444444444444446,
+          "precision": "float32",
+          "pcm_sha256": "d9eac01a30414b0e10eeb749ad16deac145afba516811cecec88a54b7932752e"
+        }
+      ]
+    },
+    {
+      "case_id": "design-1-detailed",
+      "engine": "parler",
+      "input_sha256": "1f8abe6f937a8a74c4f60322d1827d126ca5fd658fb0bfe6364a82a85a0cdeed",
+      "audio_file": "parler-design-1-detailed-1f8abe6f937a.mp3",
+      "audio_sha256": "c1a2883bb51a85fdea9acbc81504dd45853cb31ffc68fe3e62097e2fcec1eaad",
+      "pcm_sha256": "436dd26fd5546bed10868a9761371ce68f0992cd7127b27789aaa052c5a1e577",
+      "audio_seconds": 17.038798185941044,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "We can acknowledge the request immediately and return a job identifier.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.260861678004535,
+          "pcm_sha256": "814ae6dd5aca6ff4d0ef847851ec7d47f461c89265f50c9a6b1068d9c899895b"
+        },
+        {
+          "voice": "Jon",
+          "text": "That introduces a status flow. The user needs to distinguish waiting, running, successful, and failed work.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 1.9504761904761905,
+          "pcm_sha256": "1507c7cdd1471838f5e816155fff188e985f55d7af693873ac4d70a6a4a44e1e"
+        },
+        {
+          "voice": "Laura",
+          "text": "We also need to decide how retries behave.",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 2.6006349206349206,
+          "precision": "float32",
+          "pcm_sha256": "a1a831e4ef543c178420f5985d06d3da330ea1a93526211ee5ee7b3859333a68"
+        },
+        {
+          "voice": "Jon",
+          "text": "Exactly. A repeated attempt should not create duplicate effects. A queue shifts responsibilities; it does not eliminate them.",
+          "batch_generation_ms": 155934.88853600138,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 7.476825396825397,
+          "pcm_sha256": "e2f3b60eabfb3383da692afa477dae6c8f16c1c030c67cac3aafc1849d649752"
+        }
+      ]
+    },
+    {
+      "case_id": "design-2-plain",
+      "engine": "parler",
+      "input_sha256": "6ec8ddbe8ec63f376f6240d6ad0d077372cfce97e7f473369091bb18ed4e8b07",
+      "audio_file": "parler-design-2-plain-6ec8ddbe8ec6.mp3",
+      "audio_sha256": "eb0d9a6633cc800257f4247e91a61e1866cc8b155e5a9f7b3a8af47d3811f384",
+      "pcm_sha256": "e958eab224d066a08baf710e32f5d1364fcc248eb63454fc1fd283883e7e8d25",
+      "audio_seconds": 20.84764172335601,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "What if every report finished within the request limit?",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 3.274013605442177,
+          "precision": "float32",
+          "pcm_sha256": "5d53f55d37bdf00f3ad58105e74c99ce7bcd2e1702f5622aaa5992a0a6487d63"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then a direct request could be simpler.",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 2.0317460317460316,
+          "precision": "float32",
+          "pcm_sha256": "e941e96fcea34f2941b0ad6a30241fecd6d58e6db5770d8bae4ed4268fbac689"
+        },
+        {
+          "voice": "Laura",
+          "text": "And if long reports remain a real problem?",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 2.716734693877551,
+          "precision": "float32",
+          "pcm_sha256": "96220a822a1a862b0854d3aacf592ddc9c38cbc1b3ebd0efbd9f2eb502393699"
+        },
+        {
+          "voice": "Jon",
+          "text": "A queue may be worth the extra status and retry handling.",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 3.3901133786848074,
+          "precision": "float32",
+          "pcm_sha256": "7bff08182d00a4225b8eb79d78832e919add0aafb81af96fb7d18b8e7b2cfc4e"
+        },
+        {
+          "voice": "Laura",
+          "text": "So we choose from the actual workload, not from what sounds more advanced.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.632380952380952,
+          "pcm_sha256": "8ec69094d9f6c8f477d99857d2cfc5daf0e0584c39434d5d32040205def9f61f"
+        },
+        {
+          "voice": "Jon",
+          "text": "Yes. We still need measurements before claiming a performance improvement.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 3.5526530612244898,
+          "pcm_sha256": "505021d2c62b2a03dbf653589372b8672f39e572596d2a4ebec7e9be912f8b23"
+        }
+      ]
+    },
+    {
+      "case_id": "design-2-detailed",
+      "engine": "parler",
+      "input_sha256": "d4d8e09e9e6dfc52075b4f42c83e153b2dd93c52f81256427bfa99cd142e0f13",
+      "audio_file": "parler-design-2-detailed-d4d8e09e9e6d.mp3",
+      "audio_sha256": "b28f34f3c687b0ed84985b6182cf64cde78f38a69a20cf28f0d5995459e1aac0",
+      "pcm_sha256": "8f95f425b3694144ea4f0f32dc89f8f371b98ef7f9414e914a64e672f9afb260",
+      "audio_seconds": 27.88328798185941,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "Under what conditions would you keep the synchronous design?",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 3.3436734693877552,
+          "precision": "float32",
+          "pcm_sha256": "52c582855dc8314905ea33c1e980566e7b0eac449a9967554c8e314db4bae800"
+        },
+        {
+          "voice": "Jon",
+          "text": "If all reports reliably completed within the request limit and no other requirement justified background work.",
+          "batch_generation_ms": 175413.69622500497,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 6.222947845804988,
+          "pcm_sha256": "90254c8dcbfa82b59ed4be32f05377e0116abcdaa5be776528695418dbd6e1fa"
+        },
+        {
+          "voice": "Laura",
+          "text": "But if the long-running cases remain?",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.2175056689342405,
+          "precision": "float32",
+          "pcm_sha256": "fbbfbc9bf30eba61474b49c522d389d353d04848aaad468f6977dc4144844702"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then a queue may justify its operational overhead. The decision is contingent on the workload and the user experience we need to support.",
+          "batch_generation_ms": 89864.47155399946,
+          "batch_size": 2,
+          "precision": "bfloat16",
+          "audio_seconds": 10.08907029478458,
+          "pcm_sha256": "f8ba8b65c3af751227d443be986772f4bb68f9da5741e58b9bbab491e84a8e73"
+        },
+        {
+          "voice": "Laura",
+          "text": "We should measure the result rather than infer a speedup from the architecture.",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 3.900952380952381,
+          "pcm_sha256": "a668455968af92541c0325f5316ae82c509bdde5b2fd0fed5f33afdf566e91cf"
+        },
+        {
+          "voice": "Jon",
+          "text": "Agreed.",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 0.8591383219954648,
+          "precision": "float32",
+          "pcm_sha256": "307252c2549320fe914c6005d747cf82fac5097cf4d2b1825e63c48aaa1f68a2"
+        }
+      ]
+    },
+    {
+      "case_id": "everyday-0-plain",
+      "engine": "parler",
+      "input_sha256": "26e7dfa82d77f35c68800fb40c4d4cd57582b890c99a0e5bbaedb1f31517e051",
+      "audio_file": "parler-everyday-0-plain-26e7dfa82d77.mp3",
+      "audio_sha256": "d3c3b1eec5ab51ffbcf4692a933691834f833800cc3656329d55b95b074c09b5",
+      "pcm_sha256": "13abf726a811f14910a1de195175c939dc820a8550b09dc9f950ea0d4c7a54a5",
+      "audio_seconds": 17.60845804988662,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "Let\u2019s go to the market caf\u00e9. Their coffee is great.",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 3.4249433106575964,
+          "precision": "float32",
+          "pcm_sha256": "79c7d4563f2c456df81b48e7fa7ffeaeea73333ec00c9bebf34598b11fee4adb"
+        },
+        {
+          "voice": "Jon",
+          "text": "I like it too, but it gets noisy on Saturdays.",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 3.006984126984127,
+          "precision": "float32",
+          "pcm_sha256": "116debc6e42d93fb64636cdaa0ca398830344ac0cb77c54ff3dc1a5913956367"
+        },
+        {
+          "voice": "Laura",
+          "text": "Does that bother you?",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 1.242267573696145,
+          "precision": "float32",
+          "pcm_sha256": "264e8c666f7d9fce8a8978202b28711256e49c72fc5651e20c128125c18702df"
+        },
+        {
+          "voice": "Jon",
+          "text": "A little. I was hoping we could have a proper conversation.",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 3.3668934240362813,
+          "precision": "float32",
+          "pcm_sha256": "82c88b778396e253a69b327be716ea92ed529724f62afc436589f63c87d080f0"
+        },
+        {
+          "voice": "Laura",
+          "text": "The garden caf\u00e9 is quieter, but it is farther away.",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 3.4946031746031747,
+          "precision": "float32",
+          "pcm_sha256": "6bff123a6efe1d30e41ebd76f88717bd5efbb0d6f76c969462d0a3eccf99d588"
+        },
+        {
+          "voice": "Jon",
+          "text": "I do not mind the extra walk.",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 1.822766439909297,
+          "precision": "float32",
+          "pcm_sha256": "ae9cb1f1dcf291611c4ea08e3deac3813b630c58a641f3070911cb969c7ecd90"
+        }
+      ]
+    },
+    {
+      "case_id": "everyday-0-detailed",
+      "engine": "parler",
+      "input_sha256": "3d467cd1568e16991b0bad82002852c6310b584faaccab009ce1b3c9863dee78",
+      "audio_file": "parler-everyday-0-detailed-3d467cd1568e.mp3",
+      "audio_sha256": "02242bbff9b77bfd4d9157d82462a5e9bfc53f7cc3c45ea94e18d0281c5cb101",
+      "pcm_sha256": "3abfddbde2065005ebe2e71ee355f1a26592da4f6a67e003cde8f256ac438373",
+      "audio_seconds": 23.761746031746032,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "I was leaning toward the market caf\u00e9. The coffee is hard to beat.",
+          "batch_generation_ms": 112220.63131100003,
+          "batch_size": 4,
+          "audio_seconds": 3.564263038548753,
+          "precision": "float32",
+          "pcm_sha256": "7a8f2828a0a39c6b92d6638f49c3866e9d63bb449af0bfef243649aa27c442d2"
+        },
+        {
+          "voice": "Jon",
+          "text": "It is, though I find it difficult to follow a conversation there when it gets busy.",
+          "batch_generation_ms": 123025.57057399827,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.179591836734694,
+          "pcm_sha256": "731423f121d77cb87d48553aabbc71e41b5f9d510e685f20cae421712bae9749"
+        },
+        {
+          "voice": "Laura",
+          "text": "Fair point. The garden caf\u00e9 would be quieter, but it is a bit out of the way.",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.957460317460318,
+          "pcm_sha256": "b3848b1c9381a55326e8a706cb496bb27d8aa0c271c069ac99bbf4eb2c829459"
+        },
+        {
+          "voice": "Jon",
+          "text": "I would rather make the extra trip and actually hear you.",
+          "batch_generation_ms": 218271.47803199477,
+          "batch_size": 8,
+          "audio_seconds": 4.260861678004535,
+          "precision": "float32",
+          "pcm_sha256": "3ca0fe68f86537954daad639664e9c3090440baa50e4da161b94d0722747e109"
+        },
+        {
+          "voice": "Laura",
+          "text": "So the atmosphere matters more to you this time.",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 2.9373242630385485,
+          "precision": "float32",
+          "pcm_sha256": "929d704a05bcf303d9ce1a3bae0feedfa9d2558dd5b05fe97bf2b116189a9853"
+        },
+        {
+          "voice": "Jon",
+          "text": "Yes. Especially since we have not caught up in a while.",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 2.6122448979591835,
+          "precision": "float32",
+          "pcm_sha256": "cdd3f398001975e1e9bbe5f52b90618e7d74ecf7a696add2bd5b27d836d7e056"
+        }
+      ]
+    },
+    {
+      "case_id": "everyday-1-plain",
+      "engine": "parler",
+      "input_sha256": "9b77ed25d7e3f8c91cef653c03e694d6229bf37c1655bf530157c9e9cfc95299",
+      "audio_file": "parler-everyday-1-plain-9b77ed25d7e3.mp3",
+      "audio_sha256": "e31e7ce8b9794cd8255e0a6b208ab1ca4c2797a54f96b640fe343ad34dffe70d",
+      "pcm_sha256": "a3e9cd6e1829c02b9b0592c74035a8f2782cf579233d8868c07f7876db500c7d",
+      "audio_seconds": 13.939705215419501,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "The garden caf\u00e9 was quiet when I went last month.",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 3.3901133786848074,
+          "precision": "float32",
+          "pcm_sha256": "63a058e249b27ba034feea357d2e6a6c53a9627714fc1821d2aae35357ddebe3"
+        },
+        {
+          "voice": "Jon",
+          "text": "Was that on a Saturday?",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 1.2770975056689342,
+          "precision": "float32",
+          "pcm_sha256": "cf2585abd32a63af69e70e705fb9fb95879565f4966313a6e8838b5e38092802"
+        },
+        {
+          "voice": "Laura",
+          "text": "No, it was a Tuesday morning.",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 2.2639455782312927,
+          "precision": "float32",
+          "pcm_sha256": "c7ad5c522b9560d457bab569437fbb61195189a626d78a9ef9c3772715714fc0"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then Saturday might be different.",
+          "batch_generation_ms": 85375.6903350004,
+          "batch_size": 8,
+          "audio_seconds": 1.7647165532879818,
+          "precision": "float32",
+          "pcm_sha256": "90d2897ab07f5fcda483dff897a8d81643f1a84674fd555ee061a3aeeb27fb51"
+        },
+        {
+          "voice": "Laura",
+          "text": "We could call and ask when it is usually less busy.",
+          "batch_generation_ms": 104649.593508002,
+          "batch_size": 8,
+          "audio_seconds": 2.948934240362812,
+          "precision": "float32",
+          "pcm_sha256": "e14819f69fe2b0ba300ef3abe73ed14be30b22ec02d3a19f75ca5496f2f9ad41"
+        },
+        {
+          "voice": "Jon",
+          "text": "That sounds sensible.",
+          "batch_generation_ms": 66606.43907400663,
+          "batch_size": 8,
+          "audio_seconds": 1.0448979591836736,
+          "precision": "float32",
+          "pcm_sha256": "d28478b275f36dae7c44973dcece64110a2f1cbf6c7383e03694e689867efc69"
+        }
+      ]
+    },
+    {
+      "case_id": "everyday-1-detailed",
+      "engine": "parler",
+      "input_sha256": "d0de8354a4e87745ee1610d559a83c562ee00eb10b91b64f8ab71abb2a859c96",
+      "audio_file": "parler-everyday-1-detailed-d0de8354a4e8.mp3",
+      "audio_sha256": "6736e7b65bff3bd50266b0f8acd0b7ee62ee888e570bb7edab3eece44070226f",
+      "pcm_sha256": "6cf90f4ac83d8f5120a85bc5cfbb5344e368201f3d81d058a6c45698ab771230",
+      "audio_seconds": 17.399478458049888,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "It was almost empty the last time I went.",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 2.589024943310658,
+          "precision": "float32",
+          "pcm_sha256": "e8109521ab16d0134b5d715912e3715063f798b80a0064936963ec7ce0454fed"
+        },
+        {
+          "voice": "Jon",
+          "text": "Was that around the time we are planning to meet?",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 2.2523356009070294,
+          "precision": "float32",
+          "pcm_sha256": "f291d7326eb5af71f2e69781797b7c4cc61ebb163ec36a04a87e0ac90c852ef2"
+        },
+        {
+          "voice": "Laura",
+          "text": "Actually, no. It was a weekday morning.",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 2.426485260770975,
+          "precision": "float32",
+          "pcm_sha256": "bc43d07bc6d9ad5377f1f6b849c72dd6471314b2a5a21b017b86a263f3ce3381"
+        },
+        {
+          "voice": "Jon",
+          "text": "Then I would not take that as a guarantee for Saturday.",
+          "batch_generation_ms": 127041.09484000219,
+          "batch_size": 8,
+          "audio_seconds": 2.9024943310657596,
+          "precision": "float32",
+          "pcm_sha256": "da8202b95b50e320b626ab5f7131b8abb8321618eb3f5a887dfc2abcd114f34d"
+        },
+        {
+          "voice": "Laura",
+          "text": "I can call and ask about their quieter hours.",
+          "batch_generation_ms": 99014.13720800338,
+          "batch_size": 8,
+          "audio_seconds": 2.972154195011338,
+          "precision": "float32",
+          "pcm_sha256": "e3bfdfea3a328b3c2b4d3f4a778710fa2d8af9148f626c78149662eca35bc399"
+        },
+        {
+          "voice": "Jon",
+          "text": "Good idea. That would give us something more useful to go on.",
+          "batch_generation_ms": 151968.32329899917,
+          "batch_size": 4,
+          "audio_seconds": 3.006984126984127,
+          "precision": "float32",
+          "pcm_sha256": "63355a8563e0adbab4ee1871e2ff798ffc69df65133856b63b25f301a74c741f"
+        }
+      ]
+    },
+    {
+      "case_id": "everyday-2-plain",
+      "engine": "parler",
+      "input_sha256": "9e660845f427198d3df4c1925035f0813a9c2bf07cf4682a47e42394896f17c0",
+      "audio_file": "parler-everyday-2-plain-9e660845f427.mp3",
+      "audio_sha256": "060abc2894a8db73429c3f2e65ca79afe6d00f952e4a731945950c0deea43f70",
+      "pcm_sha256": "edbd15955eeb3ff4b5ab0f2ef9ceea312a8fc50358823ff1ab30c4c8f45aed4c",
+      "audio_seconds": 12.638616780045352,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "I will call tomorrow. If they expect a crowd, we can choose somewhere else.",
+          "batch_generation_ms": 79798.18174400134,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 4.0751020408163265,
+          "pcm_sha256": "9f175bd55135ea96f8d43a25f08467a7b1be5bf2db6dd8b514d78daf179d11bb"
+        },
+        {
+          "voice": "Jon",
+          "text": "Great. We do not need to decide everything now.",
+          "batch_generation_ms": 90798.72024700308,
+          "batch_size": 8,
+          "audio_seconds": 3.2275736961451247,
+          "precision": "float32",
+          "pcm_sha256": "e7179e8b755c0f6e510a312d97dd82e6f8d5dc5c5790cc500182d4703f72d096"
+        },
+        {
+          "voice": "Laura",
+          "text": "Shall we keep Saturday afternoon free?",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.1130158730158732,
+          "precision": "float32",
+          "pcm_sha256": "f601beef183dadd6b234bf84d33aefd90a251e83b3e1e7b964237866cf4d94bf"
+        },
+        {
+          "voice": "Jon",
+          "text": "Yes. Send me a message after you call.",
+          "batch_generation_ms": 75610.86312800035,
+          "batch_size": 8,
+          "audio_seconds": 2.4729251700680273,
+          "precision": "float32",
+          "pcm_sha256": "90a6312d39c97df95869c06ae8577e77483bb06ba7c25d5a1bea640e5532b83b"
+        }
+      ]
+    },
+    {
+      "case_id": "everyday-2-detailed",
+      "engine": "parler",
+      "input_sha256": "2f3665dd5c04b990c529d12d16c10fb315e7c543c2db1bcd10250f4f6491070d",
+      "audio_file": "parler-everyday-2-detailed-2f3665dd5c04.mp3",
+      "audio_sha256": "8543fe3db44b2059fbdbfcc16e53b6a6a05d4f4e5320b3a989a0fee8c2fc5758",
+      "pcm_sha256": "e84b064336e5142a68976380f648e8482342456468f035194bd9a2e21e196fc0",
+      "audio_seconds": 16.14482993197279,
+      "sample_rate": 44100,
+      "turns": [
+        {
+          "voice": "Laura",
+          "text": "I will call tomorrow. If Saturday looks crowded, we can reconsider.",
+          "batch_generation_ms": 107756.05668900243,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 3.680362811791383,
+          "pcm_sha256": "ff84b26aac07a8044b1fafd0fe9313909bbd70e44fe3f01efec82316b87632d6"
+        },
+        {
+          "voice": "Jon",
+          "text": "That works for me. Let\u2019s keep the afternoon free and leave the venue open for now.",
+          "batch_generation_ms": 101217.98976600257,
+          "batch_size": 8,
+          "precision": "bfloat16",
+          "audio_seconds": 5.282539682539682,
+          "pcm_sha256": "ad8e547a984ed1671feaa730360989b451c37c66922a74631ac6570b4036c9d8"
+        },
+        {
+          "voice": "Laura",
+          "text": "I will message you once I know more.",
+          "batch_generation_ms": 67534.67798499332,
+          "batch_size": 8,
+          "audio_seconds": 2.3336054421768706,
+          "precision": "float32",
+          "pcm_sha256": "4d810102bf38a7f9d79bc349a6d6b6e0ba7e8e1afff2dd51947cacf5ec130b15"
+        },
+        {
+          "voice": "Jon",
+          "text": "Perfect. I am looking forward to catching up, wherever we end up.",
+          "batch_generation_ms": 112220.63131100003,
+          "batch_size": 4,
+          "audio_seconds": 4.098321995464852,
+          "precision": "float32",
+          "pcm_sha256": "16bd9d569ea20db9aa30c7244a4d9712a167aa8ebe68ced9431979ef01c8322e"
+        }
+      ]
+    }
+  ]
+}

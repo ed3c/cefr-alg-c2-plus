@@ -1,4 +1,5 @@
 import { lessons, reviewCues } from './lessons.js';
+import { StudioNarrator } from './studio-narrator.js';
 
 const $ = id => document.getElementById(id);
 const state = { lesson: 0, scene: 0, mode: 'listen', version: 'plain', rate: 1 };
@@ -6,66 +7,37 @@ const drafts = new Map();
 const checks = new Map();
 const clips = new Map();
 let speechToken = 0, speaking = false, recorder = null, stream = null, recordingPending = false;
-let recordingLesson = null, voice = null;
-const synth = window.speechSynthesis;
+let recordingLesson = null;
 const getLesson = () => lessons[state.lesson];
 const getScene = () => getLesson().scenes[state.scene];
 const text = (id, value) => { $(id).textContent = value; };
 function element(tag, value, className) { const el = document.createElement(tag); if(value !== undefined) el.textContent=value; if(className) el.className=className; return el; }
-const speechAvailable = !!(synth && typeof window.SpeechSynthesisUtterance === 'function');
-let englishVoices = [];
-function chooseVoice() {
-  const selected = $('voice').value;
-  englishVoices = (synth?.getVoices?.() || []).filter(v => /^en\b/i.test(v.lang) && (!$('local-only').checked || v.localService));
-  voice = englishVoices.find(v=>v.voiceURI===selected) || englishVoices.find(v=>v.lang==='en-US' && v.localService) || englishVoices.find(v=>v.localService) || englishVoices[0] || null;
-  const options=englishVoices.map(v=>{const option=element('option',`${v.name} · ${v.lang} · ${v.localService?'on device':'online service'}`);option.value=v.voiceURI;return option;});
-  if(!options.length){const option=element('option',$('local-only').checked?'No local English voice available':'Browser default English voice');option.value='';options.push(option);}
-  $('voice').replaceChildren(...options);$('voice').value=voice?.voiceURI||'';
-  $('voice').disabled=!englishVoices.length;
-  if(!speaking)$('play').disabled=!speechAvailable || ($('local-only').checked && !voice);
-}
+const narrator = new StudioNarrator($('lesson-audio'), message=>text('audio-status',message));
 function stopSpeech(message = 'Stopped. Replay whenever you like.') {
-  speechToken++; speaking = false; synth?.cancel();
-  $('panel-listen').classList.remove('playing');
-  $('play').disabled = !speechAvailable || ($('local-only').checked && !voice);
-  $('stop').disabled = true;
-  if (message) text('audio-status', message);
+  speechToken++;speaking=false;narrator.stop();
+  $('panel-listen').classList.remove('playing');$('play').disabled=false;$('stop').disabled=true;
+  if(message)text('audio-status',message);
 }
-function playConversation() {
-  if (!speechAvailable) {
-    text('audio-status','Audio is unavailable in this browser. Open the English transcript, or use a browser with English speech support.');
-    $('transcript').open=true;return;
+async function playConversation() {
+  stopSpeech();const token=speechToken,engine=$('narration-model').value;
+  const continuous=$('continuous').checked;
+  speaking=true;$('play').disabled=true;$('stop').disabled=false;$('panel-listen').classList.add('playing');
+  try {
+    do {
+      const item={id:`${getLesson().id}-${state.scene}-${state.version}`,title:`Scene ${state.scene+1} · ${getScene().title}`,lines:getScene()[state.version]};
+      await narrator.play(item,engine,()=>state.rate);
+      if(token!==speechToken)return;
+      if(!continuous||state.scene===getLesson().scenes.length-1)break;
+      state.scene++;$('transcript').open=false;renderScene();
+    } while(token===speechToken);
+    if(token===speechToken)stopSpeech(continuous?'Scenario finished. Replay or choose another situation.':'Conversation finished. Listen again or choose another scene.');
+  } catch(error) {
+    if(token!==speechToken||error.name==='AbortError')return;
+    stopSpeech(error.name==='NotAllowedError'?'Your browser needs another Play gesture. Press Play to continue.':error.message);
   }
-  stopSpeech('Starting English audio…');chooseVoice();
-  if($('local-only').checked && !voice){text('audio-status','No local English voice is available. Install an English voice in your device settings, or allow online voices.');return;}
-  const token = speechToken;
-  const continuous = $('continuous').checked;
-  const playbackVoice = voice;
-  let index = 0;
-  speaking=true;$('play').disabled=true;$('stop').disabled=false;
-  $('panel-listen').classList.add('playing');
-  function next() {
-    if (token !== speechToken) return;
-    let lines = getScene()[state.version];
-    if(index>=lines.length) {
-      if(continuous && state.scene<getLesson().scenes.length-1){state.scene++;index=0;$('transcript').open=false;renderScene();lines=getScene()[state.version];}
-      else {stopSpeech(continuous?'Scenario finished. Replay or choose another situation.':'Conversation finished. Listen again or choose another scene.');return;}
-    }
-    const [name, line] = lines[index++];
-    const utterance = new window.SpeechSynthesisUtterance(line);
-    utterance.lang = playbackVoice?.lang || 'en-US';
-    if(playbackVoice) utterance.voice=playbackVoice;
-    utterance.rate=state.rate;
-    utterance.onstart=()=>{if(token===speechToken) text('audio-status',`Scene ${state.scene+1} of ${getLesson().scenes.length} · ${name} · turn ${index} of ${lines.length}`);};
-    utterance.onend=next;
-    utterance.onerror=event=>{if(token===speechToken)stopSpeech(event.error==='not-allowed'?'Your browser blocked audio. Press Play to try again.':'Playback stopped. Press Play to retry, or open the transcript.');};
-    synth.speak(utterance);
-  }
-  next();
 }
-chooseVoice();
-synth?.addEventListener?.('voiceschanged',chooseVoice);
 function renderScene() {
+  narrator.preloadParler({id:`${getLesson().id}-${state.scene}-${state.version}`,lines:getScene()[state.version]}).catch(()=>{});
   text('scene-title',getScene().title);text('scene-cue',getScene().cue);
   const nav=$('scene-list');nav.replaceChildren();
   getLesson().scenes.forEach((scene,i)=>{
@@ -79,7 +51,7 @@ function renderScene() {
 }
 function selectScene(index) {
   if(!Number.isInteger(index)||index<0||index>=getLesson().scenes.length) throw new Error('Unknown scene');
-  stopSpeech('Device-generated English audio. No speaking required.');state.scene=index;$('transcript').open=false;renderScene();
+  stopSpeech('Choose Parler TTS or Kokoro browser. No speaking required.');state.scene=index;$('transcript').open=false;renderScene();
 }
 function saveCurrentDraft() {
   drafts.set(getLesson().id,$('draft').value);
@@ -120,7 +92,7 @@ function renderLesson() {
 function selectLesson(id) {
   const index=lessons.findIndex(l=>l.id===id);if(index===-1)throw new Error('Unknown lesson');
   if(recordingPending||recorder?.state==='recording'){text('record-status','Stop recording before changing the scenario.');return {changed:false,reason:'recording_active'};}
-  saveCurrentDraft();stopSpeech('Device-generated English audio. No speaking required.');state.lesson=index;state.scene=0;
+  saveCurrentDraft();stopSpeech('Choose Parler TTS or Kokoro browser. No speaking required.');state.lesson=index;state.scene=0;
   renderLesson();return {changed:true,lessonId:id};
 }
 function setMode(mode) {
@@ -175,13 +147,17 @@ function downloadDraft() {
   const url=URL.createObjectURL(new Blob([output],{type:'text/markdown;charset=utf-8'}));
   const a=element('a');a.href=url;a.download=`${lesson.id}-draft.md`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
-$('voice').addEventListener('change',()=>{stopSpeech('Voice changed. Play when ready.');chooseVoice();});
-$('local-only').addEventListener('change',()=>{stopSpeech(null);chooseVoice();text('audio-status',$('local-only').checked && !voice?'No local English voice is available. Install one on your device, or allow online voices.':'Voice preference updated. Play when ready.');});
+$('narration-model').addEventListener('change',()=>{
+  stopSpeech('Narration model changed. Play when ready.');
+  text('voice-note',$('narration-model').value==='parler'?'Parler TTS lesson audio is ready to play. No model download or API key.':'Kokoro generates on this device. First use downloads a model (~100 MB or more) and may take time. No API key. Recent scenes are kept in this tab.');
+});
+$('lesson-audio').addEventListener('pause',()=>$('panel-listen').classList.remove('playing'));
+$('lesson-audio').addEventListener('playing',()=>{if(speaking)$('panel-listen').classList.add('playing');});
 $('continuous').addEventListener('change',()=>stopSpeech('Playback scope changed. Play when ready.'));
 $('play').addEventListener('click',playConversation);$('stop').addEventListener('click',()=>stopSpeech());
 $('next-scene').addEventListener('click',()=>selectScene((state.scene+1)%getLesson().scenes.length));
 $('version').addEventListener('change',event=>{stopSpeech('Language version changed. Play when ready.');state.version=event.target.value;renderScene();});
-$('rate').addEventListener('change',event=>{state.rate=Number(event.target.value);if(speaking)stopSpeech('Speed changed. Replay when ready.');});
+$('rate').addEventListener('change',event=>{state.rate=Number(event.target.value);$('lesson-audio').playbackRate=state.rate;});
 const modeButtons=[...document.querySelectorAll('[data-mode]')];
 modeButtons.forEach((button,index)=>{
   button.addEventListener('click',()=>setMode(button.dataset.mode));
@@ -202,8 +178,7 @@ const sourceLinks=[
 ];
 $('source-links').replaceChildren(...sourceLinks.map(([label,url])=>{const li=element('li');const a=element('a',label);a.href=url;a.target='_blank';a.rel='noopener';li.append(a);return li;}));
 renderLesson();
-if(!speechAvailable){$('play').disabled=true;text('audio-status','Device audio is unavailable. You can open the English transcript or use a browser with speech support.');}
-window.addEventListener('pagehide',()=>{stopSpeech(null);if(recorder?.state==='recording')recorder.stop();stream?.getTracks().forEach(t=>t.stop());clips.forEach(clip=>URL.revokeObjectURL(clip.url));});
+window.addEventListener('pagehide',()=>{stopSpeech(null);narrator.dispose();if(recorder?.state==='recording')recorder.stop();stream?.getTracks().forEach(t=>t.stop());clips.forEach(clip=>URL.revokeObjectURL(clip.url));});
 
 // Optional browser agent access. Does not grade or change learner evidence.
 const context=document.modelContext;

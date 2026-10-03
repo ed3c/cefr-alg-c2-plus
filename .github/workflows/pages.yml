@@ -22,6 +22,8 @@ jobs:
           node --check dist/compare.js
           node --check dist/kokoro-worker.js
           node scripts/check.mjs
+          node scripts/check-narrator.mjs
+          node scripts/check-narration-assets.mjs
           node scripts/check-voice-lab.mjs
           python3 scripts/test_voice_lab.py
       - name: Upload static website

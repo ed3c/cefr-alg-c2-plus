@@ -12,7 +12,8 @@ self.onmessage = async ({data}) => {
     const load_ms=performance.now()-started;const generationStart=performance.now();
     const voices=['af_heart','am_michael'];const speakers=[...new Set(data.item.lines.map(l=>l[0]))];
     let chunks=[],length=0,sr=24000;
-    for(const [speaker,text] of data.item.lines){
+    for(const [turn,[speaker,text]] of data.item.lines.entries()){
+      self.postMessage({type:'progress',id:data.id,text:`Generating turn ${turn+1} of ${data.item.lines.length}…`});
       const a=await tts.generate(text,{voice:voices[speakers.indexOf(speaker)%2]});
       sr=a.sampling_rate;chunks.push(a.audio);length+=a.audio.length;
       const pause=new Float32Array(Math.round(sr*.25));chunks.push(pause);length+=pause.length;
