@@ -29,3 +29,9 @@ No human learning outcome, pronunciation improvement, speaking readiness, C2 pro
 ## Normal-use checks
 
 On the deployed HTTPS site, choose Play and confirm English audio is audible. Change a scene and verify playback stops. Deny microphone permission and confirm the message is recoverable; then allow it, record a short response, play it, and download it. Write a draft, change scenarios and return, then download the draft. Reload only after downloading work you wish to keep.
+
+## Continuous reading update · 2026-10-03
+
+Node syntax and regression checks passed after adding continuous scenes and voice preferences. Fake speech events verify no speech before Play, all expected lines in order through the final scene, no looping past the scenario boundary, single-scene mode, stopped/stale callback cancellation, local-only filtering without online fallback, explicit online opt-in, and a recoverable blocked-audio message. These checks do not establish real-device audibility, pronunciation, network behavior, or background playback.
+
+A Pages workflow checks source before deployment; deployment success must be checked independently in GitHub Actions.

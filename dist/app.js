@@ -12,50 +12,59 @@ const getLesson = () => lessons[state.lesson];
 const getScene = () => getLesson().scenes[state.scene];
 const text = (id, value) => { $(id).textContent = value; };
 function element(tag, value, className) { const el = document.createElement(tag); if(value !== undefined) el.textContent=value; if(className) el.className=className; return el; }
+const speechAvailable = !!(synth && typeof window.SpeechSynthesisUtterance === 'function');
+let englishVoices = [];
 function chooseVoice() {
-  const voices = synth?.getVoices?.() || [];
-  voice = voices.find(v => v.lang==='en-US' && v.localService) || voices.find(v=>v.lang==='en-US') || voices.find(v=>/^en\b/i.test(v.lang)) || null;
+  const selected = $('voice').value;
+  englishVoices = (synth?.getVoices?.() || []).filter(v => /^en\b/i.test(v.lang) && (!$('local-only').checked || v.localService));
+  voice = englishVoices.find(v=>v.voiceURI===selected) || englishVoices.find(v=>v.lang==='en-US' && v.localService) || englishVoices.find(v=>v.localService) || englishVoices[0] || null;
+  const options=englishVoices.map(v=>{const option=element('option',`${v.name} · ${v.lang} · ${v.localService?'on device':'online service'}`);option.value=v.voiceURI;return option;});
+  if(!options.length){const option=element('option',$('local-only').checked?'No local English voice available':'Browser default English voice');option.value='';options.push(option);}
+  $('voice').replaceChildren(...options);$('voice').value=voice?.voiceURI||'';
+  $('voice').disabled=!englishVoices.length;
+  if(!speaking)$('play').disabled=!speechAvailable || ($('local-only').checked && !voice);
 }
-chooseVoice();
-synth?.addEventListener?.('voiceschanged', chooseVoice);
 function stopSpeech(message = 'Stopped. Replay whenever you like.') {
   speechToken++; speaking = false; synth?.cancel();
   $('panel-listen').classList.remove('playing');
-  $('play').disabled = !synth;
+  $('play').disabled = !speechAvailable || ($('local-only').checked && !voice);
   $('stop').disabled = true;
-  text('play', 'Play conversation');
   if (message) text('audio-status', message);
 }
 function playConversation() {
-  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function') {
+  if (!speechAvailable) {
     text('audio-status','Audio is unavailable in this browser. Open the English transcript, or use a browser with English speech support.');
-    $('transcript').open=true;
-    return;
+    $('transcript').open=true;return;
   }
-  stopSpeech('Starting device-generated English audio…');
-  chooseVoice();
+  stopSpeech('Starting English audio…');chooseVoice();
+  if($('local-only').checked && !voice){text('audio-status','No local English voice is available. Install an English voice in your device settings, or allow online voices.');return;}
   const token = speechToken;
-  const lines = getScene()[state.version];
+  const continuous = $('continuous').checked;
+  const playbackVoice = voice;
   let index = 0;
-  speaking=true;
-  $('play').disabled=true;
-  $('stop').disabled=false;
+  speaking=true;$('play').disabled=true;$('stop').disabled=false;
   $('panel-listen').classList.add('playing');
   function next() {
     if (token !== speechToken) return;
-    if(index>=lines.length) {stopSpeech('Conversation finished. Listen again or choose another scene.');return;}
+    let lines = getScene()[state.version];
+    if(index>=lines.length) {
+      if(continuous && state.scene<getLesson().scenes.length-1){state.scene++;index=0;$('transcript').open=false;renderScene();lines=getScene()[state.version];}
+      else {stopSpeech(continuous?'Scenario finished. Replay or choose another situation.':'Conversation finished. Listen again or choose another scene.');return;}
+    }
     const [name, line] = lines[index++];
-    const utterance = new SpeechSynthesisUtterance(line);
-    utterance.lang = voice?.lang || 'en-US';
-    if(voice) utterance.voice=voice;
+    const utterance = new window.SpeechSynthesisUtterance(line);
+    utterance.lang = playbackVoice?.lang || 'en-US';
+    if(playbackVoice) utterance.voice=playbackVoice;
     utterance.rate=state.rate;
-    utterance.onstart=()=>{if(token===speechToken) text('audio-status',`${name} is speaking · turn ${index} of ${lines.length}`);};
+    utterance.onstart=()=>{if(token===speechToken) text('audio-status',`Scene ${state.scene+1} of ${getLesson().scenes.length} · ${name} · turn ${index} of ${lines.length}`);};
     utterance.onend=next;
-    utterance.onerror=event=>{if(token===speechToken && event.error!=='canceled' && event.error!=='interrupted') stopSpeech('The voice could not play. Try again, or open the transcript.');};
+    utterance.onerror=event=>{if(token===speechToken)stopSpeech(event.error==='not-allowed'?'Your browser blocked audio. Press Play to try again.':'Playback stopped. Press Play to retry, or open the transcript.');};
     synth.speak(utterance);
   }
   next();
 }
+chooseVoice();
+synth?.addEventListener?.('voiceschanged',chooseVoice);
 function renderScene() {
   text('scene-title',getScene().title);text('scene-cue',getScene().cue);
   const nav=$('scene-list');nav.replaceChildren();
@@ -166,6 +175,9 @@ function downloadDraft() {
   const url=URL.createObjectURL(new Blob([output],{type:'text/markdown;charset=utf-8'}));
   const a=element('a');a.href=url;a.download=`${lesson.id}-draft.md`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
+$('voice').addEventListener('change',()=>{stopSpeech('Voice changed. Play when ready.');chooseVoice();});
+$('local-only').addEventListener('change',()=>{stopSpeech(null);chooseVoice();text('audio-status',$('local-only').checked && !voice?'No local English voice is available. Install one on your device, or allow online voices.':'Voice preference updated. Play when ready.');});
+$('continuous').addEventListener('change',()=>stopSpeech('Playback scope changed. Play when ready.'));
 $('play').addEventListener('click',playConversation);$('stop').addEventListener('click',()=>stopSpeech());
 $('next-scene').addEventListener('click',()=>selectScene((state.scene+1)%getLesson().scenes.length));
 $('version').addEventListener('change',event=>{stopSpeech('Language version changed. Play when ready.');state.version=event.target.value;renderScene();});
@@ -190,7 +202,7 @@ const sourceLinks=[
 ];
 $('source-links').replaceChildren(...sourceLinks.map(([label,url])=>{const li=element('li');const a=element('a',label);a.href=url;a.target='_blank';a.rel='noopener';li.append(a);return li;}));
 renderLesson();
-if(!synth){$('play').disabled=true;text('audio-status','Device audio is unavailable. You can open the English transcript or use a browser with speech support.');}
+if(!speechAvailable){$('play').disabled=true;text('audio-status','Device audio is unavailable. You can open the English transcript or use a browser with speech support.');}
 window.addEventListener('pagehide',()=>{stopSpeech(null);if(recorder?.state==='recording')recorder.stop();stream?.getTracks().forEach(t=>t.stop());clips.forEach(clip=>URL.revokeObjectURL(clip.url));});
 
 // Optional browser agent access. Does not grade or change learner evidence.

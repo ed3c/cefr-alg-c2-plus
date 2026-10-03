@@ -16,14 +16,14 @@ C2+ is the project name and learning ambition. CEFR's highest named level is C2.
 ## What is implemented
 
 - Four fictional scenarios, each with three scenes and two language variants.
-- Device-generated English speech with playback, stop, speed selection, transcript, and unavailable-audio messaging.
+- English speech with one-click continuous scenes, stop, speed and voice selection, a default on-device-only mode, optional online voices, transcript, and unavailable-audio messaging.
 - An optional microphone recorder with playback and download. Permission denial has a recoverable state.
 - A writing workspace with scenario facts, self-review, before/after examples, and draft download.
 - Review cues for long sentences and certainty words. These are prompts for human review, never semantic verdicts or CEFR scores.
 - Responsive styling, keyboard tab navigation, labels, focus states, and reduced-motion support.
 - Optional browser WebMCP scenario navigation. No tool grades work, starts a microphone, or returns a private draft.
 
-There is no AI tutor, automatic pronunciation score, account database, cross-device progress, or certification workflow. The application does not upload drafts or recordings. The browser may use its vendor's speech service for supplied lesson dialogue. Google Fonts is a presentation dependency; system fonts are the fallback.
+There is no AI tutor, automatic pronunciation score, account database, cross-device progress, or certification workflow. The application does not upload drafts or recordings. On-device-only mode selects browser-reported local voices. If the learner disables this option, online voices may use the vendor's speech service for supplied lesson dialogue. Google Fonts is a presentation dependency; system fonts are the fallback.
 
 ## Run locally
 
@@ -56,3 +56,9 @@ Selecting a scenario loads its fixed content. Playback sends only that scene's s
 This is an ALG-inspired input experience with separately labeled output workshops, not a claim to implement strict ALG or guarantee language acquisition. It adapts meaning-preservation and clear-writing principles from medium-compiler and Soodles review-writing. It does not copy their runtime authority or claim their behavior-verification loops have run.
 
 See [source provenance](docs/SOURCES.md), [style guide](docs/STYLE_GUIDE.md), and [verification limits](docs/VERIFICATION.md).
+
+## Publish with GitHub Pages
+
+In repository Settings → Pages, select **GitHub Actions** as the source. The included [workflow](.github/workflows/pages.yml) checks the app and publishes only `dist/` on main updates or manual dispatch. It uses GitHub-provided short-lived credentials; no user API key or PAT is required. Initial Pages enablement is a repository setting, not performed by the ordinary workflow token.
+
+For the researched no-key TTS, local transcription, local writing assistant, and offline roadmap, see [the integration architecture](docs/NO_API_KEY_ARCHITECTURE.md). Only browser speech and the existing recording/writing tools are implemented today.

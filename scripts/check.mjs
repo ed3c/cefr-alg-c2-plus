@@ -57,3 +57,44 @@ els.draft.value='All failures are definitely resolved.';els.review.events.click(
 assert.equal(read.execute({}).facts[0],'The passing test covers revision A.');
 console.log('PASS: content structure, review boundaries, HTML wiring, unsupported-media states, mode/scenario navigation, session drafts, and WebMCP handler valid/invalid inputs.');
 console.log('LIMIT: DOM harness only; no real browser rendering, TTS output, microphone device, or native WebMCP runtime was tested.');
+
+// Fake speech events verify sequencing and cancellation, not audio quality.
+const utterances=[];
+const localVoice={name:'Local',voiceURI:'local',lang:'en-US',localService:true};
+const remoteVoice={name:'Remote',voiceURI:'remote',lang:'en-GB',localService:false};
+let availableVoices=[localVoice,remoteVoice];
+const fakeSynth={getVoices:()=>availableVoices,addEventListener(){},cancel(){},speak(u){utterances.push(u);u.onstart?.();}};
+els['local-only'].checked=true;els.continuous.checked=true;
+const audioSandbox={...sandbox,window:{addEventListener(){},speechSynthesis:fakeSynth,SpeechSynthesisUtterance:class {constructor(value){this.text=value;}}}};
+vm.createContext(audioSandbox);vm.runInContext(js.replace(/^import[^\n]+\n/,''),audioSandbox);
+assert.equal(utterances.length,0,'No sound before an explicit Play gesture');
+assert.equal(els.voice.children.length,1,'Local-only filters online voices');
+els.play.events.click();
+const allLines=lessons[0].scenes.flatMap(s=>s.plain.map(([,line])=>line));
+for(let i=0;i<allLines.length;i++){
+  assert.equal(utterances[i].text,allLines[i]);
+  assert.equal(utterances[i].voice.localService,true);
+  utterances[i].onend();
+}
+assert.equal(utterances.length,allLines.length,'Continuous reading ends at scenario boundary');
+assert.equal(els['scene-title'].textContent,lessons[0].scenes[2].title);
+assert.equal(els.stop.disabled,true);assert.match(els['audio-status'].textContent,/Scenario finished/);
+// An old callback must not restart audio after Stop or navigation.
+els.play.events.click();let last=utterances.at(-1);let count=utterances.length;
+els.stop.events.click();last.onend();assert.equal(utterances.length,count);
+els.play.events.click();last=utterances.at(-1);count=utterances.length;
+els['next-scene'].events.click();last.onend();assert.equal(utterances.length,count);
+// Single-scene mode stays on the chosen scene.
+els.continuous.checked=false;els.continuous.events.change();
+count=utterances.length;els.play.events.click();
+for(let i=0;i<lessons[0].scenes[0].plain.length;i++)utterances[count+i].onend();
+assert.equal(els['scene-title'].textContent,lessons[0].scenes[0].title);
+assert.equal(utterances.length,count+lessons[0].scenes[0].plain.length);
+// No fallback to a network voice when local-only is enabled.
+availableVoices=[remoteVoice];els['local-only'].events.change();count=utterances.length;
+assert.equal(els.play.disabled,true);els.play.events.click();assert.equal(utterances.length,count);
+els['local-only'].checked=false;els['local-only'].events.change();els.play.events.click();
+assert.equal(utterances.at(-1).voice,remoteVoice);
+utterances.at(-1).onerror({error:'not-allowed'});
+assert.match(els['audio-status'].textContent,/blocked audio/);assert.equal(els.play.disabled,false);
+console.log('PASS: gesture-only start, cross-scene queue, scenario boundary, cancellation, single-scene mode, local-only enforcement, online opt-in, and recoverable speech errors.');
