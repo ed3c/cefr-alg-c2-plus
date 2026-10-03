@@ -156,6 +156,23 @@ is not promised.
 
 ## Verification and deployment
 
+### Vercel
+
+Import `ed3c/cefr-alg-c2-` into Vercel with the repository root as Root Directory.
+The committed `vercel.json` selects framework **Other**, runs `npm run check`,
+and publishes `dist/`. There are no install dependencies or environment variables
+for this static deployment. GitHub pushes can then trigger automatic deployments.
+
+After deployment reaches **Ready**, open `/` for the ALG studio or `/compare.html`
+for Voice Lab. Check that the five samples load. Browser Kokoro generates on the
+visitor's device; the Python/native local-generation server is not deployed to
+Vercel. Deployment does not change the native LiteRT verification limits above.
+
+The Vercel connector's deployment tool was unavailable during setup on 2026-10-03.
+Configuration is ready; a live Vercel deployment has not yet been verified.
+
+### Checks and GitHub Pages
+
 ```bash
 npm run check
 python3 scripts/test_voice_lab.py
