@@ -19,7 +19,11 @@ jobs:
         run: |
           node --check dist/app.js
           node --check dist/lessons.js
+          node --check dist/compare.js
+          node --check dist/kokoro-worker.js
           node scripts/check.mjs
+          node scripts/check-voice-lab.mjs
+          python3 scripts/test_voice_lab.py
       - name: Upload static website
         uses: actions/upload-pages-artifact@v4
         with:

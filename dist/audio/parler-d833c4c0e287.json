@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "engine": "parler",
+  "case_id": "quick",
+  "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+  "audio_file": "parler-d833c4c0e287.wav",
+  "audio_sha256": "7faedfba43b0bd1876e4f6e2213516a5c5270fb2ec79b27b714cde044512c831",
+  "load_ms": 78568.30059500135,
+  "generation_ms": 64623.62579800174,
+  "audio_seconds": 6.380068027210885,
+  "rtf": 10.12898695160977,
+  "voices": [
+    {
+      "speaker": "Maya",
+      "voice": "Laura"
+    },
+    {
+      "speaker": "Alex",
+      "voice": "Jon"
+    }
+  ],
+  "runtime": "parler / cpu",
+  "model": "parler-tts/parler-tts-mini-v1",
+  "model_revision": "0392b9451a601e528fd863bbb0598431fee810d9",
+  "seed": 42,
+  "sample_rate": 44100,
+  "gap_seconds": 0.25,
+  "device": "cpu",
+  "packages": {
+    "torch": "2.6.0+cpu",
+    "transformers": "4.46.1",
+    "parler-tts": "0.2.3",
+    "soundfile": "0.14.0"
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpu": "x86_64",
+  "threads": 4,
+  "created_at": "2026-10-03T06:49:36.740993+00:00",
+  "delivery": "Laura / Jon; moderate pace, clear natural tone, no background noise"
+}

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Voice Lab · English Studio</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./compare.css">
+<script type="module" src="./compare.js"></script></head><body>
+<a class="skip" href="#lab">Skip to voice comparison</a>
+<header class="topbar"><a class="brand" href="./"><span class="brand-mark">≈</span><span>ENGLISH STUDIO<small>VOICE LAB</small></span></a><a class="text-link" href="./">Back to learning</a></header>
+<main id="lab" class="lab"><p class="eyebrow">SAME WORDS. DIFFERENT VOICES.</p><h1>Find the voice you want to listen to.</h1>
+<p class="muted">Compare the same conversation. Listen for the meaning, the pauses, and the uncertainty. No speaking or test required.</p>
+<section class="lab-setup paper" aria-label="Comparison setup"><label for="case">Conversation</label><select id="case"></select>
+<details><summary>Show English script</summary><div id="script"></div></details>
+<div class="lab-actions"><button id="export-case" class="secondary">Download script for local generation</button><button id="blind" class="secondary" aria-pressed="false">Hide model names</button><button id="export-ratings" class="secondary">Download my comparison</button></div>
+<p id="lab-status" class="status" role="status">Loading comparison audio…</p>
+<details><summary>How to compare fairly</summary><p>Use the same script and playback volume. Voices differ between models, so this compares complete listening experiences, not only model architectures. RTF is generation time ÷ audio duration: lower is faster. Loading is recorded separately and can include downloads. Published timings are single runs on a shared CPU host, not controlled hardware benchmarks. First-use initialization may still affect generation.</p><p>Ratings are your listening notes, not automated quality or CEFR scores. They stay in this tab until downloaded. Hide names shuffles cards; voice identity can still reveal a model.</p></details></section>
+<div id="engine-grid" class="engine-grid"></div>
+<section class="paper local-help"><h2>Generate the other voices locally</h2><p>Published samples play without a model download. To generate another script, start the local Voice Lab from the repository. Model downloads happen on your computer; no hosted inference key is used.</p>
+<code>python3 scripts/voice_lab_server.py</code><p>Then open <code>http://127.0.0.1:8765/compare.html</code>. Install each engine with <code>python3 scripts/setup_voice_lab.py ENGINE</code>. For offline transfer, import the resulting JSON and WAV files into a matching card.</p>
+<p><a href="https://github.com/ed3c/cefr-alg-c2-/blob/main/docs/VOICE_LAB.md" target="_blank" rel="noopener">Setup, licenses, native LiteRT build, and verification limits</a></p></section>
+<footer>Generated voices are supplemental learning input. Listen for the idea; check the words that matter.</footer></main></body></html>

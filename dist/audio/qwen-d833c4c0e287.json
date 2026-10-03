@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "engine": "qwen",
+  "case_id": "quick",
+  "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+  "audio_file": "qwen-d833c4c0e287.wav",
+  "audio_sha256": "05561a0c7cf5396741cc057ca0a23618311de71ab2763ef63793bb185b121082",
+  "load_ms": 87446.31930300238,
+  "generation_ms": 54858.7891390016,
+  "audio_seconds": 6.09,
+  "rtf": 9.008011352873826,
+  "voices": [
+    {
+      "speaker": "Maya",
+      "voice": "Ryan"
+    },
+    {
+      "speaker": "Alex",
+      "voice": "Aiden"
+    }
+  ],
+  "runtime": "qwen / cpu",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "model_revision": "0c0e3051f131929182e2c023b9537f8b1c68adfe",
+  "seed": 42,
+  "sample_rate": 24000,
+  "gap_seconds": 0.25,
+  "device": "cpu",
+  "packages": {
+    "torch": "2.6.0+cpu",
+    "transformers": "4.57.3",
+    "qwen-tts": "0.1.1",
+    "soundfile": "0.14.0"
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpu": "x86_64",
+  "threads": 4,
+  "created_at": "2026-10-03T06:53:03.382301+00:00",
+  "delivery": "Calm, clear conversational English, with natural pauses and a measured pace.",
+  "precision": "torch.bfloat16",
+  "tokenizer_revision": "upstream dependency resolved by Qwen package"
+}

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "engine": "pocket",
+  "case_id": "quick",
+  "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+  "audio_file": "pocket-d833c4c0e287.wav",
+  "audio_sha256": "fc9711847f4aa843abbb90e4e059b7e72ac1d67dbdc8bc06993897179c31e95a",
+  "load_ms": 10694.43406299979,
+  "generation_ms": 9295.360377996985,
+  "audio_seconds": 4.89,
+  "rtf": 1.9008916928419195,
+  "voices": [
+    {
+      "speaker": "Maya",
+      "voice": "alba"
+    },
+    {
+      "speaker": "Alex",
+      "voice": "marius"
+    }
+  ],
+  "runtime": "pocket / cpu",
+  "model": "kyutai/pocket-tts-without-voice-cloning",
+  "model_revision": "d29db7978e464fb90cb3359ee0c69a273b9142cc",
+  "seed": 42,
+  "sample_rate": 24000,
+  "gap_seconds": 0.25,
+  "device": "cpu",
+  "packages": {
+    "torch": "2.6.0+cpu",
+    "pocket-tts": "3.3.0",
+    "soundfile": "0.14.0"
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpu": "x86_64",
+  "threads": 4,
+  "created_at": "2026-10-03T06:51:59.027601+00:00",
+  "config": "pocket-tts 3.3.0 / english_2026-01; public preset voices only"
+}

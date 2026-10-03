@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "results": [
+    {
+      "schema": 1,
+      "engine": "kokoro",
+      "case_id": "quick",
+      "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+      "audio_file": "kokoro-d833c4c0e287.wav",
+      "audio_sha256": "c0e609e411fdcb6c72c85a65f6f2751e00a0e78741fa9045ad75f01c374d1c93",
+      "load_ms": 27769.015024998225,
+      "generation_ms": 4655.415068002185,
+      "audio_seconds": 7.575,
+      "rtf": 0.6145762466009485,
+      "voices": [
+        {
+          "speaker": "Maya",
+          "voice": "af_heart"
+        },
+        {
+          "speaker": "Alex",
+          "voice": "am_michael"
+        }
+      ],
+      "runtime": "kokoro / cpu",
+      "model": "hexgrad/Kokoro-82M",
+      "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "seed": 42,
+      "sample_rate": 24000,
+      "gap_seconds": 0.25,
+      "device": "cpu",
+      "packages": {
+        "torch": "2.6.0+cpu",
+        "transformers": "4.51.3",
+        "kokoro": "0.9.4",
+        "soundfile": "0.14.0"
+      },
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu": "x86_64",
+      "threads": 4,
+      "created_at": "2026-10-03T06:48:58.965450+00:00"
+    },
+    {
+      "audio_seconds": 7.875,
+      "audio_sha256": "f24efaf145588c96a4287327e95ed3a735e87fcc5f7984de1be0db7dfded2bd6",
+      "case_id": "quick",
+      "created_at": "2026-10-03T06:54:47.328Z",
+      "engine": "kokoro-web",
+      "generation_ms": 25164,
+      "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+      "load_ms": 10850.699999999257,
+      "model": "onnx-community/Kokoro-82M-v1.0-ONNX",
+      "model_revision": "upstream main (not pinned by this browser loader)",
+      "rtf": 3.1954285714285717,
+      "runtime": "kokoro-js 1.2.1 / WASM q8",
+      "schema": 1,
+      "seed": null,
+      "voices": [
+        "af_heart",
+        "am_michael"
+      ],
+      "audio_file": "kokoro-web-d833c4c0e287.wav",
+      "test_browser": "Chrome for Testing 154.0.8037.92 / headless Linux",
+      "test_note": "Environment HTTPS interception required test-browser certificate override; application uses normal HTTPS."
+    },
+    {
+      "schema": 1,
+      "engine": "parler",
+      "case_id": "quick",
+      "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+      "audio_file": "parler-d833c4c0e287.wav",
+      "audio_sha256": "7faedfba43b0bd1876e4f6e2213516a5c5270fb2ec79b27b714cde044512c831",
+      "load_ms": 78568.30059500135,
+      "generation_ms": 64623.62579800174,
+      "audio_seconds": 6.380068027210885,
+      "rtf": 10.12898695160977,
+      "voices": [
+        {
+          "speaker": "Maya",
+          "voice": "Laura"
+        },
+        {
+          "speaker": "Alex",
+          "voice": "Jon"
+        }
+      ],
+      "runtime": "parler / cpu",
+      "model": "parler-tts/parler-tts-mini-v1",
+      "model_revision": "0392b9451a601e528fd863bbb0598431fee810d9",
+      "seed": 42,
+      "sample_rate": 44100,
+      "gap_seconds": 0.25,
+      "device": "cpu",
+      "packages": {
+        "torch": "2.6.0+cpu",
+        "transformers": "4.46.1",
+        "parler-tts": "0.2.3",
+        "soundfile": "0.14.0"
+      },
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu": "x86_64",
+      "threads": 4,
+      "created_at": "2026-10-03T06:49:36.740993+00:00",
+      "delivery": "Laura / Jon; moderate pace, clear natural tone, no background noise"
+    },
+    {
+      "schema": 1,
+      "engine": "pocket",
+      "case_id": "quick",
+      "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+      "audio_file": "pocket-d833c4c0e287.wav",
+      "audio_sha256": "fc9711847f4aa843abbb90e4e059b7e72ac1d67dbdc8bc06993897179c31e95a",
+      "load_ms": 10694.43406299979,
+      "generation_ms": 9295.360377996985,
+      "audio_seconds": 4.89,
+      "rtf": 1.9008916928419195,
+      "voices": [
+        {
+          "speaker": "Maya",
+          "voice": "alba"
+        },
+        {
+          "speaker": "Alex",
+          "voice": "marius"
+        }
+      ],
+      "runtime": "pocket / cpu",
+      "model": "kyutai/pocket-tts-without-voice-cloning",
+      "model_revision": "d29db7978e464fb90cb3359ee0c69a273b9142cc",
+      "seed": 42,
+      "sample_rate": 24000,
+      "gap_seconds": 0.25,
+      "device": "cpu",
+      "packages": {
+        "torch": "2.6.0+cpu",
+        "pocket-tts": "3.3.0",
+        "soundfile": "0.14.0"
+      },
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu": "x86_64",
+      "threads": 4,
+      "created_at": "2026-10-03T06:51:59.027601+00:00",
+      "config": "pocket-tts 3.3.0 / english_2026-01; public preset voices only"
+    },
+    {
+      "schema": 1,
+      "engine": "qwen",
+      "case_id": "quick",
+      "input_sha256": "d833c4c0e287ead954af5426103abc1391c84080e9324db467401f7e73ce192c",
+      "audio_file": "qwen-d833c4c0e287.wav",
+      "audio_sha256": "05561a0c7cf5396741cc057ca0a23618311de71ab2763ef63793bb185b121082",
+      "load_ms": 87446.31930300238,
+      "generation_ms": 54858.7891390016,
+      "audio_seconds": 6.09,
+      "rtf": 9.008011352873826,
+      "voices": [
+        {
+          "speaker": "Maya",
+          "voice": "Ryan"
+        },
+        {
+          "speaker": "Alex",
+          "voice": "Aiden"
+        }
+      ],
+      "runtime": "qwen / cpu",
+      "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "model_revision": "0c0e3051f131929182e2c023b9537f8b1c68adfe",
+      "seed": 42,
+      "sample_rate": 24000,
+      "gap_seconds": 0.25,
+      "device": "cpu",
+      "packages": {
+        "torch": "2.6.0+cpu",
+        "transformers": "4.57.3",
+        "qwen-tts": "0.1.1",
+        "soundfile": "0.14.0"
+      },
+      "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+      "cpu": "x86_64",
+      "threads": 4,
+      "created_at": "2026-10-03T06:53:03.382301+00:00",
+      "delivery": "Calm, clear conversational English, with natural pauses and a measured pace.",
+      "precision": "torch.bfloat16",
+      "tokenizer_revision": "upstream dependency resolved by Qwen package"
+    }
+  ]
+}

@@ -6,6 +6,21 @@ C2+ is the project name and learning ambition. CEFR's highest named level is C2.
 
 ## Use the website
 
+### Voice comparison lab
+
+The **Compare AI voices** link opens five real samples of the same conversation:
+Parler, Kokoro, Qwen3-TTS, Pocket TTS and browser Kokoro. Includes optional scripts,
+hidden model names, listening ratings, timings and checksummed WAV/JSON transfer.
+
+```bash
+python3 scripts/voice_lab_server.py
+# Open http://127.0.0.1:8765/compare.html
+```
+
+[Setup, license boundaries and verification](docs/VOICE_LAB.md). Native LiteRT-LM
+has a C++ adapter/build target but is not runtime-verified; its card remains
+unavailable until a compatible model and compiled runner are configured.
+
 1. Choose one of four scenarios: a payment release, an agent handoff, a queue design discussion, or a café conversation.
 2. Read the short situation and listen to a scene. Stay quiet if you prefer. No answer is required to continue.
 3. Choose clear language or a more nuanced version. Both retain the scenario's core facts and uncertainty.
