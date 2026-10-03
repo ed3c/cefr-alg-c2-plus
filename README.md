@@ -6,6 +6,18 @@ C2+ is the project name and learning ambition. CEFR's highest named level is C2.
 
 ## Use the website
 
+### Technical Article Lab
+
+The **Technical Article Lab** compiles one source-grounded engineering article into four
+passes: context, precise technical English, transcript-hidden listening reconstruction,
+and active reconstruction with a source-bound meaning oracle. The first note covers
+Software Factory architecture. Browser Kokoro generates the pass audio on demand without
+an API key. The learner's Pass 4 draft stays in the tab and is not graded or uploaded.
+
+The project-local `.agents/skills/cefr-alg-four-pass/SKILL.md` defines the compilation
+contract. It preserves actor, condition, evidence, uncertainty, causal reasoning and
+unresolved boundaries instead of treating C2 vocabulary as synonym replacement.
+
 ### Voice comparison lab
 
 The **Compare AI voices** link opens five real samples of the same conversation:
@@ -31,6 +43,7 @@ unavailable until a compatible model and compiled runner are configured.
 ## What is implemented
 
 - Four fictional scenarios, each with three scenes and two language variants.
+- A four-pass Technical Article Lab with one source-bound Software Factory learning note and browser Kokoro playback.
 - English speech with one-click continuous scenes, stop, speed and voice selection, a default on-device-only mode, optional online voices, transcript, and unavailable-audio messaging.
 - An optional microphone recorder with playback and download. Permission denial has a recoverable state.
 - A writing workspace with scenario facts, self-review, before/after examples, and draft download.
