@@ -19,7 +19,7 @@
 <h1 id="note-title"></h1>
 <p id="note-focus"></p>
 <p class="muted" id="note-setting"></p>
-<p class="muted tiny">C2+ is a learning target, not a CEFR score. Four passes structure practice; they do not prove acquisition or long-term retention.</p>
+<p class="muted tiny">C2+ is a learning target, not a CEFR score. Four passes structure practice; they do not prove acquisition or long-term retention. Newly compiled notes use Kokoro browser so the exact script can be generated without an API key; Parler remains the default pre-generated narrator for the fixed scenario library.</p>
 </section>
 <nav class="pass-nav" id="pass-nav" aria-label="Four learning passes"></nav>
 <div class="tech-grid">
@@ -28,10 +28,10 @@
 <h2 id="pass-goal"></h2>
 <p id="pass-instruction"></p>
 <div class="tech-actions">
-<button id="play-pass" class="primary">Generate with Kokoro & play</button>
+<button id="play-pass" class="primary">Generate with Kokoro browser & play</button>
 <button id="stop-pass" class="secondary" disabled>Stop</button>
 <button id="toggle-transcript" class="secondary">Hide transcript</button>
-<span id="audio-status" class="status" role="status">Audio starts only when you choose it.</span>
+<span id="audio-status" class="status" role="status">Kokoro browser audio starts only when you choose it.</span><audio id="technical-audio" controls preload="none" hidden aria-label="Technical article narration"></audio>
 </div>
 <div id="pass-script" class="tech-script"></div>
 <div id="active-box" class="active-box" hidden>
