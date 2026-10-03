@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Study technical articles through four meaning-preserving English passes: context, precision, listening reconstruction, and active reconstruction.">
+<title>Technical Article Lab · CEFR ALG C2+</title>
+<link rel="stylesheet" href="./style.css">
+<style>
+.tech-shell{max-width:1120px;margin:0 auto;padding:32px 22px 80px}.tech-top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:28px;flex-wrap:wrap}.pass-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}.pass-nav button{text-align:left;min-height:72px}.pass-nav button[aria-current="true"]{border-color:#6fe6c0;box-shadow:0 0 0 2px rgba(111,230,192,.2)}.tech-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.8fr);gap:20px}.tech-script p{font-size:1.08rem;line-height:1.75}.tech-script[hidden]{display:none}.oracle{border-left:4px solid #6fe6c0}.prompt-list li,.oracle li{margin:.65rem 0}.vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.vocab-grid div{padding:12px;border:1px solid rgba(127,148,170,.28);border-radius:10px}.vocab-grid dt{font-weight:700}.vocab-grid dd{margin:5px 0 0}.tech-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.active-box textarea{width:100%;min-height:180px}.source-claims{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem}.hidden-until-reveal[hidden]{display:none}@media(max-width:760px){.pass-nav,.tech-grid,.vocab-grid{grid-template-columns:1fr}}
+</style>
+<script type="module" src="./technical.js"></script>
+</head>
+<body>
+<a class="skip" href="#technical-workspace">Skip to technical article</a>
+<main class="tech-shell" id="technical-workspace" tabindex="-1">
+<header class="tech-top"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">≈</span><span>ENGLISH STUDIO<small>TECHNICAL ARTICLE LAB</small></span></a><a class="text-link" href="./">Back to scenarios</a></header>
+<section class="paper">
+<p class="eyebrow">FOUR-PASS TECHNICAL ENGLISH</p>
+<h1 id="note-title"></h1>
+<p id="note-focus"></p>
+<p class="muted" id="note-setting"></p>
+<p class="muted tiny">C2+ is a learning target, not a CEFR score. Four passes structure practice; they do not prove acquisition or long-term retention.</p>
+</section>
+<nav class="pass-nav" id="pass-nav" aria-label="Four learning passes"></nav>
+<div class="tech-grid">
+<section class="paper">
+<p class="eyebrow" id="pass-label"></p>
+<h2 id="pass-goal"></h2>
+<p id="pass-instruction"></p>
+<div class="tech-actions">
+<button id="play-pass" class="primary">Generate with Kokoro & play</button>
+<button id="stop-pass" class="secondary" disabled>Stop</button>
+<button id="toggle-transcript" class="secondary">Hide transcript</button>
+<span id="audio-status" class="status" role="status">Audio starts only when you choose it.</span>
+</div>
+<div id="pass-script" class="tech-script"></div>
+<div id="active-box" class="active-box" hidden>
+<h3>Generate before you compare</h3>
+<ol id="active-prompts" class="prompt-list"></ol>
+<label for="active-draft">Your reconstruction</label>
+<textarea id="active-draft" placeholder="Retell the architecture in your own English. Keep the conditions and uncertainty."></textarea>
+<p class="muted tiny">This draft stays in this tab and is not graded or uploaded.</p>
+<button id="reveal-oracle" class="primary">Reveal meaning oracle</button>
+<div id="oracle" class="oracle hidden-until-reveal" hidden><h3>Source-bound oracle</h3><ul id="oracle-list"></ul><p>Compare actor, condition, evidence, uncertainty, and causal relation. Exact wording is not required.</p></div>
+</div>
+</section>
+<aside>
+<section class="paper"><p class="eyebrow">SOURCE BOUNDARY</p><p id="source-label"></p><div id="source-claims" class="source-claims"></div><p class="muted tiny">Stable claim IDs preserve provenance inside this compiled note. They are not CEFR or truth scores.</p></section>
+<section class="paper"><p class="eyebrow">TERMS IN THIS ARTICLE</p><dl id="terms"></dl></section>
+</aside>
+</div>
+<section class="paper"><p class="eyebrow">ACTIVE TECHNICAL VOCABULARY</p><h2>Reuse these phrases in a design review</h2><div id="active-vocabulary" class="vocab-grid"></div></section>
+<footer><span>Understand → reconstruct → generate → compare.</span><a href="./compare.html">Voice Lab</a></footer>
+</main>
+</body>
+</html>
