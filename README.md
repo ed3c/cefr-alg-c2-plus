@@ -8,6 +8,12 @@ C2+ is the project name and learning ambition. CEFR's highest named level is C2.
 
 [Open English Studio](https://medium-compiler.vercel.app/cefr-alg-c2/) on the existing medium-compiler site.
 
+### Technical Article Lab
+
+The **Technical Article Lab** turns one source-grounded engineering article into four passes: context, precise technical English, transcript-hidden listening reconstruction, and active reconstruction with a source-bound meaning oracle. The first compiled note covers Software Factory architecture. Newly compiled notes use Kokoro browser generation so the exact script can be narrated without an API key; the fixed scenario library keeps Parler TTS as its default pre-generated narrator.
+
+The project-local `.agents/skills/cefr-alg-four-pass/SKILL.md` defines the compilation contract. It preserves actor, condition, evidence, uncertainty, causal reasoning and unresolved boundaries instead of treating C2 vocabulary as synonym replacement. Pass 4 requires learner generation before the oracle is revealed; the site does not grade or upload the draft.
+
 ### Voice comparison lab
 
 The **Compare AI voices** link opens five real samples of the same conversation:
@@ -33,6 +39,7 @@ unavailable until a compatible model and compiled runner are configured.
 ## What is implemented
 
 - Four fictional scenarios, each with three scenes and two language variants.
+- A four-pass Technical Article Lab with one source-bound Software Factory learning note and Kokoro browser narration.
 - Parler TTS lesson audio (default) and Kokoro browser generation, with continuous scenes, stop, speed, optional transcript, and recoverable playback errors.
 - An optional microphone recorder with playback and download. Permission denial has a recoverable state.
 - A writing workspace with scenario facts, self-review, before/after examples, and draft download.
@@ -58,6 +65,8 @@ Open `http://localhost:8000`. Microphone access requires HTTPS or a supported lo
 | File | Responsibility |
 | --- | --- |
 | `dist/lessons.js` | Fictional situations, paired dialogues, practice prompts, models, and review cues |
+| `dist/technical-notes.js` | Four-pass source-grounded technical English notes and meaning oracles |
+| `.agents/skills/cefr-alg-four-pass/SKILL.md` | Technical-article compilation and preservation contract |
 | `dist/app.js` | Scenario and mode state, TTS, recording, draft export, browser tools |
 | `dist/index.html` | Accessible page structure and controls |
 | `dist/style.css` | Desktop and mobile layout |
@@ -66,7 +75,7 @@ Open `http://localhost:8000`. Microphone access requires HTTPS or a supported lo
 | `docs/VERIFICATION.md` | Checks performed and evidence limitations |
 | `scripts/check.mjs` | Content, state, fallback, and preservation regression checks |
 
-Selecting a scenario loads its fixed content. Playback sends only that scene's supplied English lines to browser speech synthesis. Microphone access begins after the learner presses Record. MediaRecorder creates an in-memory audio blob. Writing stays in an in-memory map keyed by scenario. A download creates a local file from the learner's actual work. Changing a scenario preserves drafts within the same tab; it does not mark a scenario learned.
+Selecting a scenario loads its fixed content. Scenario playback uses the selected Parler or Kokoro route. Technical Article Lab playback uses Kokoro browser generation for the exact compiled pass text. Microphone access begins after the learner presses Record. MediaRecorder creates an in-memory audio blob. Writing stays in an in-memory map keyed by scenario. A download creates a local file from the learner's actual work. Changing a scenario preserves drafts within the same tab; it does not mark a scenario learned.
 
 ## Teaching and style references
 
