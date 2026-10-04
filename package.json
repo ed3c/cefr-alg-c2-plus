@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node scripts/check.mjs && node scripts/check-narrator.mjs && node scripts/check-voice-lab.mjs && node scripts/check-narration-assets.mjs"
+    "check": "node scripts/check.mjs && node scripts/check-narrator.mjs && node scripts/check-voice-lab.mjs && node scripts/check-narration-assets.mjs && node scripts/check-skills.mjs"
   }
 }

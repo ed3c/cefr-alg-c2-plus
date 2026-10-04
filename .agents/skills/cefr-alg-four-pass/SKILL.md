@@ -1,116 +1,145 @@
 ---
 name: cefr-alg-four-pass
-description: Compile one source-grounded technical article into a readable and recitable CEFR ALG C2+ four-pass English learning note. Use for technical-article English study notes, listening reconstruction, active retell/back-translation, and source-bound meaning comparison. Not a CEFR assessment or learner-mastery oracle.
+description: Compile one source-grounded technical article into a frozen CEFR ALG C2+ four-pass learning lesson with meaning-preserving scripts, active recall, a source-bound oracle, and an optional video-renderer handoff. Use for technical-article English study notes and multimodal lesson preparation. Not a CEFR assessment or learner-mastery oracle.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
-# CEFR ALG four-pass technical note
+# CEFR ALG four-pass compiler
 
-Read [the four-pass contract](references/four-pass-contract.md) before producing or revising a note.
-Use [the feature map](features/README.md) to keep the skill and website surface aligned.
+Read [the four-pass contract](references/four-pass-contract.md) before producing or revising a lesson.
+Use [the feature map](features/README.md) to keep this compiler and its consumers aligned.
 
-## Product
+## Responsibility
 
-Turn one technical article into one portable English learning note that preserves the
-article's technical meaning while changing the learner's interaction across four passes:
+Compile one technical article into one frozen learning package. This skill owns:
 
-1. context;
-2. precision;
-3. listening reconstruction;
-4. active reconstruction and oracle comparison.
+1. the semantic lesson;
+2. the acquisition sequence;
+3. clarity and C2+ scripts;
+4. active-recall prompts;
+5. the source-bound meaning oracle.
 
-The four passes are learning interactions, not four summaries of decreasing length.
-Pass 4 must require the learner to generate language before seeing the oracle.
+It does not own video composition. When video is requested, hand the frozen package and narration to
+`../alg-explainer-video/SKILL.md`. That renderer may change presentation, never the frozen claims.
 
-## Source boundary
+The four passes are learner interactions, not four summaries and not four media formats. Pass 4 must
+require learner-generated language before the oracle is visible.
 
-Read the actual supplied article or source bytes. Freeze the claims that the lesson will
-teach before rewriting them. For every material claim preserve:
+## Freeze the semantic lesson
+
+Read the actual supplied article or source bytes. Select only the claims needed for this lesson.
+For every material claim freeze:
 
 - actor and action;
 - condition and negation;
 - evidence status and uncertainty;
 - causal link from constraint to decision;
-- exact technical term when changing it would change the concept;
-- unresolved boundary when the source says the problem remains open.
+- exact technical term when substitution changes the concept;
+- unresolved boundary when the source leaves a problem open.
 
-Do not turn a source-reported example into a universal result. Do not silently repair,
-fact-check, or strengthen the article unless the task separately asks for research.
+Represent each claim as:
 
-Use the Soodles review-writing criteria as a review method, not as runtime authority:
-purpose/scope, actor/action, conditions, terms, decision, reasoning, zero-context
-causality, acceptance boundary, and preservation.
+`actor -> condition -> action/decision -> evidence/uncertainty -> consequence`
 
-## Compile the four passes
+Do not silently fact-check, strengthen, universalize, or repair the source unless the task separately
+authorizes research. A source-reported example remains an example.
+
+Use the Soodles review-writing criteria as the semantic review method: purpose/scope, actor/action,
+conditions, stable terms, decision, reasoning, zero-context causality, acceptance boundary, and
+preservation. Those criteria do not grant runtime or learner-mastery authority.
+
+## Generate the learning representations
+
+### Clarity script
+
+Write an STE-inspired clarity representation. This is a project writing profile, not ASD-STE100
+compliance and not a compliance percentage.
+
+Prefer one main proposition per sentence, an explicit actor, stable terminology, concrete verbs,
+conditions before their consequences, explicit negation, and visible uncertainty. Preserve domain
+terms, identifiers, numbers, and evidence language when simplifying them would change meaning.
+
+### C2+ precision script
+
+Express the same frozen claims in precise technical English suitable for advanced engineering
+discussion. Sophistication comes from qualification, causal structure, register, and exact terms,
+not rare-synonym substitution. The clarity and C2+ scripts must preserve the same semantic tuples.
+
+## Choose the four-pass sequence
 
 ### Pass 1 — Context
 
-Write a low-friction scene for a technically literate learner. Explain the problem,
-the actors, and why the decision matters without front-loading terminology.
-
-The learner may read or listen once. Do not require vocabulary recall or output.
+Use the clarity representation with a concrete situation or explanatory visual. Establish actors,
+stakes, and the governing causal problem. No learner output is required.
 
 ### Pass 2 — Precision
 
-Express the same causal model in precise C2-level technical English. Sophistication comes
-from accurate qualification and structure, not rare synonyms.
-
-Bind each important term to a concrete role in the system. Keep source uncertainty visible.
-This is the main readable technical note and must stand alone with zero chat context.
+Use the C2+ representation with the architecture/representation needed to reconstruct the decision.
+Bind each important term to a role in the system. Keep uncertainty visible.
 
 ### Pass 3 — Listening reconstruction
 
-Produce a shorter spoken script that preserves the same architecture. The website hides the
-transcript by default while audio plays.
-
-After listening, ask the learner to reconstruct the governing structure from memory. Do not
-show a translation or answer before the attempt.
+Use a shorter spoken script that preserves the same architecture. Hide the transcript by default.
+Ask the learner to reconstruct the governing structure from sound or a reduced visual cue.
 
 ### Pass 4 — Active reconstruction
 
-Require at least two active operations:
+Require both:
 
-- retell or back-translation from a meaning cue without copying the English source;
+- retell or back-translation from a meaning/diagram cue without copying the English source;
 - mutation of one condition, actor, or architecture premise and explanation of the consequence.
 
-Then expose an oracle checklist derived from the frozen source claims. Compare meaning, not
-surface wording. A fluent answer fails preservation when it changes an actor, condition,
-evidence claim, uncertainty, or causal relation.
+Only after the attempt reveal the source-bound oracle. Compare meaning, not wording. A fluent answer
+fails preservation when it changes an actor, condition, evidence claim, uncertainty, or causal link.
 
-## Vocabulary
+## Narration contract
 
-Select a small active set from the article: phrases the learner could use in a technical
-review, design discussion, or interview. Define each phrase in plain English and keep its
-original technical sense. Do not attempt to make every article term active vocabulary.
+Narration is a rendering input, not a new semantic author. Produce the exact narration script and bind
+it to the frozen lesson revision. A narrator may change prosody or voice, not words. Record the
+narration source identity or digest when available.
+
+The current site may use Parler for fixed pre-generated lessons and Kokoro for dynamic browser
+narration. Do not make either engine part of semantic acceptance.
+
+## Frozen lesson package
+
+A renderer handoff must contain or reference:
+
+- stable lesson ID and source label/revision;
+- frozen source claims;
+- clarity script and C2+ precision script;
+- ordered four-pass prompts;
+- active vocabulary;
+- hidden-until-attempt oracle;
+- exact narration script plus narration identity when available;
+- visual anchors: the concepts/state changes worth showing, without prescribing renderer internals.
+
+Freeze this package before video composition. If a renderer discovers a semantic defect, return it to
+this compiler; do not repair the lesson inside the renderer.
+
+The website artifact may remain `dist/technical-notes.js`. Video support does not require the site
+schema to become a video-project schema.
 
 ## Review
 
-Before saving the note, read it back against the source and look for a counterexample that
-would satisfy the rewritten wording while violating the source claim.
+Read the complete package back against the source. Look for a counterexample that satisfies the
+rewritten wording while violating a frozen source claim. Mark the package incomplete when any selected
+claim lacks a supported representation or oracle item.
 
-Report the note as incomplete when a required source claim has no supported English
-representation or oracle item. Sentence length and vocabulary rarity are cues only.
+Sentence length, vocabulary rarity, animation quality, and narration fluency are cues only. They do
+not establish semantic preservation.
 
-## Output contract
+## Non-goals
 
-The website artifact is a JavaScript object in `dist/technical-notes.js` with:
+Do not record a CEFR score, completion streak, mastery state, automatic pronunciation judgment, or
+claim that four exposures guarantee acquisition. C2+ is the project name and learning ambition;
+CEFR's highest named level is C2.
 
-- stable `id`, `title`, `category`, `focus`, and `setting`;
-- `sourceLabel` and stable `sourceClaims`;
-- `terms`;
-- exactly four ordered `passes` with stable IDs `context`, `precision`,
-  `listening`, and `active`;
-- readable/listenable `script` for passes 1-3;
-- `prompts` and `oracle` for pass 4;
-- `activeVocabulary`.
-
-Do not record a CEFR score, completion streak, mastery state, or automatic pronunciation
-judgment. C2+ is the learning target/project name; CEFR's highest named level is C2.
+Do not turn this skill into a video framework, TTS owner, generic fact checker, or progress database.
 
 ## Maintenance
 
-When the note schema or website interaction changes, review the feature map first. Update only
-the affected skill/reference/map files and the corresponding site surface. Re-run the real
-repository checks. A source review without a site drive is not a complete interaction check;
-a passing structural check is not proof that the learner acquired the language.
+When the lesson contract changes, review the feature map and every direct consumer. When only video
+composition changes, keep this compiler stable unless its handoff is actually insufficient. Re-run
+the repository checks after structural edits. A structural pass does not prove language acquisition.

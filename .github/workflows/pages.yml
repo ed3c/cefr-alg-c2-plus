@@ -2,6 +2,8 @@ name: Verify and publish English Studio
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,22 +17,19 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - name: Check application and learning content
-        run: |
-          node --check dist/app.js
-          node --check dist/lessons.js
-          node --check dist/compare.js
-          node --check dist/kokoro-worker.js
-          node scripts/check.mjs
-          node scripts/check-narrator.mjs
-          node scripts/check-narration-assets.mjs
-          node scripts/check-voice-lab.mjs
-          python3 scripts/test_voice_lab.py
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Check application, narration, voice lab, and skill contracts
+        run: npm run check
+      - name: Check Python voice-lab boundaries
+        run: python3 scripts/test_voice_lab.py
       - name: Upload static website
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
   deploy:
+    if: github.event_name != 'pull_request'
     needs: verify
     permissions:
       pages: write
