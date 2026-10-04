@@ -20,7 +20,8 @@ Compile one technical article into one frozen learning package. This skill owns:
 3. STE-inspired clarity and C2+ precision scripts;
 4. passive/active vocabulary allocation;
 5. Pass 4 shadowing, active-recall, mutation, and comparison prompts;
-6. the source-bound meaning oracle;\n7. the session execution state, technique route, and practice-receipt contract.
+6. the source-bound meaning oracle;
+7. the session execution state, technique route, and practice-receipt contract.
 
 It does not own video composition. When video is requested, hand the frozen package and narration to
 `../alg-explainer-video/SKILL.md`. That renderer may change presentation, never frozen claims.
