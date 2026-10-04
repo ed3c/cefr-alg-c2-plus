@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Study technical articles through four meaning-preserving English passes: encounter, recognition, contextual familiarity, and active reconstruction.">
+<meta name="description" content="Study technical articles through four meaning-preserving English passes with passive vocabulary encounters and gated active reconstruction.">
 <title>Technical Article Lab · CEFR ALG C2+</title>
 <link rel="stylesheet" href="./style.css">
 <style>
-.tech-shell{max-width:1120px;margin:0 auto;padding:32px 22px 80px}.tech-top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:28px;flex-wrap:wrap}.pass-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}.pass-nav button{text-align:left;min-height:72px}.pass-nav button[aria-current="true"]{border-color:#6fe6c0;box-shadow:0 0 0 2px rgba(111,230,192,.2)}.tech-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.8fr);gap:20px}.tech-script p{font-size:1.08rem;line-height:1.75}.tech-script[hidden]{display:none}.oracle{border-left:4px solid #6fe6c0}.prompt-list li,.oracle li{margin:.65rem 0}.vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.vocab-grid div{padding:12px;border:1px solid rgba(127,148,170,.28);border-radius:10px}.vocab-grid dt{font-weight:700}.vocab-grid dd{margin:5px 0 0}.tech-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.active-box textarea{width:100%;min-height:180px}.source-claims{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem}.hidden-until-reveal[hidden]{display:none}@media(max-width:760px){.pass-nav,.tech-grid,.vocab-grid{grid-template-columns:1fr}}
+.tech-shell{max-width:1120px;margin:0 auto;padding:32px 22px 80px}.tech-top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:28px;flex-wrap:wrap}.pass-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}.pass-nav button{text-align:left;min-height:72px}.pass-nav button[aria-current="true"]{border-color:#6fe6c0;box-shadow:0 0 0 2px rgba(111,230,192,.2)}.tech-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.8fr);gap:20px}.tech-script p{font-size:1.08rem;line-height:1.75}.tech-script[hidden]{display:none}.oracle{border-left:4px solid #6fe6c0}.prompt-list li,.oracle li{margin:.65rem 0}.vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.vocab-grid>div{padding:12px;border:1px solid rgba(127,148,170,.28);border-radius:10px}.vocab-grid [data-retired="true"]{opacity:.55}.vocab-grid dt{font-weight:700}.vocab-grid dd{margin:5px 0 0}.vocab-actions{display:flex;gap:6px;flex-wrap:wrap}.vocab-actions button{padding:7px 9px}.tech-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.active-box textarea{width:100%;min-height:130px}.source-claims,.receipt-output{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;white-space:pre-wrap}.hidden-until-reveal[hidden]{display:none}.route-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.route-grid p{margin:.25rem 0}@media(max-width:760px){.pass-nav,.tech-grid,.vocab-grid,.route-grid{grid-template-columns:1fr}}
 </style>
 <script type="module" src="./technical.js"></script>
 </head>
@@ -16,41 +16,49 @@
 <header class="tech-top"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">≈</span><span>ENGLISH STUDIO<small>TECHNICAL ARTICLE LAB</small></span></a><a class="text-link" href="./">Back to scenarios</a></header>
 <section class="paper">
 <p class="eyebrow">FOUR-PASS TECHNICAL ENGLISH</p>
-<h1 id="note-title"></h1>
-<p id="note-focus"></p>
-<p class="muted" id="note-setting"></p>
-<p class="muted tiny">C2+ is a learning target, not a CEFR score. Passes 1-3 build receptive familiarity; Pass 4 adds productive resistance through shadowing, generation, mutation, and source-bound comparison. Four exposures do not prove acquisition or long-term retention.</p>
+<h1 id="note-title"></h1><p id="note-focus"></p><p class="muted" id="note-setting"></p>
+<div class="route-grid"><p><strong>Primary target</strong><br><span id="learning-target"></span></p><p><strong>Pass 4 route</strong><br><span id="pass4-route"></span></p></div>
+<p class="muted tiny">C2+ is a learning target, not a CEFR score. Passes 1-3 remain receptive. Pass 4 crosses the productive boundary. A practice receipt records actions only; it is not mastery or retention evidence.</p>
 </section>
 <nav class="pass-nav" id="pass-nav" aria-label="Four learning passes"></nav>
 <div class="tech-grid">
 <section class="paper">
-<p class="eyebrow" id="pass-label"></p>
-<h2 id="pass-goal"></h2>
-<p id="pass-instruction"></p>
+<p class="eyebrow" id="pass-label"></p><h2 id="pass-goal"></h2><p id="pass-instruction"></p>
 <div class="tech-actions">
 <button id="play-pass" class="primary">Generate with Kokoro browser & play</button>
 <button id="stop-pass" class="secondary" disabled>Stop</button>
 <button id="toggle-transcript" class="secondary">Hide transcript</button>
+<label>Speed <select id="playback-rate" hidden><option value="0.8">0.8×</option><option value="1" selected>1.0×</option></select></label>
 <span id="audio-status" class="status" role="status">Kokoro browser audio starts only when you choose it.</span><audio id="technical-audio" controls preload="none" hidden aria-label="Technical article narration"></audio>
 </div>
 <div id="pass-script" class="tech-script"></div>
 <div id="active-box" class="active-box" hidden>
-<h3>Shadow before you generate</h3>\n<p>Play the source-bound segment. Try delayed shadowing first, then simultaneous shadowing if you can keep the phrase boundaries and meaning intact.</p>\n<ol id="shadowing-script" class="prompt-list"></ol>\n<h3>Generate before you compare</h3>
-<ol id="active-prompts" class="prompt-list"></ol>
-<label for="active-draft">Your reconstruction</label>
+<h3>Shadow before you generate</h3><p>Use 0.8× if normal speed breaks phrase grouping or meaning. Delayed shadowing comes before simultaneous shadowing.</p>
+<ol id="shadowing-script" class="prompt-list"></ol>
+<fieldset><legend>Techniques you actually performed</legend>
+<label><input type="checkbox" data-technique="delayed-shadowing"> Delayed shadowing</label>
+<label><input type="checkbox" data-technique="simultaneous-shadowing"> Simultaneous shadowing</label>
+<label><input type="checkbox" data-technique="semantic-retell"> Semantic retell</label>
+<label><input type="checkbox" data-technique="premise-mutation"> Premise mutation</label>
+</fieldset>
+<h3>Generate before you compare</h3><ol id="active-prompts" class="prompt-list"></ol>
+<label for="active-draft">Your reconstruction (optional when you answer aloud)</label>
 <textarea id="active-draft" placeholder="Retell the architecture in your own English. Keep the conditions and uncertainty."></textarea>
-<p class="muted tiny">This draft stays in this tab and is not graded or uploaded.</p>
-<button id="reveal-oracle" class="primary">Reveal meaning oracle</button>
+<label><input type="checkbox" id="attempt-ack"> I attempted the reconstruction aloud or in writing.</label>
+<p>Execution state: <strong id="execution-state">PASSIVE_RECEPTIVE</strong></p>
+<button id="reveal-oracle" class="primary" disabled>Reveal meaning oracle</button>
 <div id="oracle" class="oracle hidden-until-reveal" hidden><h3>Source-bound oracle</h3><ul id="oracle-list"></ul><p>Compare actor, condition, evidence, uncertainty, and causal relation. Exact wording is not required.</p></div>
+<div id="receipt" hidden><h3>Practice receipt</h3><label for="semantic-gaps">Semantic gaps you noticed</label><textarea id="semantic-gaps" placeholder="Example: I confused white-box and black-box validation."></textarea><pre id="receipt-output" class="receipt-output"></pre><button id="download-receipt" class="secondary">Download receipt</button></div>
 </div>
 </section>
 <aside>
-<section class="paper"><p class="eyebrow">SOURCE BOUNDARY</p><p id="source-label"></p><div id="source-claims" class="source-claims"></div><p class="muted tiny">Stable claim IDs preserve provenance inside this compiled note. They are not CEFR or truth scores.</p></section>
+<section class="paper"><p class="eyebrow">SOURCE BOUNDARY</p><p id="source-label"></p><div id="source-claims" class="source-claims"></div><p class="muted tiny">Stable claim IDs preserve provenance. They are not CEFR or truth scores.</p></section>
 <section class="paper"><p class="eyebrow">TERMS IN THIS ARTICLE</p><dl id="terms"></dl></section>
 </aside>
 </div>
-<section class="paper"><p class="eyebrow">PASSIVE ENCOUNTER VOCABULARY</p><h2>Recognize these terms across the article</h2><p class="muted">Use repeated, low-burden encounters. Recognition comes before productive use.</p><div id="passive-vocabulary" class="vocab-grid"></div></section>\n<section class="paper"><p class="eyebrow">ACTIVE TECHNICAL VOCABULARY</p><h2>Reuse this smaller set in a design review</h2><div id="active-vocabulary" class="vocab-grid"></div></section>
-<footer><span>Encounter → recognize → become familiar → shadow / generate / compare.</span><a href="./compare.html">Voice Lab</a></footer>
+<section class="paper"><p class="eyebrow">PASSIVE ENCOUNTER VOCABULARY</p><h2>Fast form → sound/stress → one meaning</h2><p class="muted">Use short encounters. Probe recognition later; recognizing a meaning remains passive.</p><div id="passive-vocabulary" class="vocab-grid"></div></section>
+<section class="paper"><p class="eyebrow">ACTIVE TECHNICAL VOCABULARY</p><h2>Reuse this smaller set in productive practice</h2><div id="active-vocabulary" class="vocab-grid"></div></section>
+<footer><span>Encounter → recognize → become familiar → generate → compare → receipt.</span><a href="./compare.html">Voice Lab</a></footer>
 </main>
 </body>
 </html>
