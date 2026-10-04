@@ -16,10 +16,13 @@ function narrationLines(pass){return pass.script||pass.shadowingScript||[];}
 function narrationItem(pass){
   return {id:`technical-${note.id}-${pass.id}`,title:`${note.title} · ${pass.label}`,lines:narrationLines(pass).map(text=>['Guide',text])};
 }
+function hasGenerativeTechnique(){
+  return practice.techniques.has('semantic-retell')||practice.techniques.has('premise-mutation')||practice.techniques.has('true-back-translation');
+}
 function executionState(){
   if(!practice.attemptAcknowledged)return 'PASSIVE_RECEPTIVE';
   if(!practice.compared)return 'GENERATED';
-  return practice.techniques.size?'ACTIVE_PRACTICED':'COMPARED';
+  return hasGenerativeTechnique()?'ACTIVE_PRACTICED':'COMPARED';
 }
 function updateGate(){
   $('reveal-oracle').disabled=!practice.attemptAcknowledged || practice.compared;
@@ -64,7 +67,7 @@ async function playWord(item){
 }
 function renderVocabulary(){
   $('passive-vocabulary').replaceChildren(...note.passiveVocabulary.map(item=>{
-    const card=make('div');card.className='vocab-card';
+    const card=make('div');card.className='vocab-card';card.dataset.retired=String(practice.recognized.has(item.term));
     const term=make('dt',item.term),sound=make('dd',`${item.pronunciation} · stress: ${item.stress}`),meaning=make('dd',item.meaning);
     const actions=make('p');actions.className='vocab-actions';
     const play=make('button','Play');play.type='button';play.onclick=()=>{practice.encountered.add(item.term);playWord(item);};
