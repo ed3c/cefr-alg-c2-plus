@@ -34,9 +34,10 @@ Do not treat vocabulary as one undifferentiated list.
 - **Active vocabulary** is smaller. Select phrases worth producing in engineering discussion,
   interviews, or writing. An active item must have a receptive precursor.
 
-For a new passive term, prefer form + pronunciation when available + one contextually correct core
-meaning. Later contexts may add senses. The source material's ten-second encounter procedure can be
-used as a practice recipe, but ten seconds is not a universal contract value.
+For a new passive term, prefer form + pronunciation/stress when available + one contextually correct
+core meaning. Later contexts may add senses. Route the micro-loop through `alg-vocab-encounter`.
+A brief meaning-recall probe is still lexical recognition and remains passive. The source material's
+ten-second encounter procedure is a practice recipe, not a universal contract value.
 
 ## Pass 4 production sequence
 
@@ -45,9 +46,10 @@ The productive pass can combine the source material's two high-resistance techni
 1. listen to a source-bound segment;
 2. delayed shadowing;
 3. simultaneous shadowing when feasible;
-4. retell or back-translate from meaning;
-5. mutate a sentence/system premise and explain the consequence;
-6. reveal and compare with the source-bound oracle.
+4. perform the technique selected for the lesson target: semantic retell, true back-translation, or another supported productive route;
+5. mutate a sentence/system premise when the target calls for it;
+6. acknowledge an oral or written attempt;
+7. reveal and compare with the source-bound oracle.
 
 Shadowing is not sufficient by itself. Mechanical imitation without semantic generation and
 comparison remains incomplete.

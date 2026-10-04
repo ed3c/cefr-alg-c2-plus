@@ -7,6 +7,8 @@ export const technicalNotes = [
     sourceClaims: ['C-software-factory-concept', 'D-factory-mission-architecture', 'K-long-horizon-verification'],
     focus: 'Explain why autonomous coding becomes a software factory only when execution is bounded by independent validation and explicit completion conditions.',
     setting: 'You are explaining a production architecture review to senior engineers who already understand coding agents, CI, and pull requests.',
+    learningTarget: 'technical speaking / interview',
+    pass4Technique: 'shadowing + causal retell + premise mutation',
     terms: [
       ['validation contract', 'A pre-committed description of observable conditions that a result must satisfy.'],
       ['scrutiny validator', 'An independent reviewer that can inspect source, tests, types, lint, and the implementation trajectory.'],
@@ -56,7 +58,7 @@ export const technicalNotes = [
         ],
         prompts: [
           'Retell: explain why “more agents” is not a sufficient definition of a software factory without copying the model text.',
-          'Back-translation: from the meaning “generation and judgment need separate roles,” produce a precise English explanation in your own wording.',
+          'Semantic retell: from the meaning “generation and judgment need separate roles,” produce a precise English explanation in your own wording.',
           'Explain the difference between the scrutiny validator and the user-testing validator without saying that either one alone proves correctness.',
           'Mutation: suppose the black-box validator can now read the source. What failure-detection property becomes weaker, and why?'
         ],
@@ -70,14 +72,14 @@ export const technicalNotes = [
       }
     ],
     passiveVocabulary: [
-      ['orchestrator', 'a component that coordinates work and routes tasks'],
-      ['validator', 'a component that judges a candidate against acceptance conditions'],
-      ['scrutiny', 'close examination of implementation and evidence'],
-      ['contingent on', 'dependent on a stated condition'],
-      ['goal drift', 'movement away from the original objective during a long run'],
-      ['provenance', 'information that identifies where an artifact or claim came from'],
-      ['deterministic', 'producing an outcome by fixed rules rather than open-ended judgment'],
-      ['reconciliation', 'comparison of expected state with observed external state']
+      {term:'orchestrator',pronunciation:'OR-kih-stray-ter',stress:'OR',meaning:'a component that coordinates work and routes tasks'},
+      {term:'validator',pronunciation:'VAL-ih-day-ter',stress:'VAL',meaning:'a component that judges a candidate against acceptance conditions'},
+      {term:'scrutiny',pronunciation:'SKROO-tuh-nee',stress:'SKROO',meaning:'close examination of implementation and evidence'},
+      {term:'contingent on',pronunciation:'kuhn-TIN-juhnt on',stress:'TIN',meaning:'dependent on a stated condition'},
+      {term:'goal drift',pronunciation:'GOAL drift',stress:'GOAL',meaning:'movement away from the original objective during a long run'},
+      {term:'provenance',pronunciation:'PROV-uh-nuhns',stress:'PROV',meaning:'information that identifies where an artifact or claim came from'},
+      {term:'deterministic',pronunciation:'dih-ter-muh-NIS-tik',stress:'NIS',meaning:'producing an outcome by fixed rules rather than open-ended judgment'},
+      {term:'reconciliation',pronunciation:'rek-uhn-sil-ee-AY-shuhn',stress:'AY',meaning:'comparison of expected state with observed external state'}
     ],
     activeVocabulary: [
       ['bounded autonomy', 'autonomy constrained by explicit authority, evidence, or completion boundaries'],
