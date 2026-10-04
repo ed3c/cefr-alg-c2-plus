@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Study technical articles through four meaning-preserving English passes: context, precision, listening reconstruction, and active reconstruction.">
+<meta name="description" content="Study technical articles through four meaning-preserving English passes: encounter, recognition, contextual familiarity, and active reconstruction.">
 <title>Technical Article Lab · CEFR ALG C2+</title>
 <link rel="stylesheet" href="./style.css">
 <style>
@@ -19,7 +19,7 @@
 <h1 id="note-title"></h1>
 <p id="note-focus"></p>
 <p class="muted" id="note-setting"></p>
-<p class="muted tiny">C2+ is a learning target, not a CEFR score. Four passes structure practice; they do not prove acquisition or long-term retention. Newly compiled notes use Kokoro browser so the exact script can be generated without an API key; Parler remains the default pre-generated narrator for the fixed scenario library.</p>
+<p class="muted tiny">C2+ is a learning target, not a CEFR score. Passes 1-3 build receptive familiarity; Pass 4 adds productive resistance through shadowing, generation, mutation, and source-bound comparison. Four exposures do not prove acquisition or long-term retention.</p>
 </section>
 <nav class="pass-nav" id="pass-nav" aria-label="Four learning passes"></nav>
 <div class="tech-grid">
@@ -35,7 +35,7 @@
 </div>
 <div id="pass-script" class="tech-script"></div>
 <div id="active-box" class="active-box" hidden>
-<h3>Generate before you compare</h3>
+<h3>Shadow before you generate</h3>\n<p>Play the source-bound segment. Try delayed shadowing first, then simultaneous shadowing if you can keep the phrase boundaries and meaning intact.</p>\n<ol id="shadowing-script" class="prompt-list"></ol>\n<h3>Generate before you compare</h3>
 <ol id="active-prompts" class="prompt-list"></ol>
 <label for="active-draft">Your reconstruction</label>
 <textarea id="active-draft" placeholder="Retell the architecture in your own English. Keep the conditions and uncertainty."></textarea>
@@ -49,8 +49,8 @@
 <section class="paper"><p class="eyebrow">TERMS IN THIS ARTICLE</p><dl id="terms"></dl></section>
 </aside>
 </div>
-<section class="paper"><p class="eyebrow">ACTIVE TECHNICAL VOCABULARY</p><h2>Reuse these phrases in a design review</h2><div id="active-vocabulary" class="vocab-grid"></div></section>
-<footer><span>Understand → reconstruct → generate → compare.</span><a href="./compare.html">Voice Lab</a></footer>
+<section class="paper"><p class="eyebrow">PASSIVE ENCOUNTER VOCABULARY</p><h2>Recognize these terms across the article</h2><p class="muted">Use repeated, low-burden encounters. Recognition comes before productive use.</p><div id="passive-vocabulary" class="vocab-grid"></div></section>\n<section class="paper"><p class="eyebrow">ACTIVE TECHNICAL VOCABULARY</p><h2>Reuse this smaller set in a design review</h2><div id="active-vocabulary" class="vocab-grid"></div></section>
+<footer><span>Encounter → recognize → become familiar → shadow / generate / compare.</span><a href="./compare.html">Voice Lab</a></footer>
 </main>
 </body>
 </html>
