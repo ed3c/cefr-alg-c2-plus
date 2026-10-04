@@ -1,0 +1,572 @@
+{
+  "lesson_id": "software-factory-sole-acceptance",
+  "revision": "1.0.0",
+  "lifecycle": "FROZEN",
+  "parent_review_required": false,
+  "compiler_skill": {
+    "path": ".agents/skills/cefr-alg-four-pass/SKILL.md",
+    "version": "1.3.0",
+    "references_read": [
+      "references/four-pass-contract.md",
+      "references/execution-protocol.md",
+      "features/README.md",
+      "features/technical-article-four-pass.md",
+      "../alg-vocab-encounter/SKILL.md"
+    ]
+  },
+  "title": "Self-tests and acceptance",
+  "scope": "One decision: worker self-tests cannot alone justify acceptance under the proposed separation; preserve distinct source-visible and no-source observations and unresolved long-horizon completion.",
+  "sources": [
+    {
+      "label": "A",
+      "sha256": "8de7868145c635eb60ae7605dc13adf5b91547cce6483b9b9eb5ce825e203878",
+      "logical_lines": 628,
+      "source_kind": "user-supplied attachment; original referenced video not available",
+      "selected_spans": [
+        {
+          "start_line": 141,
+          "end_line": 143,
+          "text": "The separation is epistemic rather than merely procedural:\nthe component that produces a candidate must not also\nconstitute the sole authority for accepting it."
+        },
+        {
+          "start_line": 620,
+          "end_line": 626,
+          "text": "Acceptance 只需要證明三件事：\n\n**Meaning preservation**：影片、HTML、STE-clear、C2+ 四種 representation 沒有改變原文的 actor / condition / evidence / uncertainty。\n\n**Multimodal utility**：圖像真的承擔 explanation，而不是字幕加裝飾動畫。\n\n**Acquisition boundary**：前三遍可以全部 passive；**第四遍若沒有 learner-generated output + oracle comparison，就不能標記 `ACTIVE_PRODUCTIVE`。**"
+        }
+      ]
+    },
+    {
+      "label": "B",
+      "sha256": "74a1bb1a715a07b5af02ea8643cadedb80548b152173ce14c926b99fb2ab9225",
+      "logical_lines": 811,
+      "source_kind": "user-supplied attachment; original referenced video not available",
+      "selected_spans": [
+        {
+          "start_line": 162,
+          "end_line": 169,
+          "text": "\t\t- Workers（工作者）：按特性（Per feature）保持新鮮上下文，執行先測後寫（Tests first, then implement, commit, hand off），佔 60.6%（9.5h）。\n\t\t- Validators（驗證者）：對抗性審查，只找漏洞從不修代碼（Surfaces gaps, never fixes them），佔 37.2%（5.14h）。\n\t2. 雙軌驗證機制：\n\t\t- Scrutiny Validator：全新獨立 Reviewer，審查代碼庫、軌跡、測試覆蓋、類型檢查、Linter 與 Code Review，具備完全的代碼可見性。\n\t\t- User-Testing Validator：真正的黑盒驗證，絕不閱讀源代碼；直接透過 Computer Use 操控虛擬電腦運行應用程式，點擊 GUI 或操作 CLI，比對行為是否符合初始合約（區分假介面與真功能）。\n- 獨特特徵：\n\t- 工作者採取順序鏈式交接（Sequence），而非無序並行，保證每一步移交時上下文的新鮮度。\n\t- 驗證者完全與代碼編寫者隔離，杜絕「自我審查」導致的測試作弊。"
+        },
+        {
+          "start_line": 178,
+          "end_line": 178,
+          "text": "\t- EV-video-13-38：TEXT_MATCH::\"Neither validator wrote the code it's judging... Scrutiny Validator vs User-Testing Validator\""
+        },
+        {
+          "start_line": 299,
+          "end_line": 313,
+          "text": "#### K-long-horizon-verification｜長週期自主閉環中的開放式驗收標準盲區\n- Unknown：當 Agent 長程任務從 15 小時擴展至數月或一年以上、且面對高難度非確定性任務（如 3D 打印實體適配、全域系統性能重構）時，如何形式化定義「Done」以杜絕高維度作弊？\n- Why Unresolved：傳統編程以測試用例覆蓋（Boolean / Assertions）為邊界，而真實世界任務屬於開放式（Open-ended）；演講者承認「驗收標準如何形式化定義」目前仍處於探索階段，尤其在防範 Agent 繞過本質意圖的「作弊行為（Cheating）」上缺乏統一數學證明。\n- Impact：阻礙軟體工廠從「幾十小時的 Missions」向「永久性自主維護系統（Year-long autonomous operations）」演進。\n- Evidence Needed：\n\t- 具備語義抗欺騙能力的長週期驗證日誌。\n\t- 對抗性驗證者（Validators）與被測代碼之間的完全博弈模型數據。\n- Retrieval / Test Plan：\n\t1. 檢索 METR 及相關實驗室針對 Long-Horizon Tasks（>100h）的可靠性評測報告。\n\t2. 設計雙盲測試：在長程 Mission 中人為注入邏輯陷阱，觀測 User-Testing Validator 辨識出非功能性死鎖的成功率。\n- Unblock Criteria：提出一套可量化、不可被被測代碼逆向擬合的非確定性驗證協議。\n- Priority：HIGH\n- 證據與狀態：HYPOTHESIS · SUPPORTED · MEDIUM\n\t- EV-video-10-37：TEXT_MATCH::\"The question is not the loop itself, but how you define what it means to be done in the loop\"\n\t- EV-video-11-19：TEXT_MATCH::\"Loops aren't enough, they need to be verifiable... Problem of cheating, broken loops, unclear conditions\""
+        },
+        {
+          "start_line": 389,
+          "end_line": 399,
+          "text": "\t1. 合約鎖定：Orchestrator 在代碼編寫前擬定可驗收合約，推送到沙箱配置中。\n\t2. 實例化 Scrutiny Validator（白盒審查）：\n\t\t- 注入待測代碼、Git Trajectory、單元測試。\n\t\t- 執行靜態代碼分析、類型推導、代碼風格檢查及測試覆蓋率校驗。\n\t\t- Validation：報告所有代碼層級漏洞，禁止自動修復代碼。\n\t3. 實例化 User-Testing Validator（黑盒使用驗證）：\n\t\t- 隔離環境：阻斷源代碼讀取權限，僅提供合約中的終端行為預期與虛擬電腦介面。\n\t\t- 透過虛擬螢幕運行編譯後的應用程式。\n\t\t- 模擬終端使用者進行滑鼠點擊、表單填寫、頁面切換與 CLI 調用。\n\t\t- Failure Signal：畫面出現假 UI（Dummy Dashboard）、按鈕無響應、報錯彈窗或邏輯未生效。\n\t4. 綜合判定：雙軌均輸出 PASS 始能合併代碼；任一軌道失敗則將 Gaps 結構化反饋回調度池，啟動下一輪 Worker 修復。"
+        },
+        {
+          "start_line": 407,
+          "end_line": 409,
+          "text": "\t- EV-video-13-38：TEXT_MATCH::\"The true black box: never reads the source. Drives the running app via computer-use and checks behavior against the contract\"\n\t- EV-video-14-22：TEXT_MATCH::\"It really needed the agent in the end to click through the stuff... otherwise it was just a dummy result\"\n- 反證／限制：Computer-Use 操作比純 API 測試慢數倍且消耗更多視覺 Token，對於純演算法或無介面後端服務應當改為契約化外部黑盒 API 調試。"
+        },
+        {
+          "start_line": 791,
+          "end_line": 800,
+          "text": "\t1. 鎖定 Orchestrator 生成的合約規格（含預期按鈕坐標語義、CLI 輸入輸出與狀態轉移）。\n\t2. 派發 Worker 編寫實現代碼與單元測試。\n\t3. 啟動 Scrutiny Validator：白盒審計代碼質量、覆蓋率與變更軌跡。\n\t4. 啟動 User-Testing Validator：掛載執行檔，禁止訪問 .git 與源碼，透過視覺截圖與滑鼠事件遍歷操作介面。\n\t5. 比對雙軌判定：若 Scrutiny 通過但 User-Testing 發現按鈕為純靜態 Dummy 假介面，判定為 CHEATING_DETECTED。\n- Expected Result：\n\t- 任何僅通過內部靜態代碼測試但運行態行為失真的代碼均被 100% 攔截並打回。\n- Observed Result：\n\t- SOURCE_REPORTED（依據 Factory.com 生產 Mission 數據：雙軌架構在 15h 43m 客戶案例中成功攔截純外觀 Dummy 結果，驅使 Agent 補齊底層真實邏輯）。\n- Verdict：PASS（在來源陳述範圍內成立；Compiler 運行環境標記為 SOURCE_REPORTED_VERIFIED）。"
+        },
+        {
+          "start_line": 806,
+          "end_line": 807,
+          "text": "\t- EV-video-13-38：TEXT_MATCH::\"Neither validator wrote the code it's judging... Scrutiny: sees the code, did not write it. User-Testing: never reads the source, drives the running app via computer-use\"\n\t- EV-video-14-22：TEXT_MATCH::\"It really needed the agent in the end to click through the stuff... otherwise it was just a dummy result\""
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "SF-DUAL-01",
+      "actor": "worker",
+      "condition": "before handoff",
+      "action_decision": "writes tests and implementation",
+      "evidence_uncertainty": "SOURCE_REPORTED_UNVERIFIED",
+      "consequence": "worker-authored tests belong to the described workflow",
+      "source_refs": [
+        "B:162",
+        "B:792"
+      ],
+      "clarity": "The Software Factory cards describe a worker writing tests and code before handoff.",
+      "c2_precision": "The Software Factory cards describe a worker authoring tests and implementation before handoff.",
+      "zh_tw": "Software Factory 卡片描述，工作代理（worker）會在交接前編寫測試與程式碼。"
+    },
+    {
+      "id": "SF-DUAL-02",
+      "actor": "accepting reviewer or process",
+      "condition": "when deciding whether to accept the worker output",
+      "action_decision": "must not use worker self-tests as the sole basis for acceptance",
+      "evidence_uncertainty": "PROPOSED_ACCEPTANCE_RULE",
+      "consequence": "acceptance requires a basis beyond self-testing",
+      "source_refs": [
+        "A:141-143",
+        "B:165-169"
+      ],
+      "clarity": "Under the proposed separation, those self-tests must not be the sole basis for acceptance.",
+      "c2_precision": "Under the proposed separation of responsibilities, self-testing cannot constitute the sole basis for acceptance.",
+      "zh_tw": "依這項職責分離提案，自我測試（self-tests）不得成為驗收（acceptance）的唯一依據。"
+    },
+    {
+      "id": "SF-DUAL-03",
+      "actor": "Scrutiny Validator",
+      "condition": "as a validator separate from the worker",
+      "action_decision": "reads the source code",
+      "evidence_uncertainty": "SOURCE_REPORTED_UNVERIFIED",
+      "consequence": "the review has source-code visibility",
+      "source_refs": [
+        "B:165",
+        "B:178"
+      ],
+      "clarity": "A separate Scrutiny Validator reads the code.",
+      "c2_precision": "A distinct Scrutiny Validator inspects the source code.",
+      "zh_tw": "另一個 Scrutiny Validator 會讀取原始碼（source）。"
+    },
+    {
+      "id": "SF-DUAL-04",
+      "actor": "User-Testing Validator",
+      "condition": "when checking the running application against its contract",
+      "action_decision": "checks externally observable behavior without reading the source",
+      "evidence_uncertainty": "SOURCE_REPORTED_UNVERIFIED",
+      "consequence": "the behavior check preserves its no-source boundary",
+      "source_refs": [
+        "B:166",
+        "B:395-398",
+        "B:407"
+      ],
+      "clarity": "A separate User-Testing Validator checks the running application against the contract without reading the source.",
+      "c2_precision": "A distinct User-Testing Validator assesses the running application against the contract without reading the source.",
+      "zh_tw": "另一個 User-Testing Validator 不讀取原始碼，而是依合約（contract）檢查運行中的應用程式。"
+    },
+    {
+      "id": "SF-DUAL-05",
+      "actor": "accepting reviewer or process",
+      "condition": "if the contract requires a button effect and the button does not produce that effect",
+      "action_decision": "does not establish acceptance from passing self-tests",
+      "evidence_uncertainty": "LESSON_INFERENCE_AND_HYPOTHETICAL",
+      "consequence": "passing self-tests does not establish acceptance when the required behavior is absent",
+      "source_refs": [
+        "B:398-399",
+        "B:795"
+      ],
+      "clarity": "If a button does not produce the effect required by the contract, passing self-tests does not establish acceptance.",
+      "c2_precision": "If a button fails to produce the effect stipulated by the contract, successful self-tests do not establish acceptance.",
+      "zh_tw": "如果按鈕未產生合約要求的效果，即使自我測試通過，也不能據此判定驗收成立。"
+    },
+    {
+      "id": "SF-DUAL-06",
+      "actor": "this lesson",
+      "condition": "when interpreting the button example",
+      "action_decision": "does not generalize to prevention of every failure",
+      "evidence_uncertainty": "EDITORIAL_EVIDENCE_BOUNDARY",
+      "consequence": "a bounded example remains a bounded example",
+      "source_refs": [
+        "B:797-800",
+        "B:299-313"
+      ],
+      "clarity": "That is a contract-checking example, not proof that dual validation prevents every failure.",
+      "c2_precision": "This contract-checking example does not establish that dual validation prevents every failure.",
+      "zh_tw": "這是一個檢查合約要求的例子，不能證明雙軌驗證能防止每一種失敗。"
+    },
+    {
+      "id": "SF-DUAL-07",
+      "actor": "the supplied cards",
+      "condition": "for long, open-ended tasks",
+      "action_decision": "leaves the definition of done unresolved",
+      "evidence_uncertainty": "SOURCE_REPORTED_UNRESOLVED",
+      "consequence": "no general completion guarantee follows",
+      "source_refs": [
+        "B:299-313"
+      ],
+      "clarity": "The cards leave the definition of done for long, open-ended tasks unresolved.",
+      "c2_precision": "The cards leave unresolved how to define completion for long, open-ended tasks.",
+      "zh_tw": "卡片仍未解決長時間開放式任務（open-ended tasks）的完成條件（done）如何定義。"
+    }
+  ],
+  "scripts": {
+    "clarity": [
+      "The Software Factory cards describe a worker writing tests and code before handoff.",
+      "Under the proposed separation, those self-tests must not be the sole basis for acceptance.",
+      "A separate Scrutiny Validator reads the code.",
+      "A separate User-Testing Validator checks the running application against the contract without reading the source.",
+      "If a button does not produce the effect required by the contract, passing self-tests does not establish acceptance.",
+      "That is a contract-checking example, not proof that dual validation prevents every failure.",
+      "The cards leave the definition of done for long, open-ended tasks unresolved."
+    ],
+    "c2_precision": [
+      "The Software Factory cards describe a worker authoring tests and implementation before handoff.",
+      "Under the proposed separation of responsibilities, self-testing cannot constitute the sole basis for acceptance.",
+      "A distinct Scrutiny Validator inspects the source code.",
+      "A distinct User-Testing Validator assesses the running application against the contract without reading the source.",
+      "If a button fails to produce the effect stipulated by the contract, successful self-tests do not establish acceptance.",
+      "This contract-checking example does not establish that dual validation prevents every failure.",
+      "The cards leave unresolved how to define completion for long, open-ended tasks."
+    ],
+    "zh_tw": [
+      "Software Factory 卡片描述，工作代理（worker）會在交接前編寫測試與程式碼。",
+      "依這項職責分離提案，自我測試（self-tests）不得成為驗收（acceptance）的唯一依據。",
+      "另一個 Scrutiny Validator 會讀取原始碼（source）。",
+      "另一個 User-Testing Validator 不讀取原始碼，而是依合約（contract）檢查運行中的應用程式。",
+      "如果按鈕未產生合約要求的效果，即使自我測試通過，也不能據此判定驗收成立。",
+      "這是一個檢查合約要求的例子，不能證明雙軌驗證能防止每一種失敗。",
+      "卡片仍未解決長時間開放式任務（open-ended tasks）的完成條件（done）如何定義。"
+    ],
+    "semantic_equivalence": "Parent reviewed against selected source spans on freeze. Same selected claims, conditions, negation, and uncertainty; not independent source fact-checking or certified translation."
+  },
+  "narration": {
+    "script": "The Software Factory cards describe a worker writing tests and code before handoff. Under the proposed separation, those self-tests must not be the sole basis for acceptance. A separate Scrutiny Validator reads the code. A separate User-Testing Validator checks the running application against the contract without reading the source. If a button does not produce the effect required by the contract, passing self-tests does not establish acceptance. That is a contract-checking example, not proof that dual validation prevents every failure. The cards leave the definition of done for long, open-ended tasks unresolved.",
+    "sentences": [
+      "The Software Factory cards describe a worker writing tests and code before handoff.",
+      "Under the proposed separation, those self-tests must not be the sole basis for acceptance.",
+      "A separate Scrutiny Validator reads the code.",
+      "A separate User-Testing Validator checks the running application against the contract without reading the source.",
+      "If a button does not produce the effect required by the contract, passing self-tests does not establish acceptance.",
+      "That is a contract-checking example, not proof that dual validation prevents every failure.",
+      "The cards leave the definition of done for long, open-ended tasks unresolved."
+    ],
+    "script_sha256": "9ee68b89c9fce494e50f14d24a847620cb40bedfe6bb0d19cdcb128a1ebb6e31",
+    "audio_identity": null,
+    "audio_status": "NOT_GENERATED",
+    "duration_target_seconds": [
+      30,
+      60
+    ],
+    "duration_status": "text-only estimate; no recorded duration",
+    "words": 92,
+    "render_contract": "After freeze, speak these exact words; change prosody only. Return semantic defects to compiler."
+  },
+  "learning": {
+    "primary_target": "technical speaking / design review",
+    "pass4_route": [
+      "delayed shadowing",
+      "simultaneous shadowing when feasible",
+      "semantic retell",
+      "premise mutation",
+      "source-bound comparison"
+    ],
+    "not_selected": [
+      "true back-translation"
+    ],
+    "passive_vocabulary": [
+      {
+        "term": "worker",
+        "stress": "WORK-er",
+        "meaning_zh_tw": "產生候選程式碼的工作代理",
+        "precursor": "SF-DUAL-01",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      },
+      {
+        "term": "self-tests",
+        "stress": "SELF-tests",
+        "meaning_zh_tw": "工作代理對自己成果執行的測試",
+        "precursor": "SF-DUAL-02",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      },
+      {
+        "term": "sole basis for acceptance",
+        "stress": "sole BASIS / for acCEPTance",
+        "meaning_zh_tw": "接受成果的唯一依據",
+        "precursor": "SF-DUAL-02",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      },
+      {
+        "term": "Scrutiny Validator",
+        "stress": "SCRU-ti-ny / VAL-i-da-tor",
+        "meaning_zh_tw": "與工作代理分開、可讀原始碼的驗證角色",
+        "precursor": "SF-DUAL-03",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      },
+      {
+        "term": "User-Testing Validator",
+        "stress": "USER-testing / VAL-i-da-tor",
+        "meaning_zh_tw": "不讀原始碼、依合約檢查運行行為的驗證角色",
+        "precursor": "SF-DUAL-04",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      },
+      {
+        "term": "contract",
+        "stress": "CON-tract",
+        "meaning_zh_tw": "此次檢查所依據的行為要求",
+        "precursor": "SF-DUAL-04",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      },
+      {
+        "term": "open-ended tasks",
+        "stress": "OPEN-ended TASKS",
+        "meaning_zh_tw": "完成條件仍需界定的開放式任務",
+        "precursor": "SF-DUAL-07",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      },
+      {
+        "term": "unresolved",
+        "stress": "un-re-SOLVED",
+        "meaning_zh_tw": "尚未解決",
+        "precursor": "SF-DUAL-07",
+        "pronunciation": null,
+        "sound_cue_status": "editor-authored stress cue; no supplied or generated audio"
+      }
+    ],
+    "active_vocabulary": [
+      "self-tests",
+      "sole basis for acceptance",
+      "contract",
+      "unresolved"
+    ],
+    "vocabulary_loop": {
+      "skill": "alg-vocab-encounter v1.0.0",
+      "sequence": [
+        "form and stress cue",
+        "one contextual meaning",
+        "later recognition probe",
+        "retire or re-encounter"
+      ],
+      "state": "PASSIVE_RECEPTIVE",
+      "actual_events": []
+    }
+  },
+  "four_passes": [
+    {
+      "pass": 1,
+      "name": "Encounter",
+      "prompt_en": "Follow the worker, the two validators, and the acceptance decision. Read or listen to the clarity script with the diagram. No answer is required.",
+      "support": [
+        "clarity script",
+        "diagram",
+        "source-status labels"
+      ],
+      "required_output": false
+    },
+    {
+      "pass": 2,
+      "name": "Recognition",
+      "prompt_en": "Follow the C2 precision script with its transcript and diagram visible. Notice which role sees source code, which role checks behavior, and which claims remain proposed or unresolved. You do not need to recall or explain them yet.",
+      "support": [
+        "C2 precision transcript",
+        "diagram",
+        "passive vocabulary cues"
+      ],
+      "required_output": false
+    },
+    {
+      "pass": 3,
+      "name": "Contextual familiarity",
+      "prompt_en": "Follow the English argument at natural speed with the transcript and diagram available. Replay any segment. Hiding the transcript is optional listening practice. No reconstruction, translation, quiz answer, or retell is required.",
+      "support": [
+        "narration when produced",
+        "English transcript by default",
+        "diagram"
+      ],
+      "required_output": false
+    },
+    {
+      "pass": 4,
+      "name": "Active reconstruction",
+      "segment_claims": [
+        "SF-DUAL-02",
+        "SF-DUAL-03",
+        "SF-DUAL-04"
+      ],
+      "steps": [
+        "Listen to the exact clarity sentences for claims 02 through 04.",
+        "Try delayed shadowing about half a second to one second behind, then simultaneous shadowing when feasible. Use 0.8x playback or revisit Pass 2 or 3 if meaning or phrase grouping breaks down.",
+        "Hide the English sentences. Use the role diagram to retell why self-tests alone do not justify acceptance under this proposal. Include which validator reads source, the button counterexample, and the unresolved boundary.",
+        "Mutate one premise: the User-Testing Validator now reads source code, but remains separate from the worker. Explain which stated boundary changes and which separation remains.",
+        "Acknowledge an oral or written semantic retell attempt and whether a mutation attempt was performed. Sound imitation alone is not a semantic attempt.",
+        "Only after that acknowledgement, reveal the comparison oracle. Compare meaning and record any gaps, without scoring mastery."
+      ],
+      "cue_en": "Worker -> self-tests -> acceptance? Separate Scrutiny and User-Testing. The button does not produce the effect required by the contract. Long open-ended done remains unresolved.",
+      "mutation_prompt_en": "The User-Testing Validator now reads source code, but remains separate from the worker. Which boundary changes, and which separation remains?",
+      "required_output": true
+    }
+  ],
+  "execution_contract": {
+    "actual_practice_status": "NOT_STARTED",
+    "runtime_initial_state": "PASSIVE_RECEPTIVE",
+    "states": [
+      "PASSIVE_RECEPTIVE",
+      "GENERATED",
+      "COMPARED",
+      "ACTIVE_PRACTICED"
+    ],
+    "gate": "Runtime must disable oracle reveal until learner acknowledges an oral or written semantic Pass 4 attempt; a non-empty textarea is not required.",
+    "state_rules": {
+      "GENERATED": "Learner acknowledges retell/mutation attempt.",
+      "COMPARED": "Oracle revealed after acknowledgement and used for comparison.",
+      "ACTIVE_PRACTICED": "At least one productive semantic technique and comparison completed."
+    },
+    "gate_implementation_status": "SPECIFICATION_ONLY_NOT_IMPLEMENTED_OR_TESTED",
+    "receipt": "Session-local or downloadable practice-event record only, with lesson/source identity, reported techniques, attempt-before-reveal ordering and optional learner gaps. No persistent account state or mastery claim.",
+    "actual_receipt": null
+  },
+  "oracle": {
+    "visibility": "COMPILER_REVIEW_ONLY; hide in future learner-facing runtime until attempt acknowledgement",
+    "items": [
+      {
+        "claim": "SF-DUAL-01",
+        "preserve": "The source describes worker-authored tests and code before handoff; this lesson does not prohibit worker self-testing or claim a test execution receipt.",
+        "gap_example": "The worker is forbidden to test its own code."
+      },
+      {
+        "claim": "SF-DUAL-02",
+        "preserve": "Under the proposed separation, self-tests cannot be the sole acceptance basis.",
+        "gap_example": "Self-tests are worthless, or the worker cannot participate in judging its output."
+      },
+      {
+        "claim": "SF-DUAL-03",
+        "preserve": "Scrutiny is separate from the worker and can inspect source.",
+        "gap_example": "Neither validator can read code."
+      },
+      {
+        "claim": "SF-DUAL-04",
+        "preserve": "User-Testing checks the running application against the contract without reading source.",
+        "gap_example": "A different process name alone proves no-source isolation."
+      },
+      {
+        "claim": "SF-DUAL-05",
+        "preserve": "The contract requires a button effect, and the button fails to produce it. Passing self-tests does not establish acceptance in this hypothetical.",
+        "gap_example": "The contract requires no button effect, or a self-test pass proves acceptance despite the missing required effect."
+      },
+      {
+        "claim": "SF-DUAL-06",
+        "preserve": "The example does not prove prevention of every failure.",
+        "gap_example": "The dual-validator design catches 100 percent of failures."
+      },
+      {
+        "claim": "SF-DUAL-07",
+        "preserve": "Long, open-ended task completion remains unresolved in the cards.",
+        "gap_example": "Two validators solve every definition-of-done problem."
+      }
+    ],
+    "mutation_reference": "When User-Testing reads source, the stated no-source-reading black-box condition no longer holds. It does not by itself make that validator the code author, erase its role separation, prove failure, or prove success.",
+    "comparison_method": "Compare actor, condition, action, evidence status, negation and unresolved boundary; do not require verbatim wording."
+  },
+  "visual_anchors": [
+    {
+      "id": "V1",
+      "claims": [
+        "SF-DUAL-01"
+      ],
+      "word_anchors": [
+        "worker",
+        "writing tests and code",
+        "handoff"
+      ],
+      "concept": "Worker authors tests and candidate code, then hands them over. Do not show a real test execution receipt.",
+      "persistent_objects": [
+        "Worker",
+        "Candidate",
+        "Self-tests"
+      ],
+      "status_label": "Supplied notes; not independently verified",
+      "source_status": {
+        "value": "SUPPLIED_NOTES_NOT_INDEPENDENTLY_VERIFIED",
+        "opening_text_en": "Based on supplied Software Factory notes. Source reports have not been independently verified.",
+        "opening_text_zh_tw": "依據提供的 Software Factory 筆記整理；來源陳述尚未經獨立驗證。",
+        "display_requirement": "Show this source-status text on screen at the opening with the first claim; retain later proposed-rule and hypothetical labels."
+      }
+    },
+    {
+      "id": "V2",
+      "claims": [
+        "SF-DUAL-02"
+      ],
+      "word_anchors": [
+        "sole basis",
+        "acceptance"
+      ],
+      "concept": "Self-tests result reaches an acceptance decision, but cannot alone open it.",
+      "persistent_objects": [
+        "Candidate",
+        "Self-tests",
+        "Acceptance"
+      ],
+      "status_label": "Proposed acceptance rule"
+    },
+    {
+      "id": "V3",
+      "claims": [
+        "SF-DUAL-03",
+        "SF-DUAL-04"
+      ],
+      "word_anchors": [
+        "Scrutiny Validator",
+        "reads the code",
+        "User-Testing Validator",
+        "without reading the source"
+      ],
+      "concept": "Two distinct reviewer lanes; Scrutiny reads source, User-Testing observes the running app and contract, with its source-reading arrow crossed out. This marks the proposed boundary and does not claim enforced runtime permissions.",
+      "persistent_objects": [
+        "Candidate",
+        "Source",
+        "Running app",
+        "Contract",
+        "Acceptance"
+      ],
+      "status_label": "Reported roles; unverified"
+    },
+    {
+      "id": "V4",
+      "claims": [
+        "SF-DUAL-05"
+      ],
+      "word_anchors": [
+        "button",
+        "does not produce the effect required by the contract",
+        "does not establish acceptance"
+      ],
+      "concept": "Show a contract that requires a button effect. A click fails to produce that required effect while hypothetical self-tests show PASS. Acceptance is not established by those self-tests. Label the scene hypothetical.",
+      "persistent_objects": [
+        "Running app",
+        "Contract",
+        "Self-tests",
+        "Acceptance"
+      ],
+      "status_label": "Hypothetical contract check"
+    },
+    {
+      "id": "V5",
+      "claims": [
+        "SF-DUAL-06",
+        "SF-DUAL-07"
+      ],
+      "word_anchors": [
+        "not proof",
+        "every failure",
+        "definition of done",
+        "unresolved"
+      ],
+      "concept": "Keep the bounded button failure visible; an open boundary marked Long open-ended tasks: done unresolved prevents a universal-success reading.",
+      "persistent_objects": [
+        "Contract",
+        "Acceptance"
+      ],
+      "status_label": "No universal guarantee; unresolved boundary"
+    }
+  ],
+  "coverage_ledger": "coverage-ledger.md",
+  "boundaries": [
+    "Attachment source reports are not independently verified facts.",
+    "SUPPORTED, HIGH, PASS and SOURCE_REPORTED_VERIFIED from the attachment are not accepted proof.",
+    "No original video locator is supplied.",
+    "No local runtime test, learner event, TTS, video render or learning-effect evaluation has occurred.",
+    "The proposed acceptance rule does not prohibit worker self-testing.",
+    "Frozen for rendering revision 1.0.0; semantic changes require a new compiler revision. Renderer may not change narration or claims."
+  ],
+  "lesson_revision": "1.0.0",
+  "freeze": {
+    "at": "2026-10-04T05:04:48.761575+00:00",
+    "draft_sha256": "313e944a9dc3092d602980352999c45cec892d0b90c59e2675fd35b929c9ed0f",
+    "review": "parent-semantic-review.md",
+    "scope": "One bounded lesson; full source cursor remains open; no learner or rendering result claimed."
+  }
+}

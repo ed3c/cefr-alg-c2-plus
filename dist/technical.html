@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="./style.css">
 <style>
 .tech-shell{max-width:1120px;margin:0 auto;padding:32px 22px 80px}.tech-top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:28px;flex-wrap:wrap}.pass-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:24px 0}.pass-nav button{text-align:left;min-height:72px}.pass-nav button[aria-current="true"]{border-color:#6fe6c0;box-shadow:0 0 0 2px rgba(111,230,192,.2)}.tech-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.8fr);gap:20px}.tech-script p{font-size:1.08rem;line-height:1.75}.tech-script[hidden]{display:none}.oracle{border-left:4px solid #6fe6c0}.prompt-list li,.oracle li{margin:.65rem 0}.vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.vocab-grid>div{padding:12px;border:1px solid rgba(127,148,170,.28);border-radius:10px}.vocab-grid [data-retired="true"]{opacity:.55}.vocab-grid dt{font-weight:700}.vocab-grid dd{margin:5px 0 0}.vocab-actions{display:flex;gap:6px;flex-wrap:wrap}.vocab-actions button{padding:7px 9px}.tech-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.active-box textarea{width:100%;min-height:130px}.source-claims,.receipt-output{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;white-space:pre-wrap}.hidden-until-reveal[hidden]{display:none}.route-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.route-grid p{margin:.25rem 0}@media(max-width:760px){.pass-nav,.tech-grid,.vocab-grid,.route-grid{grid-template-columns:1fr}}
+
+[hidden]{display:none!important}.lesson-directory{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.ownership-tree{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem;line-height:1.7}.decision-flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.decision-node{border:1px solid #73879d;border-radius:10px;padding:14px}.decision-node p{margin:.4rem 0}.decision-wide{grid-column:1/-1}.decision-boundary{border:2px dashed #d5b573}.source-claims,.receipt-output,#provenance-output{overflow-wrap:anywhere}.fixed-video{width:100%;max-height:520px;background:#101820}details>summary{cursor:pointer;padding:10px 0}.tech-grid>*,.decision-flow>*{min-width:0}@media(max-width:760px){.decision-flow{grid-template-columns:1fr}.tech-shell{padding:20px 14px 48px}}
 </style>
 <script type="module" src="./technical.js"></script>
 </head>
@@ -14,12 +16,42 @@
 <a class="skip" href="#technical-workspace">Skip to technical article</a>
 <main class="tech-shell" id="technical-workspace" tabindex="-1">
 <header class="tech-top"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">≈</span><span>ENGLISH STUDIO<small>TECHNICAL ARTICLE LAB</small></span></a><a class="text-link" href="./">Back to scenarios</a></header>
+<p id="lesson-error" role="alert" hidden></p>
+<div id="lesson-content" hidden>
 <section class="paper">
 <p class="eyebrow">FOUR-PASS TECHNICAL ENGLISH</p>
 <h1 id="note-title"></h1><p id="note-focus"></p><p class="muted" id="note-setting"></p>
 <div class="route-grid"><p><strong>Primary target</strong><br><span id="learning-target"></span></p><p><strong>Pass 4 route</strong><br><span id="pass4-route"></span></p></div>
 <p class="muted tiny">C2+ is a learning target, not a CEFR score. Passes 1-3 remain receptive. Pass 4 crosses the productive boundary. A practice receipt records actions only; it is not mastery or retention evidence.</p>
 </section>
+<div id="named-entry" hidden>
+<nav class="lesson-directory" aria-label="Lesson directory"><a href="#runtime-ownership">Directory / runtime ownership</a><a href="#technical-decision">Selected technical decision</a><a href="#four-pass-practice">Four Pass practice</a><a href="#source-provenance">Source / provenance</a></nav>
+<section class="paper" id="runtime-ownership"><h2>Directory / runtime ownership</h2><pre class="ownership-tree">cefr-alg-c2-plus/
+├── .agents/skills/cefr-alg-four-pass/  Semantic compiler
+├── .agents/skills/alg-vocab-encounter/ Passive vocabulary
+├── .agents/skills/alg-explainer-video/ Frozen-input renderer handoff
+└── dist/
+    ├── technical.html                Four-Pass interface
+    ├── technical.js                  Attempt gate and session state
+    ├── technical-notes.js            Lesson data
+    └── technical-lessons/software-factory-sole-acceptance/
+                                     Portable lesson and fixed media
+hypit/                               Composition and rendering
+medium-compiler/                     Downstream import remains pending
+├── site/cefr-alg-c2/                 Pinned consumer snapshot
+├── references/cefr-alg-site-lock.json Exact snapshot manifest
+└── scripts/build_site.py             Snapshot verification and import</pre><p>This delivery map identifies repository ownership. The semantic compiler owns the lesson words. Hypit owns composition and rendering. Medium owns the subsequent pinned snapshot, lock and build import, which remains pending. A successful render does not verify the supplied source reports.</p></section>
+<section class="paper" id="technical-decision"><h2>Selected technical decision</h2><p>These are the lesson's Worker and Validator roles, separate from the delivery ownership above. Based on supplied Software Factory notes. Source reports have not been independently verified.</p>
+<div class="decision-flow" aria-label="Source-bound decision diagram">
+<div class="decision-node decision-wide"><strong>Worker → Candidate + Self-tests</strong><p>Writes tests and code before handoff.</p><small>SF-DUAL-01 · Supplied notes; not independently verified</small></div>
+<div class="decision-node"><strong>Candidate source → Scrutiny Validator</strong><p>Separate from the Worker; reads the source code.</p><small>SF-DUAL-03 · Reported role; unverified</small></div>
+<div class="decision-node"><strong>Running app + Contract → User-Testing Validator</strong><p>Separate from the Worker; checks the running app against the contract.</p><p>Source reading: ✕ Does not read the source.</p><small>SF-DUAL-04 · Reported role; unverified</small></div>
+<div class="decision-node decision-wide"><strong>Self-tests alone ⇏ Acceptance</strong><p>Under the proposed separation, self-tests cannot be the sole basis for acceptance. This does not prohibit worker self-testing.</p><small>SF-DUAL-02 · Proposed acceptance rule</small></div>
+<div class="decision-node decision-wide"><strong>Hypothetical: Contract requires a button effect; button does not produce it</strong><p>Even if Self-tests PASS → Acceptance is not established by those self-tests.</p><small>SF-DUAL-05 · Hypothetical contract check</small></div>
+<div class="decision-node decision-wide decision-boundary"><strong>Acceptance boundary remains open</strong><p>The example does not prove that dual validation prevents every failure. Long, open-ended tasks: definition of done unresolved.</p><small>SF-DUAL-06 / SF-DUAL-07 · No universal guarantee; unresolved boundary</small></div>
+</div></section>
+</div>
+<div id="four-pass-practice">
 <nav class="pass-nav" id="pass-nav" aria-label="Four learning passes"></nav>
 <div class="tech-grid">
 <section class="paper">
@@ -31,10 +63,12 @@
 <label>Speed <select id="playback-rate" hidden><option value="0.8">0.8×</option><option value="1" selected>1.0×</option></select></label>
 <span id="audio-status" class="status" role="status">Kokoro browser audio starts only when you choose it.</span><audio id="technical-audio" controls preload="none" hidden aria-label="Technical article narration"></audio>
 </div>
+<div id="fixed-media" hidden><video id="lesson-video" class="fixed-video" controls preload="metadata" aria-label="Supplied frozen lesson video"><track id="lesson-captions" kind="captions" srclang="en" label="English" default></video><p class="muted tiny">Supplied Hypit video with frozen narration. Optional Kokoro browser generation above is a separate audio path. Captions use supplied segment timing, not word alignment.</p></div>
 <div id="pass-script" class="tech-script"></div>
+<details id="translation-support" hidden><summary>Optional Traditional Chinese support</summary><div id="zh-tw-script" lang="zh-Hant"></div></details>
 <div id="active-box" class="active-box" hidden>
 <h3>Shadow before you generate</h3><p>Use 0.8× if normal speed breaks phrase grouping or meaning. Delayed shadowing comes before simultaneous shadowing.</p>
-<ol id="shadowing-script" class="prompt-list"></ol>
+<details id="shadowing-source" open><summary>Source sentences for shadowing. Collapse before semantic retell.</summary><ol id="shadowing-script" class="prompt-list"></ol></details>
 <fieldset><legend>Techniques you actually performed</legend>
 <label><input type="checkbox" data-technique="delayed-shadowing"> Delayed shadowing</label>
 <label><input type="checkbox" data-technique="simultaneous-shadowing"> Simultaneous shadowing</label>
@@ -48,17 +82,22 @@
 <p>Execution state: <strong id="execution-state">PASSIVE_RECEPTIVE</strong></p>
 <button id="reveal-oracle" class="primary" disabled>Reveal meaning oracle</button>
 <div id="oracle" class="oracle hidden-until-reveal" hidden><h3>Source-bound oracle</h3><ul id="oracle-list"></ul><p>Compare actor, condition, evidence, uncertainty, and causal relation. Exact wording is not required.</p></div>
-<div id="receipt" hidden><h3>Practice receipt</h3><label for="semantic-gaps">Semantic gaps you noticed</label><textarea id="semantic-gaps" placeholder="Example: I confused white-box and black-box validation."></textarea><pre id="receipt-output" class="receipt-output"></pre><button id="download-receipt" class="secondary">Download receipt</button></div>
+<button id="confirm-comparison" class="secondary" hidden disabled>I compared my attempt with the source-bound oracle</button>
+<p class="muted tiny">Acknowledgment and comparison are learner reports. These controls do not verify cognition, content quality, mastery or real learner performance.</p>
+<div id="receipt" hidden><h3>Practice receipt</h3><label for="semantic-gaps">Semantic gaps you noticed</label><textarea id="semantic-gaps" placeholder="Example: I confused white-box and black-box validation."></textarea><pre id="receipt-output" class="receipt-output"></pre><button id="download-receipt" class="secondary" disabled>Download receipt</button></div>
 </div>
 </section>
 <aside>
-<section class="paper"><p class="eyebrow">SOURCE BOUNDARY</p><p id="source-label"></p><div id="source-claims" class="source-claims"></div><p class="muted tiny">Stable claim IDs preserve provenance. They are not CEFR or truth scores.</p></section>
+<section class="paper" id="source-provenance"><p class="eyebrow">SOURCE BOUNDARY</p><p id="source-label"></p><div id="source-claims" class="source-claims"></div><p class="muted tiny">Stable claim IDs preserve provenance. They are not CEFR or truth scores.</p></section>
+<details id="provenance-details" class="paper" hidden><summary>Frozen lesson and delivered media provenance</summary><pre id="provenance-output" class="source-claims"></pre><p>These are supplied source excerpts. Their labels such as PASS or SOURCE_REPORTED_VERIFIED are source statements, not independent proof accepted by this lesson.</p><div id="source-spans"></div></details>
 <section class="paper"><p class="eyebrow">TERMS IN THIS ARTICLE</p><dl id="terms"></dl></section>
 </aside>
 </div>
 <section class="paper"><p class="eyebrow">PASSIVE ENCOUNTER VOCABULARY</p><h2>Fast form → sound/stress → one meaning</h2><p class="muted">Use short encounters. Probe recognition later; recognizing a meaning remains passive.</p><div id="passive-vocabulary" class="vocab-grid"></div></section>
 <section class="paper"><p class="eyebrow">ACTIVE TECHNICAL VOCABULARY</p><h2>Reuse this smaller set in productive practice</h2><div id="active-vocabulary" class="vocab-grid"></div></section>
+</div>
 <footer><span>Encounter → recognize → become familiar → generate → compare → receipt.</span><a href="./compare.html">Voice Lab</a></footer>
+</div>
 </main>
 </body>
 </html>
