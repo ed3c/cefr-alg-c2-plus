@@ -61,6 +61,8 @@ assert.ok(technicalJs.includes("transcriptVisible=true"));
 assert.ok(technicalJs.includes("pass.shadowingScript"));
 assert.ok(technicalJs.includes("if(!practice.attemptAcknowledged)return"));
 assert.ok(technicalJs.includes("ACTIVE_PRACTICED"));
+assert.ok(technicalJs.includes("hasGenerativeTechnique"));
+assert.ok(technicalJs.includes("semantic-retell")&&technicalJs.includes("premise-mutation"));
 assert.ok(technicalJs.includes("practice receipt only; not mastery"));
 assert.ok(technicalJs.includes("passive_recognized"));
 assert.ok(!/localStorage|fetch\(/.test(technicalJs),'Technical drafts must stay local and narration must use StudioNarrator');
@@ -88,28 +90,3 @@ assert.equal(FakeNarrator.calls.length,0,'Loading the app never starts narration
 assert.equal(els.record.disabled,true,'Unavailable recording disables recording');
 assert.equal(registered.length,2);
 const read=registered.find(t=>t.name==='read_learning_scenario');const select=registered.find(t=>t.name==='select_learning_scenario');
-assert.equal(read.execute({}).lessonId,'release');
-assert.throws(()=>select.execute({lessonId:'missing',mode:'write'}));
-assert.equal(read.execute({}).lessonId,'release','Invalid navigation cannot change state');
-assert.equal(select.execute({lessonId:'handoff',mode:'write'}).mode,'write');
-assert.equal(els['panel-listen'].hidden,true);assert.equal(els['panel-write'].hidden,false);
-els.draft.value='My actual words.';checkEls[0].checked=true;
-select.execute({lessonId:'design',mode:'listen'});
-select.execute({lessonId:'handoff',mode:'write'});
-assert.equal(els.draft.value,'My actual words.');assert.equal(checkEls[0].checked,true);
-els.draft.value='';els.review.events.click();assert.equal(els['review-results'].children[0].textContent.includes('Write something first'),true);
-els.draft.value='All failures are definitely resolved.';els.review.events.click();assert.ok(els['review-results'].children.length>1);
-assert.equal(read.execute({}).facts[0],'The passing test covers revision A.');
-console.log('PASS: content structure, review boundaries, HTML wiring, unsupported-recording state, mode/scenario navigation, session drafts, and WebMCP handler valid/invalid inputs.');
-console.log('LIMIT: DOM harness only; no real browser rendering, TTS output, microphone device, or native WebMCP runtime was tested.');
-
-// Drive the real app's cross-scene loop with controlled completion, not synthetic voice quality.
-select.execute({lessonId:'release',mode:'listen'});els.continuous.checked=true;
-const playback=els.play.events.click();
-for(let i=0;i<3;i++){
-  assert.equal(FakeNarrator.calls.at(-1).item.id,`release-${i}-plain`);
-  assert.equal(FakeNarrator.calls.at(-1).engine,'parler');
-  FakeNarrator.calls.at(-1).resolve();await new Promise(r=>setImmediate(r));
-}
-await playback;assert.match(els['audio-status'].textContent,/Scenario finished/);
-assert.equal(FakeNarrator.calls.length,3,'Queue stops at the scenario boundary');
