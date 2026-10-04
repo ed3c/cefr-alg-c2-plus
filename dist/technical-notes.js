@@ -91,3 +91,28 @@ export const technicalNotes = [
     ]
   }
 ];
+export function createSoleAcceptanceNote(lesson, manifest){
+  const active=lesson.four_passes[3];
+  const passiveVocabulary=lesson.learning.passive_vocabulary.map(item=>({...item,meaning:item.meaning_zh_tw}));
+  return {
+    id:lesson.lesson_id,revision:lesson.revision,title:lesson.title,
+    focus:lesson.scope,setting:lesson.visual_anchors[0].source_status.opening_text_en,
+    sourceLabel:'Supplied Software Factory notes A and B; original referenced video unavailable; source reports not independently verified.',
+    sourceClaims:lesson.claims.map(claim=>`${claim.id} · ${claim.evidence_uncertainty} · ${claim.source_refs.join(', ')}`),
+    learningTarget:lesson.learning.primary_target,pass4Technique:lesson.learning.pass4_route.join(' + '),
+    terms:passiveVocabulary.map(item=>[item.term,item.meaning]),passiveVocabulary,
+    activeVocabulary:lesson.learning.active_vocabulary.map(term=>[term,passiveVocabulary.find(item=>item.term===term).meaning]),
+    passes:lesson.four_passes.map((pass,index)=>({
+      id:['context','precision','listening','active'][index],label:`Pass ${pass.pass} · ${pass.name}`,
+      goal:pass.name,instruction:pass.prompt_en||'Shadow the selected source sentences, hide them, then generate from the meaning cue and mutate the premise before comparison.',
+      ...(index<3?{script:lesson.scripts[index===1?'c2_precision':'clarity']}:{
+        shadowingScript:active.segment_claims.map(id=>lesson.claims.find(claim=>claim.id===id).clarity),
+        prompts:[...active.steps.slice(0,3),active.cue_en,active.mutation_prompt_en,...active.steps.slice(4)],
+        oracle:lesson.oracle.items.map(item=>`${item.claim}: ${item.preserve} Gap example: ${item.gap_example}`).concat(lesson.oracle.mutation_reference)
+      })
+    })),
+    zhTw:lesson.scripts.zh_tw,
+    provenance:manifest,sources:lesson.sources,
+    media:{video:'./technical-lessons/software-factory-sole-acceptance/final.mp4',captions:'./technical-lessons/software-factory-sole-acceptance/captions.vtt'}
+  };
+}

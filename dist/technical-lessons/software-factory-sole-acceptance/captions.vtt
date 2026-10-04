@@ -1,0 +1,29 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.933
+The Software Factory cards describe a worker writing tests and code before handoff.
+
+2
+00:00:05.933 --> 00:00:11.833
+Under the proposed separation, those self-tests must not be the sole basis for acceptance.
+
+3
+00:00:11.833 --> 00:00:15.067
+A separate Scrutiny Validator reads the code.
+
+4
+00:00:15.067 --> 00:00:22.233
+A separate User-Testing Validator checks the running application against the contract without reading the source.
+
+5
+00:00:22.233 --> 00:00:29.600
+If a button does not produce the effect required by the contract, passing self-tests does not establish acceptance.
+
+6
+00:00:29.600 --> 00:00:35.700
+That is a contract-checking example, not proof that dual validation prevents every failure.
+
+7
+00:00:35.700 --> 00:00:41.233
+The cards leave the definition of done for long, open-ended tasks unresolved.

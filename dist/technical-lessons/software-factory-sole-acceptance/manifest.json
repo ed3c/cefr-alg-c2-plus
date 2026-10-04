@@ -1,0 +1,34 @@
+{
+  "lesson_id": "software-factory-sole-acceptance",
+  "revision": "1.0.0",
+  "original_lesson_sha256": "4dd5d0c09ee829290db29c58cff78c1f3f2e14bbb6261cc424f148cc328e19c1",
+  "projection_sha256": "ba829a6fede10a3b7dfb6c3b999f554159bbdec94b2540e630ef951a747b715c",
+  "projection_rules": [
+    "Remove sources[].path",
+    "Replace compiler_skill.path with .agents/skills/cefr-alg-four-pass/SKILL.md",
+    "Preserve all other fields"
+  ],
+  "narration_sha256": "9ee68b89c9fce494e50f14d24a847620cb40bedfe6bb0d19cdcb128a1ebb6e31",
+  "video_sha256": "f171144553782a2af03a0fb33f6375abdd963563a1b2522a35d32842da0bd050",
+  "original_srt_sha256": "afbf2527f59eff79e86334737785651cf1be598f10570f2aeb4ce6eccede2a4f",
+  "captions_vtt_sha256": "24cab60fca56e7854af7a9761de7a8fa0c8d7fc4221319065eff24096580251a",
+  "sources": [
+    {
+      "label": "A",
+      "sha256": "8de7868145c635eb60ae7605dc13adf5b91547cce6483b9b9eb5ce825e203878",
+      "source_kind": "user-supplied attachment; original referenced video not available"
+    },
+    {
+      "label": "B",
+      "sha256": "74a1bb1a715a07b5af02ea8643cadedb80548b152173ce14c926b99fb2ab9225",
+      "source_kind": "user-supplied attachment; original referenced video not available"
+    }
+  ],
+  "delivery_evidence": {
+    "video": "Supplied hypit-project/final.mp4, retained bytes; no new render or narration generation.",
+    "captions": "SRT to WebVTT format conversion only; coarse supplied timing, not word alignment.",
+    "freeze_history": "lesson.narration.audio_status=NOT_GENERATED describes the historical freeze, before supplied media delivery.",
+    "dynamic_audio": "Optional Kokoro browser generation is separate from supplied video; untested by this integration.",
+    "medium_import": "PENDING"
+  }
+}

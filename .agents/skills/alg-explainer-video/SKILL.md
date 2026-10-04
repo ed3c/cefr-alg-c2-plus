@@ -56,12 +56,16 @@ Do not invent successful Hypit execution when the runtime or required capability
 
 Video is a representation available to the four-pass runtime; it is not Pass 4 by itself.
 
+The compiler owns the acquisition sequence. The renderer preserves it:
+
 A useful default is:
 
 - Pass 1: explainer video with clarity narration;
 - Pass 2: interactive/diagram representation plus C2+ precision language;
-- Pass 3: narration or reduced-visual reconstruction with transcript hidden;
-- Pass 4: learner retell/mutation from diagram cues, followed by the source-bound oracle.
+- Pass 3: natural-speed narration with the English transcript and useful context visible by default.
+  Hiding the transcript is optional listening exposure. No reconstruction, quiz or output gate is required;
+- Pass 4: learner retell/mutation from diagram cues, then acknowledged attempt, source-bound oracle
+  reveal, and a separate learner report of comparison. Reveal alone does not complete comparison.
 
 Watching the video four times never becomes `ACTIVE_PRODUCTIVE` without learner generation and
 oracle comparison.

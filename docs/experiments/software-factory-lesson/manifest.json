@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "issue": {
+    "repository": "ed3c/cefr-alg-c2-plus",
+    "number": 8
+  },
+  "instructions": [
+    {
+      "path": ".agents/skills/alg-explainer-video/SKILL.md",
+      "baseline_sha256": "1ecb562fad799731b21bec5b54a189995e17a63d1caddb900ff4ddb6cc800435",
+      "treatment_sha256": "bf75fcdcef850a2b129b56ef8191aceca4db1069e505e2b89686e8552b2d65c7"
+    },
+    {
+      "path": ".agents/skills/cefr-alg-four-pass/references/execution-protocol.md",
+      "baseline_sha256": "d53cd7f6d46cbacae2425ba642584f961b0823f9320f67e9e209045e11dcb693",
+      "treatment_sha256": "dd5a852d4c7bfe8b0c2a31eca00e6f83d30feeda828eaea050ad45550e3105e8"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "dist/technical-lessons/software-factory-sole-acceptance/captions.vtt",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "24cab60fca56e7854af7a9761de7a8fa0c8d7fc4221319065eff24096580251a"
+    },
+    {
+      "path": "dist/technical-lessons/software-factory-sole-acceptance/final.mp4",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "f171144553782a2af03a0fb33f6375abdd963563a1b2522a35d32842da0bd050"
+    },
+    {
+      "path": "dist/technical-lessons/software-factory-sole-acceptance/lesson.json",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "ba829a6fede10a3b7dfb6c3b999f554159bbdec94b2540e630ef951a747b715c"
+    },
+    {
+      "path": "dist/technical-lessons/software-factory-sole-acceptance/manifest.json",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "92c2633e93ab990c0852459875a029d43670388c0aefb57396cfb018419ab825"
+    },
+    {
+      "path": "dist/technical-lessons/software-factory-sole-acceptance/narration.txt",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "9ee68b89c9fce494e50f14d24a847620cb40bedfe6bb0d19cdcb128a1ebb6e31"
+    },
+    {
+      "path": "dist/technical-notes.js",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "d8c4789ebad749a4ecaa99e8dde2b55256cbe4a3935427dfdcbc594d7c3dbfa4"
+    },
+    {
+      "path": "dist/technical.html",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "96fb0a5fefb8de311661994d79397d26b2a6ac5e029e772c727c32ddfa187e24"
+    },
+    {
+      "path": "dist/technical.js",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "67029fab66698fd78943c52537c267212a91978a2f34d6d8264cd23b71077a50"
+    },
+    {
+      "path": "docs/experiments/software-factory-lesson/results.md",
+      "role": "Writer results and evidence",
+      "sha256": "78da2cef6f53d3736a255271d9e76592068a905534d6a54f0e00a930c6269880"
+    },
+    {
+      "path": "scripts/check.mjs",
+      "role": "Frozen lesson integration and runtime control",
+      "sha256": "7d870c007f85ff66ae8e3d305931766a2d7e3da6e03207e0f57064af7aa32e1c"
+    }
+  ],
+  "owner": {
+    "name": "CEFR technical learning runtime",
+    "tool": "issue_admission.validate_delivery_paths",
+    "authorization": "ed3c/cefr-alg-c2-plus#8"
+  },
+  "authorizes_landing": false
+}
