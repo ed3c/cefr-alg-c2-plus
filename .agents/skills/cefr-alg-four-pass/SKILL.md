@@ -8,6 +8,7 @@ metadata:
 # CEFR ALG four-pass compiler
 
 Read [the four-pass contract](references/four-pass-contract.md) before producing or revising a lesson.
+Read [the execution protocol](references/execution-protocol.md) before changing runtime gates, technique routing, or receipts.
 Use [the feature map](features/README.md) to keep this compiler and its consumers aligned.
 
 ## Responsibility
@@ -19,7 +20,7 @@ Compile one technical article into one frozen learning package. This skill owns:
 3. STE-inspired clarity and C2+ precision scripts;
 4. passive/active vocabulary allocation;
 5. Pass 4 shadowing, active-recall, mutation, and comparison prompts;
-6. the source-bound meaning oracle.
+6. the source-bound meaning oracle;\n7. the session execution state, technique route, and practice-receipt contract.
 
 It does not own video composition. When video is requested, hand the frozen package and narration to
 `../alg-explainer-video/SKILL.md`. That renderer may change presentation, never frozen claims.
@@ -78,10 +79,16 @@ Choose a broader set of terms and phrases the learner should recognize while rea
 Build recognition through repeated, low-burden encounters across the article's real contexts. Prefer
 multiple short encounters over forcing one long memorization attempt.
 
-For a new term, bind its visible form, supplied pronunciation when available, and one contextually
-correct core meaning. Additional senses can wait for later real contexts. Do not claim a fixed
-ten-second exposure is universally optimal; the supplied ten-second method is a vocabulary practice
-recipe, not the Four-Pass invariant.
+For a new term, bind its visible form, supplied pronunciation when available, stress/phrase grouping
+when useful, and one contextually correct core meaning. Additional senses can wait for later real
+contexts.
+
+Delegate the passive micro-loop to `../alg-vocab-encounter/SKILL.md`: fast form/sound/meaning
+encounter, brief recognition probe, then retire or re-encounter. Lexical meaning recall remains
+`PASSIVE_RECEPTIVE`; it does not promote the term to active vocabulary.
+
+Do not claim a fixed ten-second exposure is universally optimal; the supplied ten-second method is a
+leaf practice recipe, not the Four-Pass invariant.
 
 ### Active set
 
@@ -89,6 +96,20 @@ Choose a smaller set worth producing in engineering conversation, design review,
 writing. Every active item must first be understandable in the receptive material. Exercise active
 items in Pass 4 through shadowing, retell/back-translation, or mutation. Do not attempt to make every
 technical term productive.
+
+## Choose the learning target and Pass 4 technique
+
+Name the primary target before compiling the passes. Route the high-resistance operation accordingly:
+
+- technical speaking/interview → shadowing + retell + sentence mutation;
+- technical writing/precision → true back-translation or semantic retell + source diff;
+- listening → narration + optional scaffold withdrawal + shadowing;
+- vocabulary breadth → `alg-vocab-encounter` recognition loop;
+- technical reasoning → premise mutation + causal retell.
+
+Do not force every technique merely because it exists. Preserve the distinction between semantic
+retell (meaning/diagram → English) and true back-translation (source English → learner L1
+representation → reconstructed English → source diff).
 
 ## Choose the four-pass sequence
 
@@ -122,13 +143,29 @@ Only here cross the required productive boundary. Use a bounded sequence:
 3. simultaneous shadowing when feasible, matching phrase grouping, stress, rhythm, and technical terms;
 4. retell or back-translate from a meaning/diagram cue without copying the English source;
 5. mutate one actor, condition, time, or architecture premise and explain the changed consequence;
-6. reveal the source-bound oracle only after the learner's attempt and compare the semantic result.
+6. require an oral-or-written attempt acknowledgement;
+7. reveal the source-bound oracle only after that acknowledgement and compare the semantic result;
+8. issue only a session-local practice receipt for performed operations; never call it mastery.
 
-If normal-speed shadowing breaks down, slow the playback or return to Pass 2/3 for the relevant
-segment. Mechanical sound imitation without understanding does not satisfy active reconstruction.
+If normal-speed shadowing breaks down, offer a slower playback rate or return to Pass 2/3 for the
+relevant segment. Mechanical sound imitation without understanding does not satisfy active
+reconstruction. Do not require automatic pronunciation scoring.
 
 Compare meaning, not wording. A fluent answer fails preservation when it changes an actor, condition,
 evidence claim, uncertainty, or causal link.
+
+## Execution governance
+
+Use the state model from the execution protocol:
+
+`PASSIVE_RECEPTIVE -> GENERATED -> COMPARED -> ACTIVE_PRACTICED`
+
+Passes 1-3 and passive vocabulary recognition cannot cross `PASSIVE_RECEPTIVE`. Software must keep
+the oracle unavailable until the learner acknowledges an oral or written Pass 4 attempt. The runtime
+may then create a session-local/downloadable receipt of performed techniques and observed gaps.
+
+A receipt records practice events only. Do not persist it to a learner account or reinterpret it as
+retention, proficiency, or mastery.
 
 ## Difficulty boundary
 
@@ -153,8 +190,10 @@ A renderer handoff must contain or reference:
 - frozen source claims;
 - clarity script and C2+ precision script;
 - ordered four-pass prompts;
-- passive encounter vocabulary and smaller active vocabulary;
-- Pass 4 shadowing segment/script;
+- passive encounter vocabulary with pronunciation/stress cues and smaller active vocabulary;
+- primary learning target and selected Pass 4 technique;
+- Pass 4 shadowing/back-translation/retell material required by that route;
+- execution state and attempt-gate contract;
 - hidden-until-attempt oracle;
 - exact narration script plus narration identity when available;
 - visual anchors: concepts/state changes worth showing, without prescribing renderer internals.
@@ -169,8 +208,9 @@ rewritten wording while violating a frozen source claim. Mark the package incomp
 claim lacks a supported representation or oracle item.
 
 Also reject a package when Pass 3 requires productive retrieval, when Pass 4 lacks either learner
-generation or oracle comparison, when active vocabulary has no receptive precursor, or when
-shadowing is treated as proof of comprehension.
+generation or oracle comparison, when the oracle can be revealed without an attempt acknowledgement,
+when active vocabulary has no receptive precursor, when lexical recognition is mislabeled productive,
+or when shadowing is treated as proof of comprehension.
 
 ## Non-goals
 
