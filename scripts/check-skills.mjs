@@ -13,12 +13,17 @@ for(const name of ['cefr-alg-four-pass','alg-explainer-video']){
   assert.ok(fs.existsSync(new URL('features/README.md',dir)),name+': feature map missing');
 }
 const compiler=fs.readFileSync(new URL('.agents/skills/cefr-alg-four-pass/SKILL.md',root),'utf8');
-for(const term of ['semantic lesson','acquisition sequence','clarity','active-recall','source-bound meaning oracle'])
+for(const term of ['semantic lesson','acquisition sequence','clarity','source-bound meaning oracle','Passive encounter set','Active set','Contextual familiarity','delayed shadowing','simultaneous shadowing'])
   assert.ok(compiler.toLowerCase().includes(term.toLowerCase()),'compiler responsibility missing: '+term);
+assert.match(compiler,/Passes 1-3 remain\s+receptive/i);
+assert.match(compiler,/Do not require reconstruction, retell, translation, quiz answers, or hidden-transcript retrieval here/i);
+assert.match(compiler,/retell or back-translate/i);
+assert.match(compiler,/reveal the source-bound oracle only after/i);
+assert.match(compiler,/exactly four exposures create a neurological threshold/i);
 assert.ok(compiler.includes('../alg-explainer-video/SKILL.md'),'compiler must delegate video rendering');
 const renderer=fs.readFileSync(new URL('.agents/skills/alg-explainer-video/SKILL.md',root),'utf8');
 for(const term of ['frozen','Hypit','narration','visual','correspondence'])
   assert.ok(renderer.includes(term),'renderer contract missing: '+term);
 assert.match(renderer,/not Pass 4 by itself/i);
 assert.match(renderer,/may not paraphrase them silently/i);
-console.log('PASS: four-pass compiler and Hypit renderer skill boundaries, links, feature maps, and preservation guards are present.');
+console.log('PASS: four-pass receptive/productive boundary, vocabulary split, shadowing, oracle guards, renderer boundary, links, and feature maps are present.');

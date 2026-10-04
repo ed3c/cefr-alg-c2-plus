@@ -16,8 +16,7 @@ export const technicalNotes = [
     ],
     passes: [
       {
-        id: 'context',
-        label: 'Pass 1 · Context',
+        id: 'context', label: 'Pass 1 · Encounter',
         goal: 'Build a low-friction mental model before studying the exact architecture.',
         instruction: 'Read once or listen once. Do not stop to memorize terms. Track only the problem, the actors, and the direction of the solution.',
         script: [
@@ -27,10 +26,9 @@ export const technicalNotes = [
         ]
       },
       {
-        id: 'precision',
-        label: 'Pass 2 · Precision',
-        goal: 'Bind the technical terms to the causal architecture.',
-        instruction: 'Read with the transcript visible. Notice the exact actor, condition, evidence boundary, and uncertainty in each paragraph.',
+        id: 'precision', label: 'Pass 2 · Recognition',
+        goal: 'Recognize the technical terms while following the exact causal architecture.',
+        instruction: 'Keep the English transcript and architecture visible. Notice the exact actor, condition, evidence boundary, and uncertainty. Recognition is enough; do not stop to prove recall.',
         script: [
           'The defining property of a software factory is not the number of agents. It is an autonomous development loop whose output is constrained by a validation contract. The contract is established before implementation, so a worker cannot quietly redefine success after seeing what it produced.',
           'Execution and judgment are separated. Workers implement features in isolated contexts. A scrutiny validator inspects source code, tests, type checks, lint results, and implementation history, but it does not repair the candidate it is judging. A user-testing validator takes the opposite view: it never reads the source and instead drives the running application through its external interface. The two perspectives target different failure modes, including code that looks plausible internally but exposes a dummy or broken user experience.',
@@ -38,10 +36,9 @@ export const technicalNotes = [
         ]
       },
       {
-        id: 'listening',
-        label: 'Pass 3 · Listening reconstruction',
-        goal: 'Remove the visual escape route and reconstruct the architecture from sound.',
-        instruction: 'Hide the transcript, listen at normal speed, then state the three-part architecture from memory: contract, separated execution and judgment, long-horizon completion risk.',
+        id: 'listening', label: 'Pass 3 · Contextual familiarity',
+        goal: 'Follow the architecture directly in natural spoken English while the context remains available.',
+        instruction: 'Listen at normal speed with the English transcript available. Follow the argument without translating it into your first language. Replay as needed. You may hide the transcript for extra listening exposure, but reconstruction is not required in this pass.',
         script: [
           'A software factory is a controlled delivery loop, not merely a swarm of coding agents. Its validation contract fixes the meaning of success before implementation begins.',
           'Workers and validators have different jobs. One builds; the others judge from white-box and black-box perspectives. That separation reduces the chance that the same system can both create a shortcut and approve it.',
@@ -49,14 +46,18 @@ export const technicalNotes = [
         ]
       },
       {
-        id: 'active',
-        label: 'Pass 4 · Active reconstruction',
-        goal: 'Generate the explanation yourself, then compare it with the source-bound oracle.',
-        instruction: 'Without copying the model text, explain the architecture aloud or in writing. Then compare your answer against every oracle item. A fluent answer that changes an actor, condition, evidence claim, or uncertainty is not a faithful reconstruction.',
+        id: 'active', label: 'Pass 4 · Active reconstruction',
+        goal: 'Cross the productive boundary: shadow, generate, mutate, then compare with the source-bound oracle.',
+        instruction: 'First shadow the supplied segment. Use delayed shadowing, then simultaneous shadowing if you can keep the meaning and phrase boundaries intact. Next retell or back-translate from the diagram or meaning cue, mutate one premise, and only then reveal the oracle.',
+        shadowingScript: [
+          'A software factory is a controlled delivery loop, not merely a swarm of coding agents.',
+          'Workers implement; independent validators judge from white-box and black-box perspectives.',
+          'Long-horizon autonomy makes the definition of done harder because the system must resist goal drift and convenient proxies.'
+        ],
         prompts: [
-          'Explain why “more agents” is not a sufficient definition of a software factory.',
+          'Retell: explain why “more agents” is not a sufficient definition of a software factory without copying the model text.',
+          'Back-translation: from the meaning “generation and judgment need separate roles,” produce a precise English explanation in your own wording.',
           'Explain the difference between the scrutiny validator and the user-testing validator without saying that either one alone proves correctness.',
-          'Explain why longer autonomous runtime increases the importance of the definition of done.',
           'Mutation: suppose the black-box validator can now read the source. What failure-detection property becomes weaker, and why?'
         ],
         oracle: [
@@ -67,6 +68,16 @@ export const technicalNotes = [
           'Do not convert reported examples or source statements into a universal guarantee of correctness, productivity, or learner mastery.'
         ]
       }
+    ],
+    passiveVocabulary: [
+      ['orchestrator', 'a component that coordinates work and routes tasks'],
+      ['validator', 'a component that judges a candidate against acceptance conditions'],
+      ['scrutiny', 'close examination of implementation and evidence'],
+      ['contingent on', 'dependent on a stated condition'],
+      ['goal drift', 'movement away from the original objective during a long run'],
+      ['provenance', 'information that identifies where an artifact or claim came from'],
+      ['deterministic', 'producing an outcome by fixed rules rather than open-ended judgment'],
+      ['reconciliation', 'comparison of expected state with observed external state']
     ],
     activeVocabulary: [
       ['bounded autonomy', 'autonomy constrained by explicit authority, evidence, or completion boundaries'],

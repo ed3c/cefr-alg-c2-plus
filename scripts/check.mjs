@@ -9,7 +9,15 @@ assert.equal(technicalNotes.length,1);
 const technical=technicalNotes[0];
 assert.deepEqual(technical.passes.map(p=>p.id),['context','precision','listening','active']);
 assert.ok(technical.passes.slice(0,3).every(p=>p.script?.length>=3));
+assert.match(technical.passes[2].label,/Contextual familiarity/);
+assert.match(technical.passes[2].instruction,/transcript available/i);
+assert.match(technical.passes[2].instruction,/reconstruction is not required/i);
+assert.ok(technical.passes[3].shadowingScript.length>=2);
+assert.match(technical.passes[3].instruction,/delayed shadowing/i);
+assert.match(technical.passes[3].instruction,/simultaneous shadowing/i);
+assert.ok(technical.passes[3].prompts.some(x=>/Back-translation/i.test(x)));
 assert.ok(technical.passes[3].prompts.length>=2 && technical.passes[3].oracle.length>=4);
+assert.ok(technical.passiveVocabulary.length>technical.activeVocabulary.length);
 assert.ok(technical.sourceClaims.includes('K-long-horizon-verification'));
 assert.ok(technical.passes[3].oracle.some(x=>/unresolved/i.test(x)));
 for(const l of lessons){
@@ -34,8 +42,12 @@ const technicalJs=fs.readFileSync(new URL('../dist/technical.js',import.meta.url
 assert.ok(html.includes('href="./technical.html"'));
 assert.ok(technicalHtml.includes('Generate with Kokoro browser & play'));
 assert.ok(technicalHtml.includes('Reveal meaning oracle'));
+assert.ok(technicalHtml.includes('id="passive-vocabulary"'));
+assert.ok(technicalHtml.includes('id="shadowing-script"'));
 assert.ok(technicalJs.includes("'kokoro-web'"));
 assert.ok(technicalJs.includes("$('oracle').hidden=false"));
+assert.ok(technicalJs.includes("transcriptVisible=true"));
+assert.ok(technicalJs.includes("pass.shadowingScript"));
 assert.ok(!/localStorage|fetch\(/.test(technicalJs),'Technical drafts must stay local and narration must use StudioNarrator');
 assert.ok(html.includes('id="panel-speak" role="tabpanel" aria-labelledby="tab-speak" hidden'));
 assert.ok(html.includes('id="panel-write" role="tabpanel" aria-labelledby="tab-write" hidden'));
