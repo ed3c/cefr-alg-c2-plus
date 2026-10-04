@@ -13,6 +13,7 @@ for(const name of ['cefr-alg-four-pass','alg-vocab-encounter','alg-explainer-vid
   assert.ok(fs.existsSync(new URL('features/README.md',dir)),name+': feature map missing');
 }
 const compiler=fs.readFileSync(new URL('.agents/skills/cefr-alg-four-pass/SKILL.md',root),'utf8');
+assert.ok(!compiler.includes('\\n'),'four-pass skill must not contain literal backslash-n insertion artifacts');
 for(const term of ['semantic lesson','acquisition sequence','clarity','source-bound meaning oracle','Passive encounter set','Active set','Contextual familiarity','delayed shadowing','simultaneous shadowing'])
   assert.ok(compiler.toLowerCase().includes(term.toLowerCase()),'compiler responsibility missing: '+term);
 assert.match(compiler,/Passes 1-3 remain\s+receptive/i);
