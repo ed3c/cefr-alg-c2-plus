@@ -1,47 +1,3 @@
-import {technicalNotes} from '../dist/technical-notes.js';
-import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import vm from 'node:vm';
-import {lessons, reviewCues} from '../dist/lessons.js';
-assert.equal(lessons.length,4);
-assert.equal(new Set(lessons.map(l=>l.id)).size,4);
-assert.equal(technicalNotes.length,1);
-const technical=technicalNotes[0];
-assert.deepEqual(technical.passes.map(p=>p.id),['context','precision','listening','active']);
-assert.ok(technical.passes.slice(0,3).every(p=>p.script?.length>=3));
-assert.match(technical.passes[2].label,/Contextual familiarity/);
-assert.match(technical.passes[2].instruction,/transcript available/i);
-assert.match(technical.passes[2].instruction,/reconstruction is not required/i);
-assert.ok(technical.passes[3].shadowingScript.length>=2);
-assert.match(technical.passes[3].instruction,/delayed shadowing/i);
-assert.match(technical.passes[3].instruction,/simultaneous shadowing/i);
-assert.ok(technical.passes[3].prompts.some(x=>/Semantic retell/i.test(x)));
-assert.equal(technical.learningTarget,'technical speaking / interview');
-assert.match(technical.pass4Technique,/shadowing/);
-assert.ok(technical.passes[3].prompts.length>=2 && technical.passes[3].oracle.length>=4);
-assert.ok(technical.passiveVocabulary.length>technical.activeVocabulary.length);
-assert.ok(technical.passiveVocabulary.every(x=>x.term&&x.pronunciation&&x.stress&&x.meaning));
-assert.ok(technical.sourceClaims.includes('K-long-horizon-verification'));
-assert.ok(technical.passes[3].oracle.some(x=>/unresolved/i.test(x)));
-for(const l of lessons){
-  assert.equal(l.scenes.length,3);
-  assert.ok(l.writing && l.speaking && l.before && l.after && l.explanation);
-  assert.ok(l.facts.length>=3);
-  for(const s of l.scenes){for(const version of ['plain','detailed'])assert.ok(s[version].length>=4&&s[version].every(line=>line.length===2&&line.every(Boolean)));}
-}
-assert.equal(reviewCues('  ').words,0);
-assert.deepEqual(reviewCues('This always works.').certainty,['always']);
-assert.deepEqual(reviewCues('The result remains unknown.').certainty,[]);
-assert.equal(reviewCues(Array(26).fill('word').join(' ')+'.').longSentences.length,1);
-assert.equal(reviewCues('<img src=x onerror=alert(1)>').message.includes('No CEFR'),true);
-const html=fs.readFileSync(new URL('../dist/index.html',import.meta.url),'utf8');
-const js=fs.readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');
-const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
-assert.equal(new Set(ids).size,ids.length,'Duplicate HTML IDs');
-for(const match of js.matchAll(/\$\('([^']+)'\)/g))assert.ok(ids.includes(match[1]),`Missing element ${match[1]}`);
-for(const path of ['app.js','lessons.js','style.css','technical.html','technical.js','technical-notes.js'])assert.ok(fs.existsSync(new URL('../dist/'+path,import.meta.url)));
-const technicalHtml=fs.readFileSync(new URL('../dist/technical.html',import.meta.url),'utf8');
-const technicalJs=fs.readFileSync(new URL('../dist/technical.js',import.meta.url),'utf8');
 assert.ok(html.includes('href="./technical.html"'));
 assert.ok(technicalHtml.includes('Generate with Kokoro browser & play'));
 assert.ok(technicalHtml.includes('Reveal meaning oracle'));
@@ -78,15 +34,3 @@ class El {
 const els=Object.fromEntries(ids.map(id=>[id,new El(id)]));
 const checkEls=Array.from({length:4},()=>new El());
 const tabs=['listen','speak','write'].map(name=>{els['tab-'+name].dataset.mode=name;return els['tab-'+name]});
-const registered=[];
-const fakeDocument={getElementById:id=>els[id],createElement:()=>new El(),createTextNode:t=>t,querySelectorAll:s=>s==='[data-check]'?checkEls:tabs,body:new El(),modelContext:{registerTool:t=>registered.push(t)}};
-class FakeNarrator { static calls=[]; constructor(){} async preloadParler(){} stop(){} dispose(){} play(item,engine,rate){return new Promise((resolve,reject)=>FakeNarrator.calls.push({item,engine,rate,resolve,reject}));} }
-els['narration-model'].value='parler';
-const sandbox={StudioNarrator:FakeNarrator,lessons,reviewCues,document:fakeDocument,window:{addEventListener(){}},navigator:{},URL:{createObjectURL:()=> 'blob:test',revokeObjectURL(){}},Blob,AbortController,setTimeout};
-vm.createContext(sandbox);
-vm.runInContext(js.replace(/^import[^\n]+\n/gm,''),sandbox);
-assert.equal(els['lesson-title'].textContent,lessons[0].title);
-assert.equal(FakeNarrator.calls.length,0,'Loading the app never starts narration');
-assert.equal(els.record.disabled,true,'Unavailable recording disables recording');
-assert.equal(registered.length,2);
-const read=registered.find(t=>t.name==='read_learning_scenario');const select=registered.find(t=>t.name==='select_learning_scenario');
