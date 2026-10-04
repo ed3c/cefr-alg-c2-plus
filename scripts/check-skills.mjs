@@ -32,5 +32,5 @@ assert.match(renderer,/may not paraphrase them silently/i);
 const vocab=fs.readFileSync(new URL('.agents/skills/alg-vocab-encounter/SKILL.md',root),'utf8');
 assert.match(vocab,/form\/sound\/meaning/i);
 assert.match(vocab,/recognition probe/i);
-assert.match(vocab,/does not promote the term to active/i);
+assert.match(vocab,/does not make the term .*ACTIVE_PRODUCTIVE/i);
 console.log('PASS: four-pass acquisition states, vocabulary leaf routing, technique routing, oracle gate, receipt boundary, renderer boundary, links, and feature maps are present.');
